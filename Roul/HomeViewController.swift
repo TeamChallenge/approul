@@ -23,6 +23,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         self.setupRoulette()
         
+        self.addGesture()
         self.view.addSubview(self.button)
         
         self.button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40).isActive = true
@@ -39,6 +40,16 @@ class HomeViewController: UIViewController {
     func girar (sender: UIButton) {
         self.rouletteComponent.girar()
     }
+    
+    func addGesture(){
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(gesture:)))
+        self.rouletteComponent.addGestureRecognizer(pan)
+    }
 
-
+    func handlePan(gesture: UIPanGestureRecognizer){
+        if gesture.state == .began{
+            let velocity = gesture.velocity(in: self.view)
+            print(velocity)
+        }
+    }
 }
