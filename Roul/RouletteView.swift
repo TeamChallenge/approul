@@ -26,7 +26,7 @@ class RouletteView: UIView {
         super.init(frame: frame)
     }
     
-    var elementos: [CircleView] = []
+    var elementos: [CGFloat: CircleView] = [:]
     
     var avatars : [UIImage] = [#imageLiteral(resourceName: "avatar1"), #imageLiteral(resourceName: "avatar2"), #imageLiteral(resourceName: "avatar3"), #imageLiteral(resourceName: "avatar4"), #imageLiteral(resourceName: "avatar5"), #imageLiteral(resourceName: "avatar6"), #imageLiteral(resourceName: "avatar7")]
     
@@ -49,7 +49,7 @@ class RouletteView: UIView {
             circle.color = i % 2 == 0 ? UIColor.red : UIColor.black
             circle.element = i
             circle.iconImage = avatars[i % self.avatars.count]
-            self.elementos.append(circle)
+            self.elementos[circle.endAngle] = circle
             self.addSubview(circle)
             
             let numberLabel = UILabel()
@@ -75,6 +75,8 @@ class RouletteView: UIView {
         viewCenter.heightAnchor.constraint(equalToConstant: rect.height * 0.4).isActive = true
         viewCenter.widthAnchor.constraint(equalToConstant: rect.width * 0.05).isActive = true
         viewCenter.layer.cornerRadius = (rect.height * 0.2) / 2
+        
+        print(self.elementos)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -96,16 +98,14 @@ class RouletteView: UIView {
             randon = Double.random(min: 2, max: 12)
             break
         }
-        print(randon)
         return randon
     }
     
     func girar() {
-        let currentAngle = self.viewCenter.layer.presentation()?.value(forKeyPath: "transform.rotation") as? Double
-        print("currentAngle: ", currentAngle)
+        let currenetAngle = self.viewCenter.layer.value(forKeyPath: "transform.rotation.z") as! CGFloat
+        print(currenetAngle)
         
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
-        animation.fromValue = currentAngle
         let by = rand() * M_PI
         let duration = rand(mode: .time)
         animation.byValue = by
@@ -113,15 +113,6 @@ class RouletteView: UIView {
         animation.isRemovedOnCompletion = false
         animation.fillMode = kCAFillModeForwards
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
-        
-        print("by: \(by), duration: \(duration)")
-        let result = (duration * by)
-        print(result)
-        
-        
-        let v = Int(result) % self.elementos.count
-        print(self.elementos[v].element)
-        
         
         self.viewCenter.layer.add(animation, forKey: "Animation")
     }
