@@ -102,10 +102,11 @@ class RouletteView: UIView {
     }
     
     func girar() {
-        let currenetAngle = self.viewCenter.
-        print(currenetAngle)
+        let currentAngle = self.viewCenter.layer.presentation()?.value(forKeyPath: "transform.rotation") as! Double
+        print("currentAngle: ", currentAngle)
         
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+        animation.fromValue = currentAngle
         let by = rand() * M_PI
         let duration = rand(mode: .time)
         animation.byValue = by
