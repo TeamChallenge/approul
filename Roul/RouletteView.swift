@@ -102,7 +102,7 @@ class RouletteView: UIView {
     }
     
     func girar() {
-        let currenetAngle = self.viewCenter.layer.value(forKeyPath: "transform.rotation.z") as! CGFloat
+        let currenetAngle = self.viewCenter.
         print(currenetAngle)
         
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
