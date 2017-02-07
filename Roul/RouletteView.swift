@@ -30,6 +30,10 @@ class RouletteView: UIView {
     
     var avatars : [UIImage] = [#imageLiteral(resourceName: "avatar1"), #imageLiteral(resourceName: "avatar2"), #imageLiteral(resourceName: "avatar3"), #imageLiteral(resourceName: "avatar4"), #imageLiteral(resourceName: "avatar5"), #imageLiteral(resourceName: "avatar6"), #imageLiteral(resourceName: "avatar7")]
     
+    lazy var angle : CGFloat = {
+        return CGFloat(2 * M_PI / Double(self.numberItems + 1))
+    }()
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         print(#function)
@@ -39,12 +43,11 @@ class RouletteView: UIView {
         let intervalo = (0...numberItems)
         
         let centerView = self.convert(self.center, from: self.superview)
-        let angle = 2 * M_PI / Double(intervalo.count)
         
         for i in intervalo {
             let circle = CircleView(frame: rect)
-            circle.startAngle = CGFloat(angle * Double(i))
-            circle.endAngle = CGFloat(angle * Double(i + 1))
+            circle.startAngle = CGFloat(angle * CGFloat(i))
+            circle.endAngle = CGFloat(angle * CGFloat(i + 1))
             circle.backgroundColor = .clear
             circle.color = i % 2 == 0 ? UIColor.red : UIColor.black
             circle.element = i
@@ -58,8 +61,8 @@ class RouletteView: UIView {
             numberLabel.textColor = UIColor.white
             numberLabel.backgroundColor = .clear
             numberLabel.sizeToFit()
-            let th = angle * (Double(i) + 0.5)
-            numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th - M_PI * 0.5))
+            let th = angle * (CGFloat(i) + 0.5)
+            numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th - CGFloat(M_PI * 0.5)))
             numberLabel.center = CGPoint(x: centerView.x + 205 * CGFloat(cos(th)), y: centerView.y + 205 * CGFloat(sin(th)))
             //            numberLabel.center = self.center
             self.addSubview(numberLabel)
@@ -88,14 +91,14 @@ class RouletteView: UIView {
         case angle
     }
     
-    func rand(mode: ModeRand = .angle) -> Double {
-        var randon: Double
+    func rand(mode: ModeRand = .angle) -> CGFloat {
+        var randon: CGFloat
         switch mode {
         case .time:
-            randon = Double.random(min: 1, max: 2)
+            randon = CGFloat(Double.random(min: 1, max: 2))
             break
         case .angle:
-            randon = Double.random(min: 2, max: 12)
+            randon = CGFloat(Double.random(min: 2, max: 12))
             break
         }
         return randon
@@ -107,10 +110,10 @@ class RouletteView: UIView {
         
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
         animation.fromValue = currentAngle
-        let by = rand() * M_PI
+        let by = rand() * self.angle
         let duration = rand(mode: .time)
         animation.byValue = by
-        animation.duration = duration
+        animation.duration = CFTimeInterval(duration)
         animation.isRemovedOnCompletion = false
         animation.fillMode = kCAFillModeForwards
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)

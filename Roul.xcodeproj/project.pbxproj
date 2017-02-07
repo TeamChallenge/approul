@@ -62,18 +62,50 @@
 		276871E31E491DA900A24C1E /* Roul */ = {
 			isa = PBXGroup;
 			children = (
+				649F7CB01E4A4F4500B9A4B6 /* Util */,
+				649F7CAF1E4A4F3300B9A4B6 /* Controller */,
+				649F7CAE1E4A4F3000B9A4B6 /* View */,
+				649F7CAD1E4A4F2B00B9A4B6 /* Model */,
 				276871E41E491DA900A24C1E /* AppDelegate.swift */,
-				276871E61E491DA900A24C1E /* ViewController.swift */,
-				276871EB1E491DA900A24C1E /* Main.storyboard */,
 				276871EE1E491DA900A24C1E /* Assets.xcassets */,
 				276871F01E491DA900A24C1E /* Info.plist */,
 				276871E81E491DA900A24C1E /* Roul.xcdatamodeld */,
-				64E1D6CF1E493BFD0009EF99 /* CircleView.swift */,
-				64E1D6D11E493C390009EF99 /* RouletteView.swift */,
-				64E1D6D31E493C640009EF99 /* Extension+Double.swift */,
-				64E1D6D51E49402F0009EF99 /* HomeViewController.swift */,
 			);
 			path = Roul;
+			sourceTree = "<group>";
+		};
+		649F7CAD1E4A4F2B00B9A4B6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		649F7CAE1E4A4F3000B9A4B6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				276871EB1E491DA900A24C1E /* Main.storyboard */,
+				64E1D6CF1E493BFD0009EF99 /* CircleView.swift */,
+				64E1D6D11E493C390009EF99 /* RouletteView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		649F7CAF1E4A4F3300B9A4B6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				276871E61E491DA900A24C1E /* ViewController.swift */,
+				64E1D6D51E49402F0009EF99 /* HomeViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		649F7CB01E4A4F4500B9A4B6 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				64E1D6D31E493C640009EF99 /* Extension+Double.swift */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
