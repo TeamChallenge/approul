@@ -28,6 +28,28 @@ class CircleView: UIView {
     }
     
     var element: Int?
+
+    var iconImage : UIImage? {
+        didSet{
+            self.setNeedsDisplay()
+        }
+    }
+    
+    var sizeIconImage: CGFloat = 100 {
+        didSet{
+            if iconImage != nil {
+                self.setNeedsDisplay()
+            }
+        }
+    }
+    
+    var raioIcon: CGFloat = 300 {
+        didSet{
+            if iconImage != nil {
+                self.setNeedsDisplay()
+            }
+        }
+    }
     
     override func draw(_ rect: CGRect) {
         if let context = UIGraphicsGetCurrentContext() {
@@ -39,6 +61,15 @@ class CircleView: UIView {
             context.move(to: origin)
             context.addArc(center: origin, radius: origin.x, startAngle: self.startAngle, endAngle: self.endAngle, clockwise: false)
             context.drawPath(using: .fill)
+            
+            if iconImage != nil {
+                let dif = (self.endAngle - self.startAngle) / 2.0
+                let x = abs(origin.x + raioIcon * cos(self.startAngle + dif))
+                let y = abs(origin.x + raioIcon * sin(self.startAngle + dif))
+                print(x, y)
+                let mediaSizee = sizeIconImage / 2.0
+                iconImage?.draw(in: CGRect(origin: CGPoint(x: x - mediaSizee, y: y - mediaSizee), size: CGSize(width: sizeIconImage, height: sizeIconImage)))
+            }
         }
         
     }

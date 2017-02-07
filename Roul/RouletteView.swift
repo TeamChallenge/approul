@@ -28,6 +28,8 @@ class RouletteView: UIView {
     
     var elementos: [CircleView] = []
     
+    var avatars : [UIImage] = [#imageLiteral(resourceName: "avatar1"), #imageLiteral(resourceName: "avatar2"), #imageLiteral(resourceName: "avatar3"), #imageLiteral(resourceName: "avatar4"), #imageLiteral(resourceName: "avatar5"), #imageLiteral(resourceName: "avatar6"), #imageLiteral(resourceName: "avatar7")]
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         print(#function)
@@ -46,6 +48,7 @@ class RouletteView: UIView {
             circle.backgroundColor = .clear
             circle.color = i % 2 == 0 ? UIColor.red : UIColor.black
             circle.element = i
+            circle.iconImage = avatars[i % self.avatars.count]
             self.elementos.append(circle)
             self.addSubview(circle)
             

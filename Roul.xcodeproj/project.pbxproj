@@ -15,6 +15,7 @@
 		64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6CF1E493BFD0009EF99 /* CircleView.swift */; };
 		64E1D6D21E493C390009EF99 /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D11E493C390009EF99 /* RouletteView.swift */; };
 		64E1D6D41E493C640009EF99 /* Extension+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D31E493C640009EF99 /* Extension+Double.swift */; };
+		64E1D6D61E49402F0009EF99 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D51E49402F0009EF99 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		64E1D6CF1E493BFD0009EF99 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		64E1D6D11E493C390009EF99 /* RouletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
 		64E1D6D31E493C640009EF99 /* Extension+Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Double.swift"; sourceTree = "<group>"; };
+		64E1D6D51E49402F0009EF99 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				64E1D6CF1E493BFD0009EF99 /* CircleView.swift */,
 				64E1D6D11E493C390009EF99 /* RouletteView.swift */,
 				64E1D6D31E493C640009EF99 /* Extension+Double.swift */,
+				64E1D6D51E49402F0009EF99 /* HomeViewController.swift */,
 			);
 			path = Roul;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 				276871E71E491DA900A24C1E /* ViewController.swift in Sources */,
 				276871E51E491DA900A24C1E /* AppDelegate.swift in Sources */,
 				64E1D6D21E493C390009EF99 /* RouletteView.swift in Sources */,
+				64E1D6D61E49402F0009EF99 /* HomeViewController.swift in Sources */,
 				276871EA1E491DA900A24C1E /* Roul.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
