@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
         return button
     }()
     
-    var IDavatarDesafiado = Int()
+    var IDavatarDesafiado = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +40,12 @@ class HomeViewController: UIViewController {
     }
     
     private func setupRoulette () {
-        self.rouletteComponent.numberItems = 15
+        self.rouletteComponent.jogadores = JogadorStore.singleton.getJogadores()
     }
     
     func girar (sender: UIButton) {
-        self.rouletteComponent.girar(withIntensidade: 5) { (elemento: CircleView, id: Int) in
-            print(elemento)
-            
+        self.rouletteComponent.girar(withIntensidade: 5) { (jogador: Jogador?) in
+            print(jogador)
         }
     }
     
@@ -61,23 +60,20 @@ class HomeViewController: UIViewController {
         
         if gesture.state == .began{
             let velocity = gesture.velocity(in: self.view)
-            self.rouletteComponent.girar(withIntensidade: Int(velocity.y),{ (elemento: CircleView, id: Int) in
-                print(elemento)
-                
-                
+            self.rouletteComponent.girar(withIntensidade: Int(velocity.y),{ (jogador: Jogador?) in
                 
                 if self.verificaPrimeiroGiroRoleta == false{
-                    self.IDavatarDesafiado = id
-                    self.desafiado.image = self.avatars[id]
+                    self.IDavatarDesafiado = (jogador?.imagem)!
+                    self.desafiado.image = self.IDavatarDesafiado
                 }
                 else{
-                    self.desafiante.image = self.avatars[self.IDavatarDesafiado]
-                    self.desafiado.image = self.avatars[id]
-                    self.IDavatarDesafiado = id
+                    self.desafiante.image = self.IDavatarDesafiado
+                    self.desafiado.image = jogador?.imagem
+                    self.IDavatarDesafiado = (jogador?.imagem)!
                 }
                 
                 self.verificaPrimeiroGiroRoleta = true
-                
+
             })
             print(velocity)
         }

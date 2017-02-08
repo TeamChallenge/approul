@@ -10,11 +10,16 @@ import UIKit
 
 class RouletteView: UIView {
     
-    var numberItems: Int = 2 {
-        didSet {
+    var jogadores : [Jogador]? {
+        didSet{
+            if let js = self.jogadores?.count {
+                self.numberItems = js
+            }
             self.setNeedsDisplay()
         }
     }
+    
+    private var numberItems: Int = 2
     
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         coordinator.addCoordinatedAnimations({ 
@@ -42,9 +47,7 @@ class RouletteView: UIView {
         super.init(frame: frame)
     }
     
-    var elementos: [CircleView] = []
-    
-    var avatars : [UIImage] = [#imageLiteral(resourceName: "avatar1"), #imageLiteral(resourceName: "avatar2"), #imageLiteral(resourceName: "avatar3"), #imageLiteral(resourceName: "avatar4"), #imageLiteral(resourceName: "avatar5"), #imageLiteral(resourceName: "avatar6"), #imageLiteral(resourceName: "avatar7")]
+//    var elementos: [CircleView] = []
     
     lazy var angle : CGFloat = {
         return CGFloat(2 * M_PI / Double(self.numberItems + 1))
@@ -70,8 +73,9 @@ class RouletteView: UIView {
             circle.backgroundColor = .clear
             circle.color = i % 2 == 0 ? UIColor.red : UIColor.black
             circle.element = i
-            circle.iconImage = avatars[i % self.avatars.count]
-            self.elementos.append(circle)
+//            circle.iconImage = avatars[i % self.avatars.count]
+            circle.iconImage = self.jogadores?[i % self.numberItems].imagem
+//            self.elementos.append(circle)
             self.addSubview(circle)
             
             let numberLabel = UILabel()
@@ -98,7 +102,7 @@ class RouletteView: UIView {
         viewCenter.widthAnchor.constraint(equalToConstant: rect.width * 0.05).isActive = true
         viewCenter.layer.cornerRadius = (rect.height * 0.2) / 2
         
-        print(self.elementos)
+        print(self.jogadores)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -131,7 +135,7 @@ class RouletteView: UIView {
     
     var endAngle: Int = 0
     
-    func girar(withIntensidade intensidade: Int, _ completion: @escaping (_ elemento: CircleView, _ id: Int) -> Void) {
+    func girar(withIntensidade intensidade: Int, _ completion: @escaping (_ jogador: Jogador?) -> Void) {
         let currentAngle = self.viewCenter.layer.presentation()?.value(forKeyPath: "transform.rotation") as! Double
 //        print("currentAngle: ", currentAngle)
         
@@ -152,7 +156,8 @@ class RouletteView: UIView {
 //        print(id, valorRand)
         
         delay(duration) {
-            completion(self.elementos[id], id)
+            self.jogadores?[id].id = "\(id)"
+            completion(self.jogadores?[id])
         }
         
         self.viewCenter.layer.add(animation, forKey: "Animation")
