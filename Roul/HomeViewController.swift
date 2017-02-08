@@ -33,7 +33,7 @@ class HomeViewController: UIViewController {
     }
     
     private func setupRoulette () {
-        self.rouletteComponent.numberItems = 5
+        self.rouletteComponent.numberItems = 15
     }
     
     func girar (sender: UIButton) {

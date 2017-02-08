@@ -103,7 +103,7 @@ class RouletteView: UIView {
             break
         case .angle:
 //            randon = CGFloat(Double.random(min: 2, max: 12))
-            randon = randomInt(min: 20, max: 100)
+            randon = randomInt(min: self.numberItems, max: 100)
             break
         }
         return randon
@@ -116,7 +116,6 @@ class RouletteView: UIView {
     var endAngle: Int = 0
     
     func girar(_ completion: @escaping (_ elemento: CircleView) -> Void) {
-        print(self.elementos)
         let currentAngle = self.viewCenter.layer.presentation()?.value(forKeyPath: "transform.rotation") as! Double
 //        print("currentAngle: ", currentAngle)
         
