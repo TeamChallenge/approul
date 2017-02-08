@@ -38,7 +38,7 @@ class HomeViewController: UIViewController {
     }
     
     func girar (sender: UIButton) {
-        self.rouletteComponent.girar() { (elemento: CircleView) in
+        self.rouletteComponent.girar(withIntensidade: 5) { (elemento: CircleView) in
             print(elemento)
         }
     }
@@ -51,6 +51,9 @@ class HomeViewController: UIViewController {
     func handlePan(gesture: UIPanGestureRecognizer){
         if gesture.state == .began{
             let velocity = gesture.velocity(in: self.view)
+            self.rouletteComponent.girar(withIntensidade: Int(velocity.y),{ (elemento: CircleView) in
+                print(elemento)
+            })
             print(velocity)
         }
     }

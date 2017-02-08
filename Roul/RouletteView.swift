@@ -16,6 +16,22 @@ class RouletteView: UIView {
         }
     }
     
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        coordinator.addCoordinatedAnimations({ 
+            if self.isFocused {
+                self.layer.borderColor = UIColor.red.cgColor
+                self.layer.borderWidth = 10
+            } else {
+                self.layer.borderColor = UIColor.white.cgColor
+                self.layer.borderWidth = 0
+            }
+        }, completion: nil)
+    }
+    
+    override var canBecomeFocused: Bool {
+        return true
+    }
+    
     let viewCenter : UIView = {
         let v = UIView()
         v.layer.anchorPoint = CGPoint(x: 0.5, y: 0.9)
@@ -115,13 +131,14 @@ class RouletteView: UIView {
     
     var endAngle: Int = 0
     
-    func girar(_ completion: @escaping (_ elemento: CircleView) -> Void) {
+    func girar(withIntensidade intensidade: Int, _ completion: @escaping (_ elemento: CircleView) -> Void) {
         let currentAngle = self.viewCenter.layer.presentation()?.value(forKeyPath: "transform.rotation") as! Double
 //        print("currentAngle: ", currentAngle)
         
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
         animation.fromValue = currentAngle
-        let valorRand = rand()
+//        let valorRand = rand()
+        let valorRand = intensidade / 10
         let by = CGFloat(valorRand) * self.angle
         self.endAngle += valorRand
         let duration = rand(mode: .time)
