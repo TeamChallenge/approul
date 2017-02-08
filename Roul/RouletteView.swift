@@ -10,6 +10,12 @@ import UIKit
 
 class RouletteView: UIView {
     
+    var jogadores : [Jogador]? {
+        didSet{
+            self.setNeedsDisplay()
+        }
+    }
+    
     var numberItems: Int = 2 {
         didSet {
             self.setNeedsDisplay()
@@ -152,6 +158,7 @@ class RouletteView: UIView {
 //        print(id, valorRand)
         
         delay(duration) {
+//            let dic = ["id" : id, "imagem": [ava]]
             completion(self.elementos[id])
         }
         

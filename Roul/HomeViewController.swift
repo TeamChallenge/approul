@@ -34,6 +34,8 @@ class HomeViewController: UIViewController {
     }
     
     private func setupRoulette () {
+        self.rouletteComponent.jogadores = JogadorStore.singleton.getJogadores()
+        
         self.rouletteComponent.numberItems = 15
     }
     
