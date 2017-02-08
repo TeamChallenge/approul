@@ -33,11 +33,13 @@ class HomeViewController: UIViewController {
     }
     
     private func setupRoulette () {
-        self.rouletteComponent.numberItems = 13
+        self.rouletteComponent.numberItems = 5
     }
     
     func girar (sender: UIButton) {
-        self.rouletteComponent.girar()
+        self.rouletteComponent.girar() { (elemento: CircleView) in
+            print(elemento)
+        }
     }
 
 

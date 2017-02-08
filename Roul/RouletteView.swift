@@ -73,7 +73,7 @@ class RouletteView: UIView {
         
         viewCenter.translatesAutoresizingMaskIntoConstraints = false
         viewCenter.backgroundColor = .brown
-        viewCenter.transform = CGAffineTransform(rotationAngle: CGFloat(2 * self.angle))
+        viewCenter.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI / 2) + self.angle * 0.5)
         self.addSubview(viewCenter)
         
         viewCenter.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
@@ -115,10 +115,10 @@ class RouletteView: UIView {
     
     var endAngle: Int = 0
     
-    func girar() {
+    func girar(_ completion: @escaping (_ elemento: CircleView) -> Void) {
         print(self.elementos)
         let currentAngle = self.viewCenter.layer.presentation()?.value(forKeyPath: "transform.rotation") as! Double
-        print("currentAngle: ", currentAngle)
+//        print("currentAngle: ", currentAngle)
         
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
         animation.fromValue = currentAngle
@@ -133,7 +133,11 @@ class RouletteView: UIView {
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
         
         let id = Int(self.endAngle) % (self.numberItems + 1)
-        print(self.elementos[id], id, valorRand)
+//        print(id, valorRand)
+        
+        delay(duration) {
+            completion(self.elementos[id])
+        }
         
         self.viewCenter.layer.add(animation, forKey: "Animation")
     }
