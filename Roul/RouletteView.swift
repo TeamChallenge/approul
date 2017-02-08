@@ -131,7 +131,7 @@ class RouletteView: UIView {
     
     var endAngle: Int = 0
     
-    func girar(withIntensidade intensidade: Int, _ completion: @escaping (_ elemento: CircleView) -> Void) {
+    func girar(withIntensidade intensidade: Int, _ completion: @escaping (_ elemento: CircleView, _ id: Int) -> Void) {
         let currentAngle = self.viewCenter.layer.presentation()?.value(forKeyPath: "transform.rotation") as! Double
 //        print("currentAngle: ", currentAngle)
         
@@ -140,7 +140,7 @@ class RouletteView: UIView {
 //        let valorRand = rand()
         let valorRand = intensidade / 10
         let by = CGFloat(valorRand) * self.angle
-        self.endAngle += valorRand
+        self.endAngle += abs(valorRand)
         let duration = rand(mode: .time)
         animation.byValue = by
         animation.duration = CFTimeInterval(duration)
@@ -152,7 +152,7 @@ class RouletteView: UIView {
 //        print(id, valorRand)
         
         delay(duration) {
-            completion(self.elementos[id])
+            completion(self.elementos[id], id)
         }
         
         self.viewCenter.layer.add(animation, forKey: "Animation")

@@ -11,6 +11,10 @@ import UIKit
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var rouletteComponent: RouletteView!
+    @IBOutlet weak var desafiante: UIImageView!
+    @IBOutlet weak var desafiado: UIImageView!
+    
+    var avatars : [UIImage] = [#imageLiteral(resourceName: "avatar1"), #imageLiteral(resourceName: "avatar2"), #imageLiteral(resourceName: "avatar3"), #imageLiteral(resourceName: "avatar4"), #imageLiteral(resourceName: "avatar5"), #imageLiteral(resourceName: "avatar6"), #imageLiteral(resourceName: "avatar7"), #imageLiteral(resourceName: "avatar1"), #imageLiteral(resourceName: "avatar2"), #imageLiteral(resourceName: "avatar3"), #imageLiteral(resourceName: "avatar4"), #imageLiteral(resourceName: "avatar5"), #imageLiteral(resourceName: "avatar6"), #imageLiteral(resourceName: "avatar7"), #imageLiteral(resourceName: "avatar1")]
     
     let button : UIButton = {
         let button = UIButton(type: .system)
@@ -19,10 +23,12 @@ class HomeViewController: UIViewController {
         return button
     }()
     
+    var IDavatarDesafiado = Int()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupRoulette()
         
+        self.setupRoulette()
         self.addGesture()
         self.view.addSubview(self.button)
         
@@ -38,8 +44,9 @@ class HomeViewController: UIViewController {
     }
     
     func girar (sender: UIButton) {
-        self.rouletteComponent.girar(withIntensidade: 5) { (elemento: CircleView) in
+        self.rouletteComponent.girar(withIntensidade: 5) { (elemento: CircleView, id: Int) in
             print(elemento)
+            
         }
     }
     
@@ -47,14 +54,34 @@ class HomeViewController: UIViewController {
         let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(gesture:)))
         self.rouletteComponent.addGestureRecognizer(pan)
     }
+    
+    var verificaPrimeiroGiroRoleta = false
 
     func handlePan(gesture: UIPanGestureRecognizer){
+        
         if gesture.state == .began{
             let velocity = gesture.velocity(in: self.view)
-            self.rouletteComponent.girar(withIntensidade: Int(velocity.y),{ (elemento: CircleView) in
+            self.rouletteComponent.girar(withIntensidade: Int(velocity.y),{ (elemento: CircleView, id: Int) in
                 print(elemento)
+                
+                
+                
+                if self.verificaPrimeiroGiroRoleta == false{
+                    self.IDavatarDesafiado = id
+                    self.desafiado.image = self.avatars[id]
+                }
+                else{
+                    self.desafiante.image = self.avatars[self.IDavatarDesafiado]
+                    self.desafiado.image = self.avatars[id]
+                    self.IDavatarDesafiado = id
+                }
+                
+                self.verificaPrimeiroGiroRoleta = true
+                
             })
             print(velocity)
         }
+        
+        
     }
 }
