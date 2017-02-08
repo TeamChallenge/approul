@@ -34,12 +34,12 @@ class HomeViewController: UIViewController {
     }
     
     private func setupRoulette () {
-        self.rouletteComponent.numberItems = 15
+        self.rouletteComponent.jogadores = JogadorStore.singleton.getJogadores()
     }
     
     func girar (sender: UIButton) {
-        self.rouletteComponent.girar(withIntensidade: 5) { (elemento: CircleView) in
-            print(elemento)
+        self.rouletteComponent.girar(withIntensidade: 5) { (jogador: Jogador?) in
+            print(jogador)
         }
     }
     
@@ -51,8 +51,8 @@ class HomeViewController: UIViewController {
     func handlePan(gesture: UIPanGestureRecognizer){
         if gesture.state == .began{
             let velocity = gesture.velocity(in: self.view)
-            self.rouletteComponent.girar(withIntensidade: Int(velocity.y),{ (elemento: CircleView) in
-                print(elemento)
+            self.rouletteComponent.girar(withIntensidade: Int(velocity.y),{ (jogador: Jogador?) in
+                print(jogador)
             })
             print(velocity)
         }
