@@ -14,6 +14,8 @@
 		276871EF1E491DA900A24C1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 276871EE1E491DA900A24C1E /* Assets.xcassets */; };
 		27DDF35E1E4BB5AA0045145C /* Jogador.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF35D1E4BB5AA0045145C /* Jogador.swift */; };
 		27DDF3621E4BB97C0045145C /* JogadorStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF3611E4BB97C0045145C /* JogadorStore.swift */; };
+		27DDF3661E4D1D970045145C /* TrocaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF3651E4D1D970045145C /* TrocaViewController.swift */; };
+		27DDF3681E4D1D9E0045145C /* ModalDuelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF3671E4D1D9E0045145C /* ModalDuelo.swift */; };
 		646058E71E4ACB7A0001FC44 /* Extension+Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */; };
 		64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6CF1E493BFD0009EF99 /* CircleView.swift */; };
 		64E1D6D21E493C390009EF99 /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D11E493C390009EF99 /* RouletteView.swift */; };
@@ -31,6 +33,8 @@
 		276871F01E491DA900A24C1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27DDF35D1E4BB5AA0045145C /* Jogador.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jogador.swift; sourceTree = "<group>"; };
 		27DDF3611E4BB97C0045145C /* JogadorStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JogadorStore.swift; sourceTree = "<group>"; };
+		27DDF3651E4D1D970045145C /* TrocaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrocaViewController.swift; sourceTree = "<group>"; };
+		27DDF3671E4D1D9E0045145C /* ModalDuelo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalDuelo.swift; sourceTree = "<group>"; };
 		646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Dispatch.swift"; sourceTree = "<group>"; };
 		64E1D6CF1E493BFD0009EF99 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		64E1D6D11E493C390009EF99 /* RouletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
@@ -92,6 +96,7 @@
 		649F7CAE1E4A4F3000B9A4B6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				27DDF3671E4D1D9E0045145C /* ModalDuelo.swift */,
 				276871EB1E491DA900A24C1E /* Main.storyboard */,
 				64E1D6CF1E493BFD0009EF99 /* CircleView.swift */,
 				64E1D6D11E493C390009EF99 /* RouletteView.swift */,
@@ -102,6 +107,7 @@
 		649F7CAF1E4A4F3300B9A4B6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				27DDF3651E4D1D970045145C /* TrocaViewController.swift */,
 				276871E61E491DA900A24C1E /* ViewController.swift */,
 				64E1D6D51E49402F0009EF99 /* HomeViewController.swift */,
 			);
@@ -192,11 +198,13 @@
 				64E1D6D41E493C640009EF99 /* Extension+Double.swift in Sources */,
 				27DDF35E1E4BB5AA0045145C /* Jogador.swift in Sources */,
 				64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */,
+				27DDF3661E4D1D970045145C /* TrocaViewController.swift in Sources */,
 				276871E71E491DA900A24C1E /* ViewController.swift in Sources */,
 				646058E71E4ACB7A0001FC44 /* Extension+Dispatch.swift in Sources */,
 				276871E51E491DA900A24C1E /* AppDelegate.swift in Sources */,
 				27DDF3621E4BB97C0045145C /* JogadorStore.swift in Sources */,
 				64E1D6D21E493C390009EF99 /* RouletteView.swift in Sources */,
+				27DDF3681E4D1D9E0045145C /* ModalDuelo.swift in Sources */,
 				64E1D6D61E49402F0009EF99 /* HomeViewController.swift in Sources */,
 				276871EA1E491DA900A24C1E /* Roul.xcdatamodeld in Sources */,
 			);
