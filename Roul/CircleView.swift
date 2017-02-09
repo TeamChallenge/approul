@@ -26,8 +26,6 @@ class CircleView: UIView {
             self.setNeedsDisplay()
         }
     }
-    
-    var element: Int?
 
     var iconImage : UIImage? {
         didSet{
@@ -52,7 +50,7 @@ class CircleView: UIView {
     }
     
     override var description: String {
-        return "[angle: \(startAngle), \(endAngle), element: \(element)]"
+        return "[angle: \(startAngle), \(endAngle)]"
     }
     
     override func draw(_ rect: CGRect) {
@@ -67,10 +65,10 @@ class CircleView: UIView {
             context.drawPath(using: .fill)
             
             if iconImage != nil {
+                raioIcon = origin.x * 0.6
                 let dif = (self.endAngle - self.startAngle) / 2.0
                 let x = abs(origin.x + raioIcon * cos(self.startAngle + dif))
                 let y = abs(origin.x + raioIcon * sin(self.startAngle + dif))
-//                print(x, y)
                 let mediaSizee = sizeIconImage / 2.0
                 iconImage?.draw(in: CGRect(origin: CGPoint(x: x - mediaSizee, y: y - mediaSizee), size: CGSize(width: sizeIconImage, height: sizeIconImage)))
             }

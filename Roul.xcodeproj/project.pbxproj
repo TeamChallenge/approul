@@ -17,7 +17,7 @@
 		646058E71E4ACB7A0001FC44 /* Extension+Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */; };
 		64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6CF1E493BFD0009EF99 /* CircleView.swift */; };
 		64E1D6D21E493C390009EF99 /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D11E493C390009EF99 /* RouletteView.swift */; };
-		64E1D6D41E493C640009EF99 /* Extension+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D31E493C640009EF99 /* Extension+Double.swift */; };
+		64E1D6D41E493C640009EF99 /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D31E493C640009EF99 /* Extension+Int.swift */; };
 		64E1D6D61E49402F0009EF99 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D51E49402F0009EF99 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +34,7 @@
 		646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Dispatch.swift"; sourceTree = "<group>"; };
 		64E1D6CF1E493BFD0009EF99 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		64E1D6D11E493C390009EF99 /* RouletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
-		64E1D6D31E493C640009EF99 /* Extension+Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Double.swift"; sourceTree = "<group>"; };
+		64E1D6D31E493C640009EF99 /* Extension+Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
 		64E1D6D51E49402F0009EF99 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,7 +111,7 @@
 		649F7CB01E4A4F4500B9A4B6 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				64E1D6D31E493C640009EF99 /* Extension+Double.swift */,
+				64E1D6D31E493C640009EF99 /* Extension+Int.swift */,
 				646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */,
 			);
 			name = Util;
@@ -189,7 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64E1D6D41E493C640009EF99 /* Extension+Double.swift in Sources */,
+				64E1D6D41E493C640009EF99 /* Extension+Int.swift in Sources */,
 				27DDF35E1E4BB5AA0045145C /* Jogador.swift in Sources */,
 				64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */,
 				276871E71E491DA900A24C1E /* ViewController.swift in Sources */,
