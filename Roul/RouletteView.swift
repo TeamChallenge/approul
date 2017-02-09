@@ -140,13 +140,13 @@ class RouletteView: UIView {
     
     func girar(withIntensidade intensidade: Int, _ completion: @escaping (_ jogador: Jogador?) -> Void) {
         
-        var valorRand = intensidade / 10
+        var valorRand = abs(intensidade) / 10
         let duration = rand(mode: .time)
         
         self.giroViewCenter(valorRand, duration)
         
         if valorRand < 0 {
-            valorRand = (self.numberItems - self.indexCurrent) + abs(valorRand)
+            valorRand = abs(valorRand + (self.numberItems - 1 + self.indexCurrent) )
         }
         
         indexCurrent = (valorRand + indexCurrent) % self.numberItems
