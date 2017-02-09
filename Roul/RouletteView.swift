@@ -19,6 +19,7 @@ class RouletteView: UIView {
         }
     }
     
+    private var indexCurrent: Int = 0
     private var numberItems: Int = 2
     
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
@@ -37,7 +38,7 @@ class RouletteView: UIView {
         return true
     }
     
-    let viewCenter : UIView = {
+    private let viewCenter : UIView = {
         let v = UIView()
         v.layer.anchorPoint = CGPoint(x: 0.5, y: 0.9)
         return v
@@ -47,47 +48,38 @@ class RouletteView: UIView {
         super.init(frame: frame)
     }
     
-//    var elementos: [CircleView] = []
-    
-    lazy var angle : CGFloat = {
-        return CGFloat(2 * M_PI / Double(self.numberItems + 1))
+    private lazy var angle : CGFloat = {
+        return CGFloat(2 * M_PI / Double(self.numberItems))
     }()
-
-    private var angleStart : CGFloat!
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        print(#function)
-        self.angleStart = self.angle
+        
         self.layer.cornerRadius = min(rect.width, rect.height) / 2
         self.backgroundColor = .green
         self.layer.masksToBounds = true
-        let intervalo = (0...numberItems)
         
         let centerView = self.convert(self.center, from: self.superview)
         
-        for i in intervalo {
+        for (i, jogador) in self.jogadores!.enumerated() {
             let circle = CircleView(frame: rect)
             circle.startAngle = CGFloat(angle * CGFloat(i))
             circle.endAngle = CGFloat(angle * CGFloat(i + 1))
             circle.backgroundColor = .clear
             circle.color = i % 2 == 0 ? UIColor.red : UIColor.black
             circle.element = i
-//            circle.iconImage = avatars[i % self.avatars.count]
-            circle.iconImage = self.jogadores?[i % self.numberItems].imagem
-//            self.elementos.append(circle)
+            circle.iconImage = jogador.imagem
             self.addSubview(circle)
             
             let numberLabel = UILabel()
-            numberLabel.text = "\(i)"
+            numberLabel.text = jogador.nome
             numberLabel.font = UIFont.boldSystemFont(ofSize: 50)
             numberLabel.textColor = UIColor.white
             numberLabel.backgroundColor = .clear
             numberLabel.sizeToFit()
             let th = angle * (CGFloat(i) + 0.5)
-            numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th - CGFloat(M_PI * 0.5)))
+//            numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th - CGFloat(M_PI * 0.5)))
             numberLabel.center = CGPoint(x: centerView.x + 205 * CGFloat(cos(th)), y: centerView.y + 205 * CGFloat(sin(th)))
-            //            numberLabel.center = self.center
             self.addSubview(numberLabel)
         }
         
@@ -101,8 +93,6 @@ class RouletteView: UIView {
         viewCenter.heightAnchor.constraint(equalToConstant: rect.height * 0.4).isActive = true
         viewCenter.widthAnchor.constraint(equalToConstant: rect.width * 0.05).isActive = true
         viewCenter.layer.cornerRadius = (rect.height * 0.2) / 2
-        
-        print(self.jogadores)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -133,35 +123,37 @@ class RouletteView: UIView {
         return min + Int(arc4random_uniform(UInt32(max - min + 1)))
     }
     
-    var endAngle: Int = 0
-    
-    func girar(withIntensidade intensidade: Int, _ completion: @escaping (_ jogador: Jogador?) -> Void) {
+    private func giroViewCenter (_ numberAngles: Int, _ duration: Int) {
         let currentAngle = self.viewCenter.layer.presentation()?.value(forKeyPath: "transform.rotation") as! Double
-//        print("currentAngle: ", currentAngle)
         
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
         animation.fromValue = currentAngle
-//        let valorRand = rand()
-        let valorRand = intensidade / 10
-        let by = CGFloat(valorRand) * self.angle
-        self.endAngle += valorRand
-        let duration = rand(mode: .time)
+        
+        let by = CGFloat(numberAngles) * self.angle
         animation.byValue = by
         animation.duration = CFTimeInterval(duration)
         animation.isRemovedOnCompletion = false
         animation.fillMode = kCAFillModeForwards
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+        self.viewCenter.layer.add(animation, forKey: "Animation")
+    }
+    
+    func girar(withIntensidade intensidade: Int, _ completion: @escaping (_ jogador: Jogador?) -> Void) {
         
-        let id = Int(self.endAngle) % (self.numberItems + 1)
-//        print(id, valorRand)
+        var valorRand = intensidade / 10
+        let duration = rand(mode: .time)
         
-        delay(duration) {
-//            let dic = ["id" : id, "imagem": [ava]]
-            self.jogadores?[id].id = "\(id)"
-            completion(self.jogadores?[id])
+        self.giroViewCenter(valorRand, duration)
+        
+        if valorRand < 0 {
+            valorRand = (self.numberItems - self.indexCurrent) + abs(valorRand)
         }
         
-        self.viewCenter.layer.add(animation, forKey: "Animation")
+        indexCurrent = (valorRand + indexCurrent) % self.numberItems
+        
+        delay(duration) {
+            completion(self.jogadores?[self.indexCurrent])
+        }
     }
     
 }

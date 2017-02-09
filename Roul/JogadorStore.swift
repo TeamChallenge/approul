@@ -9,7 +9,9 @@
 import UIKit
 
 class JogadorStore: NSObject {
-    private var avatars : [UIImage] = [#imageLiteral(resourceName: "avatar1"), #imageLiteral(resourceName: "avatar2"), #imageLiteral(resourceName: "avatar3"), #imageLiteral(resourceName: "avatar4"), #imageLiteral(resourceName: "avatar5"), #imageLiteral(resourceName: "avatar6"), #imageLiteral(resourceName: "avatar7")]
+    
+    private var avatars : [(String, UIImage)] = [("A", #imageLiteral(resourceName: "avatar1")), ("B", #imageLiteral(resourceName: "avatar2")), ( "C", #imageLiteral(resourceName: "avatar3")), ("D", #imageLiteral(resourceName: "avatar4")), ("E", #imageLiteral(resourceName: "avatar5")), ("F", #imageLiteral(resourceName: "avatar6"))]
+//    ("G", #imageLiteral(resourceName: "avatar7"))
     private var jogadores : [Jogador] = []
     
     static let singleton = JogadorStore()
@@ -22,8 +24,8 @@ class JogadorStore: NSObject {
         if !self.jogadores.isEmpty {
             return self.jogadores
         }
-        self.jogadores = avatars.map { (image: UIImage) -> Jogador in
-            return Jogador(dic: ["nome" : "Deivid", "imagem": image])
+        self.jogadores = avatars.map { (nome: String, image: UIImage) -> Jogador in
+            return Jogador(dic: ["nome" : nome, "imagem": image])
         }
         
         return jogadores

@@ -38,8 +38,8 @@ class HomeViewController: UIViewController {
     }
     
     func girar (sender: UIButton) {
-        self.rouletteComponent.girar(withIntensidade: 5) { (jogador: Jogador?) in
-            print(jogador)
+        self.rouletteComponent.girar(withIntensidade: 35) { (jogador: Jogador?) in
+            print(jogador!)
         }
     }
     
@@ -52,9 +52,9 @@ class HomeViewController: UIViewController {
         if gesture.state == .began{
             let velocity = gesture.velocity(in: self.view)
             self.rouletteComponent.girar(withIntensidade: Int(velocity.y),{ (jogador: Jogador?) in
-                print(jogador)
+                print(jogador!)
             })
-            print(velocity)
+//            print(velocity)
         }
     }
 }
