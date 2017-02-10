@@ -28,6 +28,15 @@ class HomeViewController: UIViewController {
     var nameDesafiadoAnteriormente = String()
     var nameDesafiado = String()
     
+    private func startGame () {
+        if let count = self.rouletteComponent.jogadores?.count {
+            self.rouletteComponent?.girar(withIntensidade: count * 7, { (jogador: Jogador?) in
+                self.desafiante.image = jogador?.imagem
+                self.labelDesafiante.text = jogador?.nome
+            })
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,6 +53,10 @@ class HomeViewController: UIViewController {
     
     private func setupRoulette () {
         self.rouletteComponent.jogadores = JogadorStore.singleton.getJogadores()
+        
+        delay(2) {
+            self.startGame()
+        }
     }
     
     func girar (sender: UIButton) {
