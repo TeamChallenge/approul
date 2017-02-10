@@ -60,7 +60,8 @@ class HomeViewController: UIViewController {
         
         if gesture.state == .began{
             let velocity = gesture.velocity(in: self.view)
-            self.rouletteComponent.girar(withIntensidade: Int(velocity.y),{ (jogador: Jogador?) in
+            let intensidade = Int(max(abs(velocity.x), abs(velocity.y)))
+            self.rouletteComponent.girar(withIntensidade: intensidade, { (jogador: Jogador?) in
                 
                 if self.verificaPrimeiroGiroRoleta == false{
                     self.IDavatarDesafiado = (jogador?.imagem)!

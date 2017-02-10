@@ -40,7 +40,7 @@ class RouletteView: UIView {
     
     private let viewCenter : UIView = {
         let v = UIView()
-        v.layer.anchorPoint = CGPoint(x: 0.5, y: 0.9)
+        v.layer.anchorPoint = CGPoint(x: 0.5, y: 0.7)
         return v
     }()
     
@@ -89,7 +89,7 @@ class RouletteView: UIView {
         
         viewCenter.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         viewCenter.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        viewCenter.heightAnchor.constraint(equalToConstant: rect.height * 0.4).isActive = true
+        viewCenter.heightAnchor.constraint(equalToConstant: rect.height * 0.25).isActive = true
         viewCenter.widthAnchor.constraint(equalToConstant: rect.width * 0.05).isActive = true
         viewCenter.layer.cornerRadius = (rect.height * 0.2) / 2
     }
