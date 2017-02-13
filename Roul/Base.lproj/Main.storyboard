@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16D12b" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="appleTV" orientation="landscape">
         <adaptation id="light"/>
     </device>
     <dependencies>
         <deployment identifier="tvOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -62,6 +62,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hfj-ik-oCD" customClass="ROSwipeView" customModule="Roul" customModuleProvider="target">
+                                <rect key="frame" x="1112" y="501" width="661" height="410"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -71,6 +76,7 @@
                         <outlet property="labelDesafiado" destination="cEp-5q-ueA" id="Ndw-TU-Op4"/>
                         <outlet property="labelDesafiante" destination="GQ9-7G-5I4" id="tYg-9x-nit"/>
                         <outlet property="rouletteComponent" destination="dPr-wu-Ybc" id="dDY-Ci-yYU"/>
+                        <outlet property="viewSwipe" destination="Hfj-ik-oCD" id="lcQ-B5-zSf"/>
                         <segue destination="3Tz-fw-LMT" kind="presentation" identifier="modalSegue" modalPresentationStyle="overFullScreen" id="b9r-XR-Atz"/>
                     </connections>
                 </viewController>
@@ -130,14 +136,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VERDADE OU DESAFIO?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3g-lk-EAM">
-                                        <rect key="frame" x="310" y="414" width="646" height="87"/>
+                                        <rect key="frame" x="310" y="359" width="646" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wPM-3s-Ybg">
-                                        <rect key="frame" x="540" y="559" width="195" height="86"/>
+                                        <rect key="frame" x="540" y="587" width="195" height="86"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
@@ -146,6 +152,11 @@
                                             <action selector="handleDone:" destination="3Tz-fw-LMT" eventType="primaryActionTriggered" id="eq8-VC-qeH"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C9K-oX-kBL" customClass="TVPickerView" customModule="Roul" customModuleProvider="target">
+                                        <rect key="frame" x="344" y="438" width="587" height="111"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -157,6 +168,7 @@
                         <outlet property="imgDesafiador" destination="ZI2-Pg-VF1" id="APb-Rk-5iU"/>
                         <outlet property="nameDesafiado" destination="aTN-1w-SV6" id="AaV-vk-jlf"/>
                         <outlet property="nameDesafiador" destination="ixW-jr-Y4w" id="o0A-OB-QEC"/>
+                        <outlet property="pickerCacaNiquel" destination="C9K-oX-kBL" id="1Gj-sL-hIE"/>
                         <outlet property="viewModal" destination="SC9-w7-FnW" id="h0U-o3-ZxH"/>
                     </connections>
                 </viewController>

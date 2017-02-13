@@ -10,12 +10,15 @@ import UIKit
 
 class ModalDuelo: UIViewController {
     
+    
     @IBOutlet weak var viewModal: UIView!
     @IBOutlet weak var imgDesafiador: UIImageView!
     @IBOutlet weak var imgDesafiado: UIImageView!
     @IBOutlet weak var nameDesafiador: UILabel!
     @IBOutlet weak var nameDesafiado: UILabel!
     @IBOutlet weak var done: UIButton!
+    
+    @IBOutlet weak var pickerCacaNiquel: TVPickerView!
     
     var imageJog1 = UIImage()
     var imageJog2 = UIImage()
@@ -24,6 +27,10 @@ class ModalDuelo: UIViewController {
     
     override func viewDidLoad() {
         self.atribuiImagens()
+        
+        self.pickerCacaNiquel.focusDelegate = self
+        self.pickerCacaNiquel.dataSource = self
+        self.pickerCacaNiquel.delegate = self
     }
     
     func openModal() {
@@ -57,13 +64,114 @@ class ModalDuelo: UIViewController {
     @IBAction func handleDone(_ sender: Any) {
         self.closeModal()
     }
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    fileprivate var isPickerLoaded: Bool = false
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if !isPickerLoaded {
+            pickerCacaNiquel.reloadData()
+            isPickerLoaded = true
+        }
+        
     }
-    */
 
+
+    let colors: [UIColor] = [
+        .black,
+        .darkGray,
+        .lightGray,
+        .gray,
+        .red,
+        .green,
+        .blue,
+        .cyan,
+        .yellow,
+        .magenta,
+        .orange,
+        .purple,
+        .brown,
+        .black,
+        .darkGray,
+        .lightGray,
+        .gray,
+        .red,
+        .green,
+        .blue,
+        .cyan,
+        .yellow,
+        .magenta,
+        .orange,
+        .purple,
+        .brown,
+        .black,
+        .darkGray,
+        .lightGray,
+        .gray,
+        .red,
+        .green,
+        .blue,
+        .cyan,
+        .yellow,
+        .magenta,
+        .orange,
+        .purple,
+        .brown,
+        .black,
+        .darkGray,
+        .lightGray,
+        .gray,
+        .red,
+        .green,
+        .blue,
+        .cyan,
+        .yellow,
+        .magenta,
+        .orange,
+        .purple,
+        .brown,
+        ]
+
+}
+
+extension ModalDuelo: TVPickerViewFocusDelegate {
+    
+    func pickerView(_ picker: TVPickerView, deepFocusStateChanged isDeepFocus: Bool) {
+        
+    }
+    
+}
+
+extension ModalDuelo: TVPickerViewDataSource {
+    
+    func numberOfViewsInPickerView(_ picker: TVPickerView) -> Int {
+        return self.colors.count
+    }
+    
+    func pickerView(_ picker: TVPickerView, viewForIndex idx: Int, reusingView view: UIView?) -> UIView {
+        
+        var sview = view as? UILabel
+        
+        if sview == nil {
+            sview = UILabel()
+            sview!.textColor = .white
+            sview!.font = .systemFont(ofSize: 30)
+            sview!.textAlignment = .center
+        }
+        
+        sview!.backgroundColor = colors[idx]
+        sview!.text = " \(idx)"
+        
+        return sview!
+    }
+    
+}
+
+extension ModalDuelo: TVPickerViewDelegate {
+    
+    func pickerView(_ picker: TVPickerView, didChangeToIndex index: Int) {
+        
+    }
+    
 }

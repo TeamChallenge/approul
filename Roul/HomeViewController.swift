@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var desafiado: UIImageView!
     @IBOutlet weak var labelDesafiante: UILabel!
     @IBOutlet weak var labelDesafiado: UILabel!
+    @IBOutlet weak var viewSwipe: ROSwipeView!
     
     let button : UIButton = {
         let button = UIButton(type: .system)
@@ -44,8 +45,8 @@ class HomeViewController: UIViewController {
         self.addGesture()
         self.view.addSubview(self.button)
         
-        self.button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40).isActive = true
-        self.button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -40).isActive = true
+        self.button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 300).isActive = true
+        self.button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 40).isActive = true
         self.button.widthAnchor.constraint(equalToConstant: 200).isActive = true
         self.button.heightAnchor.constraint(equalToConstant: 90).isActive = true
         self.button.addTarget(self, action: #selector(HomeViewController.girar), for: .primaryActionTriggered)
@@ -60,9 +61,7 @@ class HomeViewController: UIViewController {
     }
     
     func girar (sender: UIButton) {
-        self.rouletteComponent.girar(withIntensidade: 35) { (jogador: Jogador?) in
-            print(jogador!)
-        }
+        self.viewSwipe.animacao2()
     }
     
     func addGesture(){
