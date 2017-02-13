@@ -65,7 +65,7 @@ class ROSwipeView: UIView {
         self.addSubview(self.containerElements)
         self.containerElements.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
         self.containerElements.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        self.containerElements.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 40).isActive = true
+        self.containerElements.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 100).isActive = true
         self.containerElements.widthAnchor.constraint(equalToConstant: 350).isActive = true
      
         self.containerElements.addSubview(self.elementItem)
@@ -73,7 +73,7 @@ class ROSwipeView: UIView {
         self.elementItem.heightAnchor.constraint(equalToConstant: 60).isActive = true
         self.elementItem.centerXAnchor.constraint(equalTo: self.containerElements.centerXAnchor).isActive = true
         self.elementItem.topAnchor.constraint(equalTo: self.containerElements.topAnchor, constant: -60).isActive = true
-        
+
         self.containerElements.addSubview(self.elementItem2)
         self.elementItem2.widthAnchor.constraint(equalToConstant: 200).isActive = true
         self.elementItem2.heightAnchor.constraint(equalToConstant: 60).isActive = true
@@ -107,7 +107,9 @@ class ROSwipeView: UIView {
         self.elementItem3.layer.shadowOpacity = 0.8
         self.elementItem3.layer.shadowOffset = CGSize(width: 2, height: 2)
         self.elementItem3.layer.shadowRadius = 3
+        
     }
+    
     
 }
 
@@ -157,17 +159,17 @@ extension ROSwipeView {
         let scale = CAKeyframeAnimation(keyPath: "transform.scale")
         scale.values = [1, 1.2, 1.4, 1.2, 1]
         scale.duration = duration
-        scale.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)];
+        scale.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)];
         
         let position = CAKeyframeAnimation(keyPath: "position.y")
         position.values = [0, 70, 140, 210, 280]
-        position.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)];
+        position.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)];
         position.isAdditive = true
         position.duration = duration
         
         let positionx = CAKeyframeAnimation(keyPath: "position.x")
         positionx.values = [0, 20, 30, 20, 0]
-        positionx.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)];
+        positionx.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)];
         positionx.isAdditive = true
         positionx.duration = duration
         
@@ -175,12 +177,12 @@ extension ROSwipeView {
         rotation.keyPath = "transform.rotation";
         rotation.values = [ -0.08, -0.04, 0, 0.04, 0.08];
         rotation.duration = duration
-        rotation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)];
+        rotation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)];
         
         let shadow = CAKeyframeAnimation(keyPath: "shadowRadius")
         shadow.values = [3, 6, 12, 6, 3]
         shadow.duration = duration
-        shadow.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)];
+        shadow.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear), CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)];
         
         let group = CAAnimationGroup()
         group.animations = [scale, position, positionx, rotation, shadow]
