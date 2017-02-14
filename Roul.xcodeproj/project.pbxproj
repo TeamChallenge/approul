@@ -21,13 +21,6 @@
 		64E1D6D61E49402F0009EF99 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D51E49402F0009EF99 /* HomeViewController.swift */; };
 		64F613161E52516A0086D858 /* BonjourTCPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F613141E52516A0086D858 /* BonjourTCPClient.swift */; };
 		64F613171E52516A0086D858 /* BonjourTCPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F613151E52516A0086D858 /* BonjourTCPServer.swift */; };
-		64F6131F1E52538F0086D858 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F6131E1E52538F0086D858 /* AppDelegate.swift */; };
-		64F613211E52538F0086D858 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F613201E52538F0086D858 /* ViewController.swift */; };
-		64F613241E52538F0086D858 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F613221E52538F0086D858 /* Main.storyboard */; };
-		64F613261E52538F0086D858 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64F613251E52538F0086D858 /* Assets.xcassets */; };
-		64F613291E52538F0086D858 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F613271E52538F0086D858 /* LaunchScreen.storyboard */; };
-		64F6132E1E5255120086D858 /* BonjourTCPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F613141E52516A0086D858 /* BonjourTCPClient.swift */; };
-		64F6132F1E5255120086D858 /* BonjourTCPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F613151E52516A0086D858 /* BonjourTCPServer.swift */; };
 		94C09CC41E4CFCB300BF7C7F /* ModalDuelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C09CC31E4CFCB300BF7C7F /* ModalDuelo.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +41,6 @@
 		64E1D6D51E49402F0009EF99 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		64F613141E52516A0086D858 /* BonjourTCPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BonjourTCPClient.swift; sourceTree = "<group>"; };
 		64F613151E52516A0086D858 /* BonjourTCPServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BonjourTCPServer.swift; sourceTree = "<group>"; };
-		64F6131C1E52538F0086D858 /* RoulMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoulMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64F6131E1E52538F0086D858 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64F613201E52538F0086D858 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		64F613231E52538F0086D858 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,13 +52,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		276871DE1E491DA900A24C1E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64F613191E52538F0086D858 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -89,7 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				276871E11E491DA900A24C1E /* Roul.app */,
-				64F6131C1E52538F0086D858 /* RoulMobile.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -190,23 +174,6 @@
 			productReference = 276871E11E491DA900A24C1E /* Roul.app */;
 			productType = "com.apple.product-type.application";
 		};
-		64F6131B1E52538F0086D858 /* RoulMobile */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 64F6132B1E52538F0086D858 /* Build configuration list for PBXNativeTarget "RoulMobile" */;
-			buildPhases = (
-				64F613181E52538F0086D858 /* Sources */,
-				64F613191E52538F0086D858 /* Frameworks */,
-				64F6131A1E52538F0086D858 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = RoulMobile;
-			productName = RoulMobile;
-			productReference = 64F6131C1E52538F0086D858 /* RoulMobile.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -218,11 +185,6 @@
 				ORGANIZATIONNAME = "Jerlilson Bezerra da Silva";
 				TargetAttributes = {
 					276871E01E491DA900A24C1E = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 533ZC86QCL;
-						ProvisioningStyle = Automatic;
-					};
-					64F6131B1E52538F0086D858 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 533ZC86QCL;
 						ProvisioningStyle = Automatic;
@@ -243,7 +205,6 @@
 			projectRoot = "";
 			targets = (
 				276871E01E491DA900A24C1E /* Roul */,
-				64F6131B1E52538F0086D858 /* RoulMobile */,
 			);
 		};
 /* End PBXProject section */
@@ -255,16 +216,6 @@
 			files = (
 				276871EF1E491DA900A24C1E /* Assets.xcassets in Resources */,
 				276871ED1E491DA900A24C1E /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64F6131A1E52538F0086D858 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64F613291E52538F0086D858 /* LaunchScreen.storyboard in Resources */,
-				64F613261E52538F0086D858 /* Assets.xcassets in Resources */,
-				64F613241E52538F0086D858 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,17 +239,6 @@
 				64E1D6D61E49402F0009EF99 /* HomeViewController.swift in Sources */,
 				64F613161E52516A0086D858 /* BonjourTCPClient.swift in Sources */,
 				276871EA1E491DA900A24C1E /* Roul.xcdatamodeld in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64F613181E52538F0086D858 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64F6132E1E5255120086D858 /* BonjourTCPClient.swift in Sources */,
-				64F6132F1E5255120086D858 /* BonjourTCPServer.swift in Sources */,
-				64F613211E52538F0086D858 /* ViewController.swift in Sources */,
-				64F6131F1E52538F0086D858 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,40 +395,6 @@
 			};
 			name = Release;
 		};
-		64F6132C1E52538F0086D858 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 533ZC86QCL;
-				INFOPLIST_FILE = RoulMobile/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.developer.vinhote.RoulMobile;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos10.2;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		64F6132D1E52538F0086D858 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 533ZC86QCL;
-				INFOPLIST_FILE = RoulMobile/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.developer.vinhote.RoulMobile;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos10.2;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -509,14 +415,6 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
-		};
-		64F6132B1E52538F0086D858 /* Build configuration list for PBXNativeTarget "RoulMobile" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				64F6132C1E52538F0086D858 /* Debug */,
-				64F6132D1E52538F0086D858 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 
