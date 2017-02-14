@@ -24,15 +24,16 @@ class HomeViewController: UIViewController {
     }()
     
     var imgDesafiadoAnteriormente = UIImage()
-    var imgDesafiado = UIImage()
     var nameDesafiadoAnteriormente = String()
-    var nameDesafiado = String()
     
     private func startGame () {
         if let count = self.rouletteComponent.jogadores?.count {
             self.rouletteComponent?.girar(withIntensidade: count * 7, { (jogador: Jogador?) in
                 self.desafiante.image = jogador?.imagem
                 self.labelDesafiante.text = jogador?.nome
+                
+                self.imgDesafiadoAnteriormente = (jogador?.imagem)!
+                self.nameDesafiadoAnteriormente = (jogador?.nome)!
             })
         }
     }
@@ -87,28 +88,32 @@ class HomeViewController: UIViewController {
             let intensidade = Int(max(abs(velocity.x), abs(velocity.y)))
             self.rouletteComponent.girar(withIntensidade: intensidade, { (jogador: Jogador?) in
                 
-                if self.verificaPrimeiroGiroRoleta == false{
-                    self.desafiado.image = jogador?.imagem
-                    self.imgDesafiado = (jogador?.imagem)!
-                    self.imgDesafiadoAnteriormente = (jogador?.imagem)!
-                    
-                    self.labelDesafiado.text = jogador?.nome
-                    self.nameDesafiado = (jogador?.nome)!
-                    self.nameDesafiadoAnteriormente = (jogador?.nome)!
-                    
-                    self.verificaPrimeiroGiroRoleta = true
+                if jogador?.imagem == self.imgDesafiadoAnteriormente{
+                    self.rouletteComponent.girar(withIntensidade: 10) { (jogadorRodada2: Jogador?) in
+                        print(jogador!)
+                        
+                        self.desafiado.image = jogadorRodada2?.imagem
+                        self.labelDesafiado.text = jogadorRodada2?.nome
+                        self.desafiante.image = self.imgDesafiadoAnteriormente
+                        self.labelDesafiante.text = self.nameDesafiadoAnteriormente
+                        
+                        self.imgDesafiadoAnteriormente = (jogadorRodada2?.imagem)!
+                        self.nameDesafiadoAnteriormente = (jogadorRodada2?.nome)!
+                        
+                        self.animationInModal()
+                    }
                 }
                 else{
-                    self.desafiante.image = self.imgDesafiadoAnteriormente
                     self.desafiado.image = jogador?.imagem
-                    self.imgDesafiado = (jogador?.imagem)!
-                    
-                    self.labelDesafiante.text = self.nameDesafiadoAnteriormente
                     self.labelDesafiado.text = jogador?.nome
-                    self.nameDesafiado = (jogador?.nome)!
+                    self.desafiante.image = self.imgDesafiadoAnteriormente
+                    self.labelDesafiante.text = self.nameDesafiadoAnteriormente
+                    
+                    self.imgDesafiadoAnteriormente = (jogador?.imagem)!
+                    self.nameDesafiadoAnteriormente = (jogador?.nome)!
+                    
+                    self.animationInModal()
                 }
-                
-                self.animationInModal()
                 
             })
         }
@@ -116,20 +121,18 @@ class HomeViewController: UIViewController {
     
     func animationInModal(){
         delay(1, finish: {
-            self.performSegue(withIdentifier: "modalSegue", sender: self)
+//            self.performSegue(withIdentifier: "modalSegue", sender: self)
         })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "modalSegue"{
             if let VC = segue.destination as? ModalDuelo{
-                VC.imageJog1 = self.imgDesafiadoAnteriormente
-                VC.imageJog2 = self.imgDesafiado
-                self.imgDesafiadoAnteriormente = self.imgDesafiado
+                VC.imageJog1 = self.desafiante.image!
+                VC.imageJog2 = self.desafiado.image!
                 
-                VC.nameJog1 = self.nameDesafiadoAnteriormente
-                VC.nameJog2 = self.nameDesafiado
-                self.nameDesafiadoAnteriormente = self.nameDesafiado
+                VC.nameJog1 = self.labelDesafiante.text!
+                VC.nameJog2 = self.labelDesafiado.text!
             }
         }
     }

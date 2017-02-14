@@ -10,7 +10,9 @@ import UIKit
 
 class JogadorStore: NSObject {
     
-    private var avatars : [(String, UIImage)] = [("A", #imageLiteral(resourceName: "avatar1")), ("B", #imageLiteral(resourceName: "avatar2")), ( "C", #imageLiteral(resourceName: "avatar3")), ("D", #imageLiteral(resourceName: "avatar4")), ("E", #imageLiteral(resourceName: "avatar5")), ("F", #imageLiteral(resourceName: "avatar6")), ("G", #imageLiteral(resourceName: "avatar7")), ("H", #imageLiteral(resourceName: "avatar6")), ("I", #imageLiteral(resourceName: "avatar6")), ("J", #imageLiteral(resourceName: "avatar6"))]
+//    private var avatars : [(String, UIImage)] = [("A", #imageLiteral(resourceName: "avatar1")), ("B", #imageLiteral(resourceName: "avatar2")), ( "C", #imageLiteral(resourceName: "avatar3")), ("D", #imageLiteral(resourceName: "avatar4")), ("E", #imageLiteral(resourceName: "avatar5")), ("F", #imageLiteral(resourceName: "avatar6")), ("G", #imageLiteral(resourceName: "avatar7")), ("H", #imageLiteral(resourceName: "avatar6")), ("I", #imageLiteral(resourceName: "avatar6")), ("J", #imageLiteral(resourceName: "avatar6"))]
+    
+    private var avatars : [(String, UIImage)] = [("A", #imageLiteral(resourceName: "avatar1")), ("B", #imageLiteral(resourceName: "avatar2")), ( "C", #imageLiteral(resourceName: "avatar3")), ("D", #imageLiteral(resourceName: "avatar4")), ("E", #imageLiteral(resourceName: "avatar5")), ("F", #imageLiteral(resourceName: "avatar6"))]
     
     private var jogadores : [Jogador] = []
     
