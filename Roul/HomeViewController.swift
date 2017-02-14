@@ -15,7 +15,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var desafiado: UIImageView!
     @IBOutlet weak var labelDesafiante: UILabel!
     @IBOutlet weak var labelDesafiado: UILabel!
-    @IBOutlet weak var viewSwipe: ROSwipeView!
     
     let button : UIButton = {
         let button = UIButton(type: .system)
@@ -62,7 +61,7 @@ class HomeViewController: UIViewController {
     }
     
     func girar (sender: UIButton) {
-        self.viewSwipe.animacao2()
+        
     }
     
     func addGesture(){
