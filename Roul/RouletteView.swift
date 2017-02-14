@@ -40,7 +40,7 @@ class RouletteView: UIView {
     
     private let viewCenter : UIView = {
         let v = UIView()
-        v.layer.anchorPoint = CGPoint(x: 0.5, y: 0.9)
+        v.layer.anchorPoint = CGPoint(x: 0.5, y: 0.7)
         return v
     }()
     
@@ -67,7 +67,6 @@ class RouletteView: UIView {
             circle.endAngle = CGFloat(angle * CGFloat(i + 1))
             circle.backgroundColor = .clear
             circle.color = i % 2 == 0 ? UIColor.red : UIColor.black
-            circle.element = i
             circle.iconImage = jogador.imagem
             self.addSubview(circle)
             
@@ -90,7 +89,7 @@ class RouletteView: UIView {
         
         viewCenter.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         viewCenter.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        viewCenter.heightAnchor.constraint(equalToConstant: rect.height * 0.4).isActive = true
+        viewCenter.heightAnchor.constraint(equalToConstant: rect.height * 0.25).isActive = true
         viewCenter.widthAnchor.constraint(equalToConstant: rect.width * 0.05).isActive = true
         viewCenter.layer.cornerRadius = (rect.height * 0.2) / 2
     }
@@ -104,23 +103,19 @@ class RouletteView: UIView {
         case angle
     }
     
-    func rand(mode: ModeRand = .angle) -> Int {
+    private func rand(mode: ModeRand = .angle) -> Int {
         var randon: Int
         switch mode {
         case .time:
-//            randon = CGFloat(Double.random(min: 1, max: 2))
-            randon = randomInt(min: 1, max: 2)
+            //randon = CGFloat(Double.random(min: 1, max: 2))
+            randon = Int.randomInt(min: 1, max: 2)
             break
         case .angle:
-//            randon = CGFloat(Double.random(min: 2, max: 12))
-            randon = randomInt(min: self.numberItems, max: 100)
+            //randon = CGFloat(Double.random(min: 2, max: 12))
+            randon = Int.randomInt(min: self.numberItems, max: 100)
             break
         }
         return randon
-    }
-    
-    func randomInt(min: Int, max:Int) -> Int {
-        return min + Int(arc4random_uniform(UInt32(max - min + 1)))
     }
     
     private func giroViewCenter (_ numberAngles: Int, _ duration: Int) {

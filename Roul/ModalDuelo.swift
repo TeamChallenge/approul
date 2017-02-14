@@ -28,11 +28,12 @@ class ModalDuelo: UIViewController {
     
     func openModal() {
         self.viewModal.center = self.view.center
-        self.viewModal.transform = CGAffineTransform.identity.scaledBy(x: 1.5, y: 1.5)
+        
         self.viewModal.alpha = 0
         
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
             self.viewModal.alpha = 1
+            self.viewModal.transform = CGAffineTransform.identity.scaledBy(x: 1.5, y: 1.5)
             self.viewModal.transform = CGAffineTransform.identity
         }, completion: nil)
     }
