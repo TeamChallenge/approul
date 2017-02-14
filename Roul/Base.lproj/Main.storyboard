@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Jogadores View Controller-->
         <scene sceneID="XJi-fB-zo3">
             <objects>
-                <viewController id="VVm-MQ-jIl" sceneMemberID="viewController">
+                <viewController id="VVm-MQ-jIl" customClass="JogadoresViewController" customModule="Roul" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fc1-ef-zd0"/>
                         <viewControllerLayoutGuide type="bottom" id="QZ8-I0-fYq"/>
@@ -68,6 +68,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="Iniciar"/>
+                                <connections>
+                                    <action selector="iniciar" destination="VVm-MQ-jIl" eventType="primaryActionTriggered" id="qWL-Rv-uQT"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHn-bY-IM1">
                                 <rect key="frame" x="149" y="73" width="719" height="83"/>

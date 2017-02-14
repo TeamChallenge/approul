@@ -61,7 +61,14 @@ class RouletteView: UIView {
         
         let centerView = self.convert(self.center, from: self.superview)
         
-        for (i, jogador) in self.jogadores!.enumerated() {
+        guard let jogadores = self.jogadores?.enumerated() else {
+            print("sem jogadores")
+            return
+        }
+        
+        print("com jogadores")
+        
+        for (i, jogador) in jogadores {
             let circle = CircleView(frame: rect)
             circle.startAngle = CGFloat(angle * CGFloat(i))
             circle.endAngle = CGFloat(angle * CGFloat(i + 1))
