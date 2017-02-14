@@ -13,8 +13,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var rouletteComponent: RouletteView!
     @IBOutlet weak var desafiante: UIImageView!
     @IBOutlet weak var desafiado: UIImageView!
-    
-    var avatars : [UIImage] = [#imageLiteral(resourceName: "avatar1"), #imageLiteral(resourceName: "avatar2"), #imageLiteral(resourceName: "avatar3"), #imageLiteral(resourceName: "avatar4"), #imageLiteral(resourceName: "avatar5"), #imageLiteral(resourceName: "avatar6"), #imageLiteral(resourceName: "avatar7"), #imageLiteral(resourceName: "avatar1"), #imageLiteral(resourceName: "avatar2"), #imageLiteral(resourceName: "avatar3"), #imageLiteral(resourceName: "avatar4"), #imageLiteral(resourceName: "avatar5"), #imageLiteral(resourceName: "avatar6"), #imageLiteral(resourceName: "avatar7"), #imageLiteral(resourceName: "avatar1")]
+    @IBOutlet weak var labelDesafiante: UILabel!
+    @IBOutlet weak var labelDesafiado: UILabel!
     
     let button : UIButton = {
         let button = UIButton(type: .system)
@@ -23,7 +23,10 @@ class HomeViewController: UIViewController {
         return button
     }()
     
-    var IDavatarDesafiado = UIImage()
+    var imgDesafiadoAnteriormente = UIImage()
+    var imgDesafiado = UIImage()
+    var nameDesafiadoAnteriormente = String()
+    var nameDesafiado = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,20 +66,63 @@ class HomeViewController: UIViewController {
             self.rouletteComponent.girar(withIntensidade: Int(velocity.y),{ (jogador: Jogador?) in
                 
                 if self.verificaPrimeiroGiroRoleta == false{
-                    self.IDavatarDesafiado = (jogador?.imagem)!
-                    self.desafiado.image = self.IDavatarDesafiado
+                    self.desafiado.image = jogador?.imagem
+                    self.imgDesafiado = (jogador?.imagem)!
+                    self.imgDesafiadoAnteriormente = (jogador?.imagem)!
+                    
+                    self.labelDesafiado.text = jogador?.nome
+                    self.nameDesafiado = (jogador?.nome)!
+                    self.nameDesafiadoAnteriormente = (jogador?.nome)!
+                    
+                    self.verificaPrimeiroGiroRoleta = true
                 }
                 else{
-                    self.desafiante.image = self.IDavatarDesafiado
+                    self.desafiante.image = self.imgDesafiadoAnteriormente
                     self.desafiado.image = jogador?.imagem
-                    self.IDavatarDesafiado = (jogador?.imagem)!
+                    self.imgDesafiado = (jogador?.imagem)!
+                    
+                    self.labelDesafiante.text = self.nameDesafiadoAnteriormente
+                    self.labelDesafiado.text = jogador?.nome
+                    self.nameDesafiado = (jogador?.nome)!
                 }
                 
-                self.verificaPrimeiroGiroRoleta = true
-
+                self.animationInModal()
             })
         }
-        
-        
+    }
+    
+    func animationInModal(){
+        delay(1, finish: {
+            self.performSegue(withIdentifier: "modalSegue", sender: self)
+        })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "modalSegue"{
+            if let VC = segue.destination as? ModalDuelo{
+                VC.imageJog1 = self.imgDesafiadoAnteriormente
+                VC.imageJog2 = self.imgDesafiado
+                self.imgDesafiadoAnteriormente = self.imgDesafiado
+                
+                VC.nameJog1 = self.nameDesafiadoAnteriormente
+                VC.nameJog2 = self.nameDesafiado
+                self.nameDesafiadoAnteriormente = self.nameDesafiado
+            }
+        }
+    }
+    
+    func invertePosicaoJogador(){
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: { 
+            self.desafiante.center.x = self.desafiante.center.x - 100.0
+        }, completion: nil)
     }
 }
+
+
+
+
+
+
+
+
+
