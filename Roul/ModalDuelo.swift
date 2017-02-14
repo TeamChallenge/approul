@@ -10,6 +10,7 @@ import UIKit
 
 class ModalDuelo: UIViewController {
     
+    
     @IBOutlet weak var viewModal: UIView!
     @IBOutlet weak var imgDesafiador: UIImageView!
     @IBOutlet weak var imgDesafiado: UIImageView!
@@ -58,13 +59,5 @@ class ModalDuelo: UIViewController {
     @IBAction func handleDone(_ sender: Any) {
         self.closeModal()
     }
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
+    
 }

@@ -43,14 +43,22 @@ class HomeViewController: UIViewController {
         
         self.setupRoulette()
         self.addGesture()
+        self.shared()
         self.view.addSubview(self.button)
         
-        self.button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40).isActive = true
-        self.button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -40).isActive = true
+        self.button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 300).isActive = true
+        self.button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 40).isActive = true
         self.button.widthAnchor.constraint(equalToConstant: 200).isActive = true
         self.button.heightAnchor.constraint(equalToConstant: 90).isActive = true
         self.button.addTarget(self, action: #selector(HomeViewController.girar), for: .primaryActionTriggered)
     }
+    
+    private func shared() {
+        BonjourTCPServer.sharedInstance.dataReceivedCallback = { (data) in
+            print("\(data)")
+        }
+    }
+    
     
     private func setupRoulette () {
         self.rouletteComponent.jogadores = JogadorStore.singleton.getJogadores()
@@ -61,9 +69,7 @@ class HomeViewController: UIViewController {
     }
     
     func girar (sender: UIButton) {
-        self.rouletteComponent.girar(withIntensidade: 35) { (jogador: Jogador?) in
-            print(jogador!)
-        }
+        
     }
     
     func addGesture(){
@@ -127,12 +133,16 @@ class HomeViewController: UIViewController {
             }
         }
     }
+<<<<<<< HEAD
     
     func invertePosicaoJogador(){
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: { 
             self.desafiante.center.x = self.desafiante.center.x - 100.0
         }, completion: nil)
     }
+=======
+
+>>>>>>> 705c309df0c5d0318441302c6b857f79b4926f46
 }
 
 
