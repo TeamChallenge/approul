@@ -43,7 +43,6 @@ class HomeViewController: UIViewController {
         
         self.setupRoulette()
         self.addGesture()
-        self.shared()
         self.view.addSubview(self.button)
         
         self.button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 300).isActive = true
@@ -51,12 +50,6 @@ class HomeViewController: UIViewController {
         self.button.widthAnchor.constraint(equalToConstant: 200).isActive = true
         self.button.heightAnchor.constraint(equalToConstant: 90).isActive = true
         self.button.addTarget(self, action: #selector(HomeViewController.girar), for: .primaryActionTriggered)
-    }
-    
-    private func shared() {
-        BonjourTCPServer.sharedInstance.dataReceivedCallback = { (data) in
-            print("\(data)")
-        }
     }
     
     
