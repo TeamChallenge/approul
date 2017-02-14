@@ -34,6 +34,8 @@ class HomeViewController: UIViewController {
                 
                 self.imgDesafiadoAnteriormente = (jogador?.imagem)!
                 self.nameDesafiadoAnteriormente = (jogador?.nome)!
+                
+                self.animationTrocaJogadores()
             })
         }
     }
@@ -92,7 +94,7 @@ class HomeViewController: UIViewController {
                         self.imgDesafiadoAnteriormente = (jogadorRodada2?.imagem)!
                         self.nameDesafiadoAnteriormente = (jogadorRodada2?.nome)!
                         
-                        self.animationInModal()
+//                        self.animationInModal()
                     }
                 }
                 else{
@@ -104,30 +106,34 @@ class HomeViewController: UIViewController {
                     self.imgDesafiadoAnteriormente = (jogador?.imagem)!
                     self.nameDesafiadoAnteriormente = (jogador?.nome)!
                     
-                    self.animationInModal()
+//                    self.animationInModal()
                 }
                 
             })
         }
     }
     
-    func animationInModal(){
-        delay(1, finish: {
-//            self.performSegue(withIdentifier: "modalSegue", sender: self)
-        })
+    func animationTrocaJogadores(){
+        self.desafiante.image = #imageLiteral(resourceName: "userF")
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "modalSegue"{
-            if let VC = segue.destination as? ModalDuelo{
-                VC.imageJog1 = self.desafiante.image!
-                VC.imageJog2 = self.desafiado.image!
-                
-                VC.nameJog1 = self.labelDesafiante.text!
-                VC.nameJog2 = self.labelDesafiado.text!
-            }
-        }
-    }
+//    func animationInModal(){
+//        delay(1, finish: {
+//            self.performSegue(withIdentifier: "modalSegue", sender: self)
+//        })
+//    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "modalSegue"{
+//            if let VC = segue.destination as? ModalDuelo{
+//                VC.imageJog1 = self.desafiante.image!
+//                VC.imageJog2 = self.desafiado.image!
+//                
+//                VC.nameJog1 = self.labelDesafiante.text!
+//                VC.nameJog2 = self.labelDesafiado.text!
+//            }
+//        }
+//    }
 }
 
 
