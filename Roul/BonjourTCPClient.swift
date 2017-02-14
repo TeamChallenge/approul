@@ -68,7 +68,7 @@ class BonjourTCPClient : NSObject, NetServiceBrowserDelegate, StreamDelegate
 	
 	func netServiceBrowser(_ browser: NetServiceBrowser, didRemove service: NetService, moreComing: Bool) {
 		NSLog("service removed:" + service.name)
-		self.services = self.services.filter() { $0 != service }
+//		self.services = self.services.filter() { $0 != service }
 		
 		if !moreComing {
 			if let callback = self.servicesCallback {
