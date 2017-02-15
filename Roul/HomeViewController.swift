@@ -10,6 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var timerViewComponet: TimerView!
     @IBOutlet weak var rouletteComponent: RouletteView!
     @IBOutlet weak var desafiante: UIImageView!
     @IBOutlet weak var desafiado: UIImageView!
@@ -72,7 +73,7 @@ class HomeViewController: UIViewController {
     }
     
     func girar (sender: UIButton) {
-        
+        self.timerViewComponet.start(withTime: 3)
     }
     
     func addGesture(){
