@@ -45,14 +45,22 @@ class HomeViewController: UIViewController {
         
         self.setupRoulette()
         self.addGesture()
+        self.shared()
         self.view.addSubview(self.button)
         
-        self.button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40).isActive = true
-        self.button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -40).isActive = true
+        self.button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 300).isActive = true
+        self.button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 40).isActive = true
         self.button.widthAnchor.constraint(equalToConstant: 200).isActive = true
         self.button.heightAnchor.constraint(equalToConstant: 90).isActive = true
         self.button.addTarget(self, action: #selector(HomeViewController.girar), for: .primaryActionTriggered)
     }
+    
+    private func shared() {
+        BonjourTCPServer.sharedInstance.dataReceivedCallback = { (data) in
+            print("\(data)")
+        }
+    }
+    
     
     private func setupRoulette () {
         self.rouletteComponent.jogadores = JogadorStore.singleton.getJogadores()
@@ -63,9 +71,7 @@ class HomeViewController: UIViewController {
     }
     
     func girar (sender: UIButton) {
-        self.rouletteComponent.girar(withIntensidade: 35) { (jogador: Jogador?) in
-            print(jogador!)
-        }
+        
     }
     
     func addGesture(){
@@ -115,25 +121,10 @@ class HomeViewController: UIViewController {
     
     func animationTrocaJogadores(){
         self.desafiante.image = #imageLiteral(resourceName: "userF")
+        
+        
     }
     
-//    func animationInModal(){
-//        delay(1, finish: {
-//            self.performSegue(withIdentifier: "modalSegue", sender: self)
-//        })
-//    }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "modalSegue"{
-//            if let VC = segue.destination as? ModalDuelo{
-//                VC.imageJog1 = self.desafiante.image!
-//                VC.imageJog2 = self.desafiado.image!
-//                
-//                VC.nameJog1 = self.labelDesafiante.text!
-//                VC.nameJog2 = self.labelDesafiado.text!
-//            }
-//        }
-//    }
 }
 
 
