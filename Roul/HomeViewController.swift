@@ -24,7 +24,7 @@ class HomeViewController: UIViewController {
     }()
     
     var imgDesafiadoAnteriormente = UIImage()
-    var nameDesafiadoAnteriormente = String()
+    var nameDesafiadoAnteriormente : String?
     
     private func startGame () {
         if let count = self.rouletteComponent.jogadores?.count {
@@ -111,7 +111,7 @@ class HomeViewController: UIViewController {
                     self.labelDesafiante.text = self.nameDesafiadoAnteriormente
                     
                     self.imgDesafiadoAnteriormente = (jogador?.imagem)!
-                    self.nameDesafiadoAnteriormente = (jogador?.nome)!
+                    self.nameDesafiadoAnteriormente = jogador?.nome
                     
 //                    self.animationInModal()
                 }
