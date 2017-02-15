@@ -28,6 +28,10 @@ class TimerView: UIView {
     
     var duration: CGFloat = 0
     
+    typealias handlerCompletion = () -> Void
+    
+    private var completion: handlerCompletion?
+    
     private lazy var angle: CGFloat = {
         return (2 * CGFloat(M_PI)) / (CGFloat(self.numberSections) * self.duration * 100)
     }()
@@ -40,10 +44,11 @@ class TimerView: UIView {
         self.layer.cornerRadius = min(self.frame.width, self.frame.height) / 2
     }
     
-    func start(withTime time: TimeInterval) {
+    func start(withTime time: TimeInterval, completion: @escaping handlerCompletion) {
         let s = time / 100
         self.duration = CGFloat(s)
         self.numberCount = CGFloat(self.numberSections) * self.duration * 100.0
+        self.completion = completion
         self.timer = Timer.scheduledTimer(timeInterval: s, target: self, selector: #selector(TimerView.atualizarView), userInfo: nil, repeats: true)
     }
     
@@ -58,6 +63,7 @@ class TimerView: UIView {
             self.numberRepeats = 0
             
             print("Terminou")
+            self.completion?()
             return
         }
         

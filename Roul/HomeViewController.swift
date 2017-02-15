@@ -73,7 +73,9 @@ class HomeViewController: UIViewController {
     }
     
     func girar (sender: UIButton) {
-        self.timerViewComponet.start(withTime: 3)
+        self.timerViewComponet.start(withTime: 3, completion: {
+            print("Fim do tempo")
+        })
     }
     
     func addGesture(){
