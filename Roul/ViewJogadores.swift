@@ -10,21 +10,22 @@ import UIKit
 
 class ViewJogadores: UIView {
     
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        
-//        configConstraints()
-//    }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        configConstraints()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        configConstraints()
+    }
 
     var imgJogador1: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.backgroundColor = UIColor.black
-        
         return image
     }()
     
@@ -81,6 +82,8 @@ class ViewJogadores: UIView {
         self.nameJogador2.text = name2
     }
     
+    func animationTroca(){
+    }
 }
 
 

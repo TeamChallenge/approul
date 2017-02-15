@@ -30,13 +30,13 @@ class HomeViewController: UIViewController {
     private func startGame () {
         if let count = self.rouletteComponent.jogadores?.count {
             self.rouletteComponent?.girar(withIntensidade: count * 7, { (jogador: Jogador?) in
-                self.desafiante.image = jogador?.imagem
-                self.labelDesafiante.text = jogador?.nome
                 
-                self.imgDesafiadoAnteriormente = (jogador?.imagem)!
-                self.nameDesafiadoAnteriormente = (jogador?.nome)!
-                
-                self.animationTrocaJogadores()
+                if let jog = jogador{
+                    self.viewJogadores.imgJogador1.image = jog.imagem
+                    self.viewJogadores.nameJogador1.text = jog.nome
+                    self.imgDesafiadoAnteriormente = jog.imagem
+                    self.nameDesafiadoAnteriormente = jog.nome
+                }
             })
         }
     }
@@ -45,7 +45,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         self.setupRoulette()
-        self.viewJogadores.configConstraints()
         self.addGesture()
         self.view.addSubview(self.button)
         
@@ -100,11 +99,6 @@ class HomeViewController: UIViewController {
             })
         }
     }
-    
-    func animationTrocaJogadores(){
-        self.desafiante.image = #imageLiteral(resourceName: "userF")
-    }
-    
 }
 
 
