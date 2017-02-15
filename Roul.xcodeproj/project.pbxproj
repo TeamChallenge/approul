@@ -16,6 +16,7 @@
 		27DDF3621E4BB97C0045145C /* JogadorStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF3611E4BB97C0045145C /* JogadorStore.swift */; };
 		646058E71E4ACB7A0001FC44 /* Extension+Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */; };
 		64DC402D1E53A47100A41B1F /* JogadoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC402C1E53A47100A41B1F /* JogadoresViewController.swift */; };
+		64DC402F1E54119D00A41B1F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC402E1E54119D00A41B1F /* TimerView.swift */; };
 		64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6CF1E493BFD0009EF99 /* CircleView.swift */; };
 		64E1D6D21E493C390009EF99 /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D11E493C390009EF99 /* RouletteView.swift */; };
 		64E1D6D41E493C640009EF99 /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D31E493C640009EF99 /* Extension+Int.swift */; };
@@ -35,6 +36,7 @@
 		27DDF3611E4BB97C0045145C /* JogadorStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JogadorStore.swift; sourceTree = "<group>"; };
 		646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Dispatch.swift"; sourceTree = "<group>"; };
 		64DC402C1E53A47100A41B1F /* JogadoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JogadoresViewController.swift; sourceTree = "<group>"; };
+		64DC402E1E54119D00A41B1F /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		64E1D6CF1E493BFD0009EF99 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		64E1D6D11E493C390009EF99 /* RouletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
 		64E1D6D31E493C640009EF99 /* Extension+Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				64E1D6CF1E493BFD0009EF99 /* CircleView.swift */,
 				64E1D6D11E493C390009EF99 /* RouletteView.swift */,
 				94C09CC31E4CFCB300BF7C7F /* ModalDuelo.swift */,
+				64DC402E1E54119D00A41B1F /* TimerView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				27DDF35E1E4BB5AA0045145C /* Jogador.swift in Sources */,
 				64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */,
 				276871E71E491DA900A24C1E /* ViewController.swift in Sources */,
+				64DC402F1E54119D00A41B1F /* TimerView.swift in Sources */,
 				646058E71E4ACB7A0001FC44 /* Extension+Dispatch.swift in Sources */,
 				276871E51E491DA900A24C1E /* AppDelegate.swift in Sources */,
 				27DDF3621E4BB97C0045145C /* JogadorStore.swift in Sources */,

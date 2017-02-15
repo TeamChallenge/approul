@@ -59,7 +59,7 @@ class RouletteView: UIView {
         self.backgroundColor = .green
         self.layer.masksToBounds = true
         
-        let centerView = self.convert(self.center, from: self.superview)
+        _ = self.convert(self.center, from: self.superview)
         
         guard let jogadores = self.jogadores?.enumerated() else {
             print("sem jogadores")
@@ -73,6 +73,7 @@ class RouletteView: UIView {
             circle.startAngle = CGFloat(angle * CGFloat(i))
             circle.endAngle = CGFloat(angle * CGFloat(i + 1))
             circle.backgroundColor = .clear
+            circle.sizeIconImage = 70
             circle.color = i % 2 == 0 ? UIColor.red : UIColor.black
             circle.iconImage = jogador.imagem
             self.addSubview(circle)

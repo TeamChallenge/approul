@@ -54,8 +54,16 @@ class HomeViewController: UIViewController {
     
     
     private func setupRoulette () {
-        self.rouletteComponent.jogadores = JogadorStore.singleton.getJogadores()
+        var jogadores = JogadorStore.singleton.getJogadores()
         
+        jogadores.enumerated().forEach { (tupla: (offset: Int, element: Jogador)) in
+            if tupla.offset % 3 == 0 {
+                jogadores.insert(Jogador(.coringa), at: tupla.offset)
+            }
+        }
+        
+        self.rouletteComponent.jogadores = jogadores
+
         delay(2) {
             self.startGame()
         }
