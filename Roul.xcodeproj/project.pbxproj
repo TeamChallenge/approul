@@ -22,6 +22,7 @@
 		64E1D6D41E493C640009EF99 /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D31E493C640009EF99 /* Extension+Int.swift */; };
 		64E1D6D61E49402F0009EF99 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D51E49402F0009EF99 /* HomeViewController.swift */; };
 		94C09CC41E4CFCB300BF7C7F /* ModalDuelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C09CC31E4CFCB300BF7C7F /* ModalDuelo.swift */; };
+		94E1D1E61E54D88100625265 /* ViewJogadores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E1D1E51E54D88100625265 /* ViewJogadores.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		64E1D6D31E493C640009EF99 /* Extension+Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
 		64E1D6D51E49402F0009EF99 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		94C09CC31E4CFCB300BF7C7F /* ModalDuelo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalDuelo.swift; sourceTree = "<group>"; };
+		94E1D1E51E54D88100625265 /* ViewJogadores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewJogadores.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				64E1D6D11E493C390009EF99 /* RouletteView.swift */,
 				94C09CC31E4CFCB300BF7C7F /* ModalDuelo.swift */,
 				64DC402E1E54119D00A41B1F /* TimerView.swift */,
+				94E1D1E51E54D88100625265 /* ViewJogadores.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64E1D6D41E493C640009EF99 /* Extension+Int.swift in Sources */,
+				94E1D1E61E54D88100625265 /* ViewJogadores.swift in Sources */,
 				64DC402D1E53A47100A41B1F /* JogadoresViewController.swift in Sources */,
 				27DDF35E1E4BB5AA0045145C /* Jogador.swift in Sources */,
 				64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */,

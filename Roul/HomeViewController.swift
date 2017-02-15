@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var desafiado: UIImageView!
     @IBOutlet weak var labelDesafiante: UILabel!
     @IBOutlet weak var labelDesafiado: UILabel!
+    @IBOutlet weak var viewJogadores: ViewJogadores!
     
     let button : UIButton = {
         let button = UIButton(type: .system)
@@ -23,7 +24,7 @@ class HomeViewController: UIViewController {
         return button
     }()
     
-    var imgDesafiadoAnteriormente = UIImage()
+    var imgDesafiadoAnteriormente: UIImage?
     var nameDesafiadoAnteriormente : String?
     
     private func startGame () {
@@ -44,6 +45,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         self.setupRoulette()
+        self.viewJogadores.configConstraints()
         self.addGesture()
         self.view.addSubview(self.button)
         
@@ -89,31 +91,10 @@ class HomeViewController: UIViewController {
             let intensidade = Int(max(abs(velocity.x), abs(velocity.y)))
             self.rouletteComponent.girar(withIntensidade: intensidade, { (jogador: Jogador?) in
                 
-                if jogador?.imagem == self.imgDesafiadoAnteriormente{
-//                    self.rouletteComponent.girar(withIntensidade: 10) { (jogadorRodada2: Jogador?) in
-//                        print(jogador!)
-//                        
-//                        self.desafiado.image = jogadorRodada2?.imagem
-//                        self.labelDesafiado.text = jogadorRodada2?.nome
-                        self.desafiante.image = self.imgDesafiadoAnteriormente
-                        self.labelDesafiante.text = self.nameDesafiadoAnteriormente
-//
-//                        self.imgDesafiadoAnteriormente = (jogadorRodada2?.imagem)!
-//                        self.nameDesafiadoAnteriormente = (jogadorRodada2?.nome)!
-//
-//                        self.animationInModal()
-//                    }
-                }
-                else{
-                    self.desafiado.image = jogador?.imagem
-                    self.labelDesafiado.text = jogador?.nome
-                    self.desafiante.image = self.imgDesafiadoAnteriormente
-                    self.labelDesafiante.text = self.nameDesafiadoAnteriormente
-                    
-                    self.imgDesafiadoAnteriormente = (jogador?.imagem)!
-                    self.nameDesafiadoAnteriormente = jogador?.nome
-                    
-//                    self.animationInModal()
+                if let jog1 = self.imgDesafiadoAnteriormente, let jog2 = jogador?.imagem, let name1 = self.nameDesafiadoAnteriormente, let name2 = jogador?.nome{
+                    self.viewJogadores.configImagesNames(jog1: jog1, jog2: jog2, name1: name1, name2: name2)
+                    self.imgDesafiadoAnteriormente = jog2
+                    self.nameDesafiadoAnteriormente = name2
                 }
                 
             })
@@ -122,8 +103,6 @@ class HomeViewController: UIViewController {
     
     func animationTrocaJogadores(){
         self.desafiante.image = #imageLiteral(resourceName: "userF")
-        
-        
     }
     
 }
