@@ -45,7 +45,6 @@ class HomeViewController: UIViewController {
         
         self.setupRoulette()
         self.addGesture()
-        self.shared()
         self.view.addSubview(self.button)
         
         self.button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 300).isActive = true
@@ -55,16 +54,18 @@ class HomeViewController: UIViewController {
         self.button.addTarget(self, action: #selector(HomeViewController.girar), for: .primaryActionTriggered)
     }
     
-    private func shared() {
-        BonjourTCPServer.sharedInstance.dataReceivedCallback = { (data) in
-            print("\(data)")
-        }
-    }
-    
     
     private func setupRoulette () {
-        self.rouletteComponent.jogadores = JogadorStore.singleton.getJogadores()
+        var jogadores = JogadorStore.singleton.getJogadores()
         
+        jogadores.enumerated().forEach { (tupla: (offset: Int, element: Jogador)) in
+            if tupla.offset % 3 == 0 {
+                jogadores.insert(Jogador(.coringa), at: tupla.offset)
+            }
+        }
+        
+        self.rouletteComponent.jogadores = jogadores
+
         delay(2) {
             self.startGame()
         }
@@ -89,19 +90,19 @@ class HomeViewController: UIViewController {
             self.rouletteComponent.girar(withIntensidade: intensidade, { (jogador: Jogador?) in
                 
                 if jogador?.imagem == self.imgDesafiadoAnteriormente{
-                    self.rouletteComponent.girar(withIntensidade: 10) { (jogadorRodada2: Jogador?) in
-                        print(jogador!)
-                        
-                        self.desafiado.image = jogadorRodada2?.imagem
-                        self.labelDesafiado.text = jogadorRodada2?.nome
+//                    self.rouletteComponent.girar(withIntensidade: 10) { (jogadorRodada2: Jogador?) in
+//                        print(jogador!)
+//                        
+//                        self.desafiado.image = jogadorRodada2?.imagem
+//                        self.labelDesafiado.text = jogadorRodada2?.nome
                         self.desafiante.image = self.imgDesafiadoAnteriormente
                         self.labelDesafiante.text = self.nameDesafiadoAnteriormente
-                        
-                        self.imgDesafiadoAnteriormente = (jogadorRodada2?.imagem)!
-                        self.nameDesafiadoAnteriormente = (jogadorRodada2?.nome)!
-                        
+//
+//                        self.imgDesafiadoAnteriormente = (jogadorRodada2?.imagem)!
+//                        self.nameDesafiadoAnteriormente = (jogadorRodada2?.nome)!
+//
 //                        self.animationInModal()
-                    }
+//                    }
                 }
                 else{
                     self.desafiado.image = jogador?.imagem
