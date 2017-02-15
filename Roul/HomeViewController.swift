@@ -80,19 +80,19 @@ class HomeViewController: UIViewController {
             self.rouletteComponent.girar(withIntensidade: intensidade, { (jogador: Jogador?) in
                 
                 if jogador?.imagem == self.imgDesafiadoAnteriormente{
-                    self.rouletteComponent.girar(withIntensidade: 10) { (jogadorRodada2: Jogador?) in
-                        print(jogador!)
-                        
-                        self.desafiado.image = jogadorRodada2?.imagem
-                        self.labelDesafiado.text = jogadorRodada2?.nome
+//                    self.rouletteComponent.girar(withIntensidade: 10) { (jogadorRodada2: Jogador?) in
+//                        print(jogador!)
+//                        
+//                        self.desafiado.image = jogadorRodada2?.imagem
+//                        self.labelDesafiado.text = jogadorRodada2?.nome
                         self.desafiante.image = self.imgDesafiadoAnteriormente
                         self.labelDesafiante.text = self.nameDesafiadoAnteriormente
-                        
-                        self.imgDesafiadoAnteriormente = (jogadorRodada2?.imagem)!
-                        self.nameDesafiadoAnteriormente = (jogadorRodada2?.nome)!
-                        
-                        self.animationInModal()
-                    }
+//
+//                        self.imgDesafiadoAnteriormente = (jogadorRodada2?.imagem)!
+//                        self.nameDesafiadoAnteriormente = (jogadorRodada2?.nome)!
+//
+//                        self.animationInModal()
+//                    }
                 }
                 else{
                     self.desafiado.image = jogador?.imagem
