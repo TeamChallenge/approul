@@ -113,7 +113,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bD6-E4-lOa" customClass="TimerView" customModule="Roul" customModuleProvider="target">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bD6-E4-lOa" customClass="TimerProgress" customModule="Roul" customModuleProvider="target">
                                 <rect key="frame" x="530" y="363" width="400" height="400"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -188,7 +188,7 @@
                         <outlet property="labelDesafiado" destination="cEp-5q-ueA" id="Ndw-TU-Op4"/>
                         <outlet property="labelDesafiante" destination="GQ9-7G-5I4" id="tYg-9x-nit"/>
                         <outlet property="rouletteComponent" destination="dPr-wu-Ybc" id="dDY-Ci-yYU"/>
-                        <outlet property="timerViewComponet" destination="bD6-E4-lOa" id="Y86-Un-FCW"/>
+                        <outlet property="timerProgressComponent" destination="bD6-E4-lOa" id="FDE-Z6-q0S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
