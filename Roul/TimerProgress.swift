@@ -20,16 +20,24 @@ class TimerProgress: UIView {
         self.setup()
     }
     
+    var colorProgress: UIColor = .green {
+        didSet{
+            self.setup()
+        }
+    }
+    
     typealias handlerCompletion = () -> Void
     
     private var progressCircle = CAShapeLayer()
     
     private func setup() {
+        self.progressCircle.removeFromSuperlayer()
+        
         let center = CGPoint(x: self.bounds.origin.x + self.frame.width / 4, y: self.bounds.origin.y + self.frame.height / 4)
         let circlePath = UIBezierPath(ovalIn: CGRect(origin: center, size: CGSize(width: self.frame.width * 0.5, height: self.frame.height * 0.5)))
         
         progressCircle.path = circlePath.cgPath
-        progressCircle.strokeColor = UIColor.green.cgColor
+        progressCircle.strokeColor = self.colorProgress.cgColor
         progressCircle.fillColor = UIColor.clear.cgColor
         progressCircle.lineWidth = self.frame.width / 2
         
