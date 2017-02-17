@@ -14,11 +14,14 @@
 		276871EF1E491DA900A24C1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 276871EE1E491DA900A24C1E /* Assets.xcassets */; };
 		27DDF35E1E4BB5AA0045145C /* Jogador.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF35D1E4BB5AA0045145C /* Jogador.swift */; };
 		27DDF3621E4BB97C0045145C /* JogadorStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF3611E4BB97C0045145C /* JogadorStore.swift */; };
+		27DDF3661E4D1D970045145C /* TrocaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF3651E4D1D970045145C /* TrocaViewController.swift */; };
+		27DDF3681E4D1D9E0045145C /* ModalDuelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF3671E4D1D9E0045145C /* ModalDuelo.swift */; };
 		646058E71E4ACB7A0001FC44 /* Extension+Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */; };
 		64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6CF1E493BFD0009EF99 /* CircleView.swift */; };
 		64E1D6D21E493C390009EF99 /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D11E493C390009EF99 /* RouletteView.swift */; };
 		64E1D6D41E493C640009EF99 /* Extension+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D31E493C640009EF99 /* Extension+Double.swift */; };
 		64E1D6D61E49402F0009EF99 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D51E49402F0009EF99 /* HomeViewController.swift */; };
+		94C09CC41E4CFCB300BF7C7F /* ModalDuelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C09CC31E4CFCB300BF7C7F /* ModalDuelo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,11 +34,14 @@
 		276871F01E491DA900A24C1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27DDF35D1E4BB5AA0045145C /* Jogador.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jogador.swift; sourceTree = "<group>"; };
 		27DDF3611E4BB97C0045145C /* JogadorStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JogadorStore.swift; sourceTree = "<group>"; };
+		27DDF3651E4D1D970045145C /* TrocaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrocaViewController.swift; sourceTree = "<group>"; };
+		27DDF3671E4D1D9E0045145C /* ModalDuelo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalDuelo.swift; sourceTree = "<group>"; };
 		646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Dispatch.swift"; sourceTree = "<group>"; };
 		64E1D6CF1E493BFD0009EF99 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		64E1D6D11E493C390009EF99 /* RouletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
 		64E1D6D31E493C640009EF99 /* Extension+Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Double.swift"; sourceTree = "<group>"; };
 		64E1D6D51E49402F0009EF99 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		94C09CC31E4CFCB300BF7C7F /* ModalDuelo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalDuelo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,9 +98,11 @@
 		649F7CAE1E4A4F3000B9A4B6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				27DDF3671E4D1D9E0045145C /* ModalDuelo.swift */,
 				276871EB1E491DA900A24C1E /* Main.storyboard */,
 				64E1D6CF1E493BFD0009EF99 /* CircleView.swift */,
 				64E1D6D11E493C390009EF99 /* RouletteView.swift */,
+				94C09CC31E4CFCB300BF7C7F /* ModalDuelo.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -102,6 +110,7 @@
 		649F7CAF1E4A4F3300B9A4B6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				27DDF3651E4D1D970045145C /* TrocaViewController.swift */,
 				276871E61E491DA900A24C1E /* ViewController.swift */,
 				64E1D6D51E49402F0009EF99 /* HomeViewController.swift */,
 			);
@@ -149,7 +158,7 @@
 				TargetAttributes = {
 					276871E01E491DA900A24C1E = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 7K2LRW74D9;
+						DevelopmentTeam = 533ZC86QCL;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -192,11 +201,17 @@
 				64E1D6D41E493C640009EF99 /* Extension+Double.swift in Sources */,
 				27DDF35E1E4BB5AA0045145C /* Jogador.swift in Sources */,
 				64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */,
+				27DDF3661E4D1D970045145C /* TrocaViewController.swift in Sources */,
 				276871E71E491DA900A24C1E /* ViewController.swift in Sources */,
 				646058E71E4ACB7A0001FC44 /* Extension+Dispatch.swift in Sources */,
 				276871E51E491DA900A24C1E /* AppDelegate.swift in Sources */,
 				27DDF3621E4BB97C0045145C /* JogadorStore.swift in Sources */,
 				64E1D6D21E493C390009EF99 /* RouletteView.swift in Sources */,
+<<<<<<< HEAD
+				27DDF3681E4D1D9E0045145C /* ModalDuelo.swift in Sources */,
+=======
+				94C09CC41E4CFCB300BF7C7F /* ModalDuelo.swift in Sources */,
+>>>>>>> 4dbd5f110f018bb2dd4e3c1c89264d9640ce4e18
 				64E1D6D61E49402F0009EF99 /* HomeViewController.swift in Sources */,
 				276871EA1E491DA900A24C1E /* Roul.xcdatamodeld in Sources */,
 			);
@@ -312,12 +327,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 7K2LRW74D9;
+				DEVELOPMENT_TEAM = 533ZC86QCL;
 				INFOPLIST_FILE = Roul/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = silva.bezerra.Jerlilson.teste.Roul;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -326,12 +342,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 7K2LRW74D9;
+				DEVELOPMENT_TEAM = 533ZC86QCL;
 				INFOPLIST_FILE = Roul/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = silva.bezerra.Jerlilson.teste.Roul;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};

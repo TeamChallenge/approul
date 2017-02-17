@@ -10,7 +10,6 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    
     @IBOutlet fileprivate weak var timerProgressComponent: TimerProgress!
     @IBOutlet fileprivate weak var rouletteComponent: RouletteView!
     @IBOutlet fileprivate weak var rouletteOptionComponent: RouletteOption!
@@ -20,7 +19,9 @@ class HomeViewController: UIViewController {
     @IBOutlet fileprivate weak var labelDesafiado: UILabel!
     @IBOutlet fileprivate weak var labelMensagem: UILabel!
     
-    private let button : UIButton = {
+    var jogadores : [Jogador]?
+    
+    let button : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Girar", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -58,9 +59,11 @@ class HomeViewController: UIViewController {
         self.button.addTarget(self, action: #selector(HomeViewController.girar), for: .primaryActionTriggered)
     }
     
-    
     private func setupRoulette () {
-        var jogadores = JogadorStore.singleton.getJogadores()
+        guard var jogadores = self.jogadores else {
+            print("Sem jogadores")
+            return
+        }
         
         jogadores.enumerated().forEach { (tupla: (offset: Int, element: Jogador)) in
             if tupla.offset % 3 == 0 {
@@ -159,7 +162,6 @@ class HomeViewController: UIViewController {
                     
 //                    self.animationInModal()
                 }
-                
             })
         }
     }
@@ -168,6 +170,24 @@ class HomeViewController: UIViewController {
         self.desafiante.image = #imageLiteral(resourceName: "userF")
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "modalSegue"{
+            if let VC = segue.destination as? ModalDuelo{
+                VC.imageJog1 = self.desafiante.image!
+                VC.imageJog2 = self.desafiado.image!
+                
+                VC.nameJog1 = self.labelDesafiante.text!
+                VC.nameJog2 = self.labelDesafiado.text!
+            }
+        }
+    }
+    
+    func invertePosicaoJogador(){
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: { 
+            self.desafiante.center.x = self.desafiante.center.x - 100.0
+        }, completion: nil)
+    }
+
 }
 
 
