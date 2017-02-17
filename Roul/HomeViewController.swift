@@ -10,11 +10,14 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var timerViewComponet: TimerView!
     @IBOutlet weak var rouletteComponent: RouletteView!
     @IBOutlet weak var desafiante: UIImageView!
     @IBOutlet weak var desafiado: UIImageView!
+    @IBOutlet weak var labelDesafiante: UILabel!
+    @IBOutlet weak var labelDesafiado: UILabel!
     
-    var avatars : [UIImage] = [#imageLiteral(resourceName: "avatar1"), #imageLiteral(resourceName: "avatar2"), #imageLiteral(resourceName: "avatar3"), #imageLiteral(resourceName: "avatar4"), #imageLiteral(resourceName: "avatar5"), #imageLiteral(resourceName: "avatar6"), #imageLiteral(resourceName: "avatar7"), #imageLiteral(resourceName: "avatar1"), #imageLiteral(resourceName: "avatar2"), #imageLiteral(resourceName: "avatar3"), #imageLiteral(resourceName: "avatar4"), #imageLiteral(resourceName: "avatar5"), #imageLiteral(resourceName: "avatar6"), #imageLiteral(resourceName: "avatar7"), #imageLiteral(resourceName: "avatar1")]
+    var jogadores : [Jogador]?
     
     let button : UIButton = {
         let button = UIButton(type: .system)
@@ -23,7 +26,22 @@ class HomeViewController: UIViewController {
         return button
     }()
     
-    var IDavatarDesafiado = UIImage()
+    var imgDesafiadoAnteriormente = UIImage()
+    var nameDesafiadoAnteriormente : String?
+    
+    private func startGame () {
+        if let count = self.rouletteComponent.jogadores?.count {
+            self.rouletteComponent?.girar(withIntensidade: count * 7, { (jogador: Jogador?) in
+                self.desafiante.image = jogador?.imagem
+                self.labelDesafiante.text = jogador?.nome
+                
+                self.imgDesafiadoAnteriormente = (jogador?.imagem)!
+                self.nameDesafiadoAnteriormente = (jogador?.nome)!
+                
+                self.animationTrocaJogadores()
+            })
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,21 +50,36 @@ class HomeViewController: UIViewController {
         self.addGesture()
         self.view.addSubview(self.button)
         
-        self.button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40).isActive = true
-        self.button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -40).isActive = true
+        self.button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 300).isActive = true
+        self.button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 40).isActive = true
         self.button.widthAnchor.constraint(equalToConstant: 200).isActive = true
         self.button.heightAnchor.constraint(equalToConstant: 90).isActive = true
         self.button.addTarget(self, action: #selector(HomeViewController.girar), for: .primaryActionTriggered)
     }
     
     private func setupRoulette () {
-        self.rouletteComponent.jogadores = JogadorStore.singleton.getJogadores()
+        guard var jogadores = self.jogadores else {
+            print("Sem jogadores")
+            return
+        }
+        
+        jogadores.enumerated().forEach { (tupla: (offset: Int, element: Jogador)) in
+            if tupla.offset % 3 == 0 {
+                jogadores.insert(Jogador(.coringa), at: tupla.offset)
+            }
+        }
+        
+        self.rouletteComponent.jogadores = jogadores
+
+        delay(2) {
+            self.startGame()
+        }
     }
     
     func girar (sender: UIButton) {
-        self.rouletteComponent.girar(withIntensidade: 35) { (jogador: Jogador?) in
-            print(jogador!)
-        }
+        self.timerViewComponet.start(withTime: 3, completion: {
+            print("Fim do tempo")
+        })
     }
     
     func addGesture(){
@@ -60,23 +93,69 @@ class HomeViewController: UIViewController {
         
         if gesture.state == .began{
             let velocity = gesture.velocity(in: self.view)
-            self.rouletteComponent.girar(withIntensidade: Int(velocity.y),{ (jogador: Jogador?) in
+            let intensidade = Int(max(abs(velocity.x), abs(velocity.y)))
+            self.rouletteComponent.girar(withIntensidade: intensidade, { (jogador: Jogador?) in
                 
-                if self.verificaPrimeiroGiroRoleta == false{
-                    self.IDavatarDesafiado = (jogador?.imagem)!
-                    self.desafiado.image = self.IDavatarDesafiado
+                if jogador?.imagem == self.imgDesafiadoAnteriormente{
+//                    self.rouletteComponent.girar(withIntensidade: 10) { (jogadorRodada2: Jogador?) in
+//                        print(jogador!)
+//                        
+//                        self.desafiado.image = jogadorRodada2?.imagem
+//                        self.labelDesafiado.text = jogadorRodada2?.nome
+                        self.desafiante.image = self.imgDesafiadoAnteriormente
+                        self.labelDesafiante.text = self.nameDesafiadoAnteriormente
+//
+//                        self.imgDesafiadoAnteriormente = (jogadorRodada2?.imagem)!
+//                        self.nameDesafiadoAnteriormente = (jogadorRodada2?.nome)!
+//
+//                        self.animationInModal()
+//                    }
                 }
                 else{
-                    self.desafiante.image = self.IDavatarDesafiado
                     self.desafiado.image = jogador?.imagem
-                    self.IDavatarDesafiado = (jogador?.imagem)!
+                    self.labelDesafiado.text = jogador?.nome
+                    self.desafiante.image = self.imgDesafiadoAnteriormente
+                    self.labelDesafiante.text = self.nameDesafiadoAnteriormente
+                    
+                    self.imgDesafiadoAnteriormente = (jogador?.imagem)!
+                    self.nameDesafiadoAnteriormente = jogador?.nome
+                    
+//                    self.animationInModal()
                 }
-                
-                self.verificaPrimeiroGiroRoleta = true
-
             })
         }
-        
-        
     }
+    
+    func animationTrocaJogadores(){
+        self.desafiante.image = #imageLiteral(resourceName: "userF")
+    
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "modalSegue"{
+            if let VC = segue.destination as? ModalDuelo{
+                VC.imageJog1 = self.desafiante.image!
+                VC.imageJog2 = self.desafiado.image!
+                
+                VC.nameJog1 = self.labelDesafiante.text!
+                VC.nameJog2 = self.labelDesafiado.text!
+            }
+        }
+    }
+    
+    func invertePosicaoJogador(){
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: { 
+            self.desafiante.center.x = self.desafiante.center.x - 100.0
+        }, completion: nil)
+    }
+
 }
+
+
+
+
+
+
+
+
+

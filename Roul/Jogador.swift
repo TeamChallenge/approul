@@ -8,13 +8,33 @@
 
 import UIKit
 
+public enum TypeJogador: String {
+    case jogador
+    case coringa
+}
+
 class Jogador: NSObject {
+    
     var nome : String?
     var id : String?
     var imagem : UIImage?
+    
+    var type: TypeJogador = .jogador
 
     override var description: String {
-        return "\(self.nome), \(self.id)"
+        return "(\(self.nome) | \(self.type.rawValue))"
+    }
+    
+    convenience init(_ type: TypeJogador) {
+        self.init()
+        self.type = type
+        switch type {
+        case .coringa:
+            self.imagem = #imageLiteral(resourceName: "userM")
+            break
+        case .jogador:
+            break
+        }
     }
     
     convenience init(dic: [String: Any]) {

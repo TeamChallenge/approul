@@ -40,7 +40,7 @@ class RouletteView: UIView {
     
     private let viewCenter : UIView = {
         let v = UIView()
-        v.layer.anchorPoint = CGPoint(x: 0.5, y: 0.9)
+        v.layer.anchorPoint = CGPoint(x: 0.5, y: 0.7)
         return v
     }()
     
@@ -59,28 +59,35 @@ class RouletteView: UIView {
         self.backgroundColor = .green
         self.layer.masksToBounds = true
         
-        let centerView = self.convert(self.center, from: self.superview)
+        _ = self.convert(self.center, from: self.superview)
         
-        for (i, jogador) in self.jogadores!.enumerated() {
+        guard let jogadores = self.jogadores?.enumerated() else {
+            print("sem jogadores")
+            return
+        }
+        
+        print("com jogadores")
+        
+        for (i, jogador) in jogadores {
             let circle = CircleView(frame: rect)
             circle.startAngle = CGFloat(angle * CGFloat(i))
             circle.endAngle = CGFloat(angle * CGFloat(i + 1))
             circle.backgroundColor = .clear
+            circle.sizeIconImage = 70
             circle.color = i % 2 == 0 ? UIColor.red : UIColor.black
-            circle.element = i
             circle.iconImage = jogador.imagem
             self.addSubview(circle)
             
-            let numberLabel = UILabel()
-            numberLabel.text = jogador.nome
-            numberLabel.font = UIFont.boldSystemFont(ofSize: 50)
-            numberLabel.textColor = UIColor.white
-            numberLabel.backgroundColor = .clear
-            numberLabel.sizeToFit()
-            let th = angle * (CGFloat(i) + 0.5)
-//            numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th - CGFloat(M_PI * 0.5)))
-            numberLabel.center = CGPoint(x: centerView.x + 205 * CGFloat(cos(th)), y: centerView.y + 205 * CGFloat(sin(th)))
-            self.addSubview(numberLabel)
+//            let numberLabel = UILabel()
+//            numberLabel.text = jogador.nome
+//            numberLabel.font = UIFont.boldSystemFont(ofSize: 50)
+//            numberLabel.textColor = UIColor.white
+//            numberLabel.backgroundColor = .clear
+//            numberLabel.sizeToFit()
+//            let th = angle * (CGFloat(i) + 0.5)
+////            numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th - CGFloat(M_PI * 0.5)))
+//            numberLabel.center = CGPoint(x: centerView.x + 205 * CGFloat(cos(th)), y: centerView.y + 205 * CGFloat(sin(th)))
+//            self.addSubview(numberLabel)
         }
         
         viewCenter.translatesAutoresizingMaskIntoConstraints = false
@@ -90,7 +97,7 @@ class RouletteView: UIView {
         
         viewCenter.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         viewCenter.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        viewCenter.heightAnchor.constraint(equalToConstant: rect.height * 0.4).isActive = true
+        viewCenter.heightAnchor.constraint(equalToConstant: rect.height * 0.25).isActive = true
         viewCenter.widthAnchor.constraint(equalToConstant: rect.width * 0.05).isActive = true
         viewCenter.layer.cornerRadius = (rect.height * 0.2) / 2
     }
@@ -99,28 +106,24 @@ class RouletteView: UIView {
         super.init(coder: aDecoder)
     }
     
-    enum ModeRand {
+    private enum ModeRand {
         case time
         case angle
     }
     
-    func rand(mode: ModeRand = .angle) -> Int {
+    private func rand(mode: ModeRand = .angle) -> Int {
         var randon: Int
         switch mode {
         case .time:
-//            randon = CGFloat(Double.random(min: 1, max: 2))
-            randon = randomInt(min: 1, max: 2)
+            //randon = CGFloat(Double.random(min: 1, max: 2))
+            randon = Int.randomInt(min: 1, max: 2)
             break
         case .angle:
-//            randon = CGFloat(Double.random(min: 2, max: 12))
-            randon = randomInt(min: self.numberItems, max: 100)
+            //randon = CGFloat(Double.random(min: 2, max: 12))
+            randon = Int.randomInt(min: self.numberItems, max: 100)
             break
         }
         return randon
-    }
-    
-    func randomInt(min: Int, max:Int) -> Int {
-        return min + Int(arc4random_uniform(UInt32(max - min + 1)))
     }
     
     private func giroViewCenter (_ numberAngles: Int, _ duration: Int) {
@@ -143,13 +146,23 @@ class RouletteView: UIView {
         var valorRand = abs(intensidade) / 10
         let duration = rand(mode: .time)
         
-        self.giroViewCenter(valorRand, duration)
+        var i = (valorRand + indexCurrent) % self.numberItems
         
-        if valorRand < 0 {
-            valorRand = abs(valorRand + (self.numberItems - 1 + self.indexCurrent) )
+        if i == indexCurrent {
+            while true {
+                valorRand = (abs(intensidade) + 30) / 10
+                if valorRand < 0 {
+                    valorRand = abs(valorRand + (self.numberItems - 1 + self.indexCurrent) )
+                }
+                i = (valorRand + indexCurrent) % self.numberItems
+                if i != indexCurrent {
+                    break
+                }
+            }
         }
+        indexCurrent = i
         
-        indexCurrent = (valorRand + indexCurrent) % self.numberItems
+        self.giroViewCenter(valorRand, duration)
         
         delay(duration) {
             completion(self.jogadores?[self.indexCurrent])

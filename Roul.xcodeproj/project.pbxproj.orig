@@ -149,11 +149,7 @@
 				TargetAttributes = {
 					276871E01E491DA900A24C1E = {
 						CreatedOnToolsVersion = 8.2.1;
-<<<<<<< HEAD
-						DevelopmentTeam = 533ZC86QCL;
-=======
 						DevelopmentTeam = 7K2LRW74D9;
->>>>>>> bc314593cc8120502706d6e4123d18a804f13858
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -316,11 +312,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-<<<<<<< HEAD
-				DEVELOPMENT_TEAM = 533ZC86QCL;
-=======
 				DEVELOPMENT_TEAM = 7K2LRW74D9;
->>>>>>> bc314593cc8120502706d6e4123d18a804f13858
 				INFOPLIST_FILE = Roul/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = silva.bezerra.Jerlilson.teste.Roul;
@@ -334,11 +326,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-<<<<<<< HEAD
-				DEVELOPMENT_TEAM = 533ZC86QCL;
-=======
 				DEVELOPMENT_TEAM = 7K2LRW74D9;
->>>>>>> bc314593cc8120502706d6e4123d18a804f13858
 				INFOPLIST_FILE = Roul/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = silva.bezerra.Jerlilson.teste.Roul;
