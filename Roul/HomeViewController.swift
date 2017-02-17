@@ -10,13 +10,17 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var timerViewComponet: TimerView!
-    @IBOutlet weak var rouletteComponent: RouletteView!
-    @IBOutlet weak var desafiante: UIImageView!
-    @IBOutlet weak var desafiado: UIImageView!
-    @IBOutlet weak var labelDesafiante: UILabel!
-    @IBOutlet weak var labelDesafiado: UILabel!
     @IBOutlet weak var viewJogadores: ViewJogadores!
+    @IBOutlet fileprivate weak var timerProgressComponent: TimerProgress!
+    @IBOutlet fileprivate weak var rouletteComponent: RouletteView!
+    @IBOutlet fileprivate weak var rouletteOptionComponent: RouletteOption!
+    @IBOutlet fileprivate weak var desafiante: UIImageView!
+    @IBOutlet fileprivate weak var desafiado: UIImageView!
+    @IBOutlet fileprivate weak var labelDesafiante: UILabel!
+    @IBOutlet fileprivate weak var labelDesafiado: UILabel!
+    @IBOutlet fileprivate weak var labelMensagem: UILabel!
+    
+    var jogadores : [Jogador]?
     
     let button : UIButton = {
         let button = UIButton(type: .system)
@@ -52,9 +56,11 @@ class HomeViewController: UIViewController {
         self.button.addTarget(self, action: #selector(HomeViewController.girar), for: .primaryActionTriggered)
     }
     
-    
     private func setupRoulette () {
-        var jogadores = JogadorStore.singleton.getJogadores()
+        guard var jogadores = self.jogadores else {
+            print("Sem jogadores")
+            return
+        }
         
         jogadores.enumerated().forEach { (tupla: (offset: Int, element: Jogador)) in
             if tupla.offset % 3 == 0 {
@@ -67,22 +73,52 @@ class HomeViewController: UIViewController {
         delay(2) {
             self.startGame()
         }
+        
+//        self.rouletteComponent.layer.position = self.view.center
+//        self.timerProgressComponent.layer.position = self.view.center
+//        self.timerProgressComponent.layer.position.y += 2000
+//        self.rouletteOptionComponent.layer.position = self.view.center
+//        self.rouletteOptionComponent.layer.position.y += 2000
     }
     
-    func girar (sender: UIButton) {
-        self.timerViewComponet.start(withTime: 3, completion: {
-            print("Fim do tempo")
-        })
+    @objc private func girar (sender: UIButton) {
+//        self.timerProgressComponent.startAnimation(withTimer: 30) { 
+//            print("Tempo acabado")
+//        }
+        self.rouletteOptionComponent.startAnimation()
+//        let inicialRoletaView = self.rouletteComponent.layer.position
+//        let finalRoletaView = CGPoint(x: inicialRoletaView.x - 2000, y: inicialRoletaView.y)
+//        
+//        self.rouletteComponent.animacaoMove(inicial: inicialRoletaView, final: finalRoletaView) {
+//            
+//            let inicialTimer = self.timerProgressComponent.layer.position
+//            let finalTimer = CGPoint(x: inicialTimer.x, y: inicialTimer.y - 2000)
+//            
+//            self.timerProgressComponent.animacaoMove(inicial: inicialTimer, final: finalTimer, completion: {
+//                
+//                self.timerProgressComponent.startAnimation(withTimer: 10, completion: { 
+//                    self.timerProgressComponent.animacaoMove(inicial: finalTimer, final: inicialTimer, completion: {
+//                        
+//                        self.rouletteComponent.animacaoMove(inicial: finalRoletaView, final: inicialRoletaView, completion: {
+//                            
+//                        })
+//                        
+//                    })
+//                })
+//
+//            })
+//        }
+        
     }
     
-    func addGesture(){
+    private func addGesture(){
         let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(gesture:)))
         self.rouletteComponent.addGestureRecognizer(pan)
     }
     
-    var verificaPrimeiroGiroRoleta = false
+    private var verificaPrimeiroGiroRoleta = false
 
-    func handlePan(gesture: UIPanGestureRecognizer){
+    @objc private func handlePan(gesture: UIPanGestureRecognizer){
         
         if gesture.state == .began{
             let velocity = gesture.velocity(in: self.view)
@@ -121,7 +157,40 @@ class HomeViewController: UIViewController {
             })
         }
     }
+    
+    private func animationTrocaJogadores(){
+        self.desafiante.image = #imageLiteral(resourceName: "userF")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "modalSegue"{
+            if let VC = segue.destination as? ModalDuelo{
+                VC.imageJog1 = self.desafiante.image!
+                VC.imageJog2 = self.desafiado.image!
+                
+                VC.nameJog1 = self.labelDesafiante.text!
+                VC.nameJog2 = self.labelDesafiado.text!
+            }
+        }
+    }
+    
+    func invertePosicaoJogador(){
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: { 
+            self.desafiante.center.x = self.desafiante.center.x - 100.0
+        }, completion: nil)
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
