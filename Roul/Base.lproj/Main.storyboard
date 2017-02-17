@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
+
 <document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VVm-MQ-jIl">
-=======
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16D12b" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
->>>>>>> b94fe4c2b62112511cb2b64d9e5c33e8ea46ff2a
     <device id="appleTV" orientation="landscape">
         <adaptation id="light"/>
     </device>
@@ -197,11 +194,8 @@
                         <outlet property="labelDesafiado" destination="cEp-5q-ueA" id="Ndw-TU-Op4"/>
                         <outlet property="labelDesafiante" destination="GQ9-7G-5I4" id="tYg-9x-nit"/>
                         <outlet property="rouletteComponent" destination="dPr-wu-Ybc" id="dDY-Ci-yYU"/>
-<<<<<<< HEAD
                         <outlet property="viewJogadores" destination="IWf-FI-hXv" id="dbE-a7-yaO"/>
-=======
                         <outlet property="timerViewComponet" destination="bD6-E4-lOa" id="Y86-Un-FCW"/>
->>>>>>> b94fe4c2b62112511cb2b64d9e5c33e8ea46ff2a
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

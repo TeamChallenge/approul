@@ -31,12 +31,8 @@ class HomeViewController: UIViewController {
     private func startGame () {
         if let count = self.rouletteComponent.jogadores?.count {
             self.rouletteComponent?.girar(withIntensidade: count * 7, { (jogador: Jogador?) in
-                
-                if let jog = jogador{
-                    self.viewJogadores.imgJogador1.image = jog.imagem
-                    self.viewJogadores.nameJogador1.text = jog.nome
-                    self.imgDesafiadoAnteriormente = jog.imagem
-                    self.nameDesafiadoAnteriormente = jog.nome
+                if let jogador = jogador {
+                    self.viewJogadores.setup(jogador: jogador)
                 }
             })
         }
@@ -93,11 +89,34 @@ class HomeViewController: UIViewController {
             let intensidade = Int(max(abs(velocity.x), abs(velocity.y)))
             self.rouletteComponent.girar(withIntensidade: intensidade, { (jogador: Jogador?) in
                 
-                if let jog1 = self.imgDesafiadoAnteriormente, let jog2 = jogador?.imagem, let name1 = self.nameDesafiadoAnteriormente, let name2 = jogador?.nome{
-                    self.viewJogadores.configImagesNames(jog1: jog1, jog2: jog2, name1: name1, name2: name2)
-                    self.imgDesafiadoAnteriormente = jog2
-                    self.nameDesafiadoAnteriormente = name2
+                if self.viewJogadores.isFirst == false, let jogador = jogador{
+                    self.viewJogadores.setup(jogador: jogador)
+                    return
                 }
+                if let jogador = jogador {
+                    self.viewJogadores.animationTroca(jog: jogador)
+                }
+//                guard let imgDesafiante = self.imgDesafiadoAnteriormente, let nameDesafiante = self.nameDesafiadoAnteriormente else{
+//                    return
+//                }
+//                
+//                let dic: [String: Any] = ["name": nameDesafiante, "image": imgDesafiante]
+//                
+//                guard let jog = jogador else{
+//                    return
+//                }
+                
+//                self.viewJogadores.configImagesNames(jogador2: jog, jogador1: dic)
+//                self.imgDesafiadoAnteriormente = jog.imagem
+//                self.nameDesafiadoAnteriormente = jog.nome
+                
+//                self.viewJogadores.animationTroca(jog: jog)
+                
+//                if let jog1 = self.imgDesafiadoAnteriormente, let jog2 = jogador?.imagem, let name1 = self.nameDesafiadoAnteriormente, let name2 = jogador?.nome{
+//                    self.viewJogadores.configImagesNames(jog1: jog1, jog2: jog2, name1: name1, name2: name2)
+//                    self.imgDesafiadoAnteriormente = jog2
+//                    self.nameDesafiadoAnteriormente = name2
+//                }
                 
             })
         }
