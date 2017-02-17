@@ -29,7 +29,7 @@ class JogadorStore: NSObject {
         self.jogadores = avatars.map { (nome: String, image: UIImage) -> Jogador in
             return Jogador(dic: ["nome" : nome, "imagem": image])
         }
-        
+    
         return jogadores
     }
     
