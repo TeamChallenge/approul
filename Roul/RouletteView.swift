@@ -170,3 +170,36 @@ class RouletteView: UIView {
     }
     
 }
+
+extension UIView {
+    
+    internal func animacaoMoveCom(pontoInicial inicial: CGPoint, eFinal final: CGPoint) -> CABasicAnimation {
+        let move = CABasicAnimation(keyPath: "position")
+        move.duration = 1
+        move.fromValue = NSValue(cgPoint: inicial)
+        move.toValue = NSValue(cgPoint: final)
+        move.isRemovedOnCompletion = false
+        move.fillMode = kCAFillModeForwards
+        return move
+    }
+    
+}
+
+typealias handlerCompletion = () -> Void
+
+protocol AnimationProtocol {
+    
+    func animacaoMove(inicial: CGPoint, final: CGPoint, completion: @escaping handlerCompletion)
+}
+
+extension RouletteView: AnimationProtocol {
+    
+    func animacaoMove(inicial: CGPoint, final: CGPoint, completion: @escaping handlerCompletion) {
+        self.layer.add(animacaoMoveCom(pontoInicial: inicial, eFinal: final), forKey: "position")
+ 
+        delay(1) {
+            completion()
+        }
+    }
+    
+}

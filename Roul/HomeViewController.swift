@@ -11,24 +11,24 @@ import UIKit
 class HomeViewController: UIViewController {
 
     
-    @IBOutlet weak var timerProgressComponent: TimerProgress!
-    @IBOutlet weak var rouletteComponent: RouletteView!
-    @IBOutlet weak var rouletteOptionComponent: RouletteOption!
-    @IBOutlet weak var desafiante: UIImageView!
-    @IBOutlet weak var desafiado: UIImageView!
-    @IBOutlet weak var labelDesafiante: UILabel!
-    @IBOutlet weak var labelDesafiado: UILabel!
-    @IBOutlet weak var labelMensagem: UILabel!
+    @IBOutlet fileprivate weak var timerProgressComponent: TimerProgress!
+    @IBOutlet fileprivate weak var rouletteComponent: RouletteView!
+    @IBOutlet fileprivate weak var rouletteOptionComponent: RouletteOption!
+    @IBOutlet fileprivate weak var desafiante: UIImageView!
+    @IBOutlet fileprivate weak var desafiado: UIImageView!
+    @IBOutlet fileprivate weak var labelDesafiante: UILabel!
+    @IBOutlet fileprivate weak var labelDesafiado: UILabel!
+    @IBOutlet fileprivate weak var labelMensagem: UILabel!
     
-    let button : UIButton = {
+    private let button : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Girar", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    var imgDesafiadoAnteriormente = UIImage()
-    var nameDesafiadoAnteriormente : String?
+    private var imgDesafiadoAnteriormente = UIImage()
+    private var nameDesafiadoAnteriormente : String?
     
     private func startGame () {
         if let count = self.rouletteComponent.jogadores?.count {
@@ -73,23 +73,52 @@ class HomeViewController: UIViewController {
         delay(2) {
             self.startGame()
         }
+        
+        self.rouletteComponent.layer.position = self.view.center
+        self.timerProgressComponent.layer.position = self.view.center
+        self.timerProgressComponent.layer.position.y += 2000
+        self.rouletteOptionComponent.layer.position = self.view.center
+        self.rouletteOptionComponent.layer.position.y += 2000
     }
     
-    func girar (sender: UIButton) {
+    @objc private func girar (sender: UIButton) {
 //        self.timerProgressComponent.startAnimation(withTimer: 30) { 
 //            print("Tempo acabado")
 //        }
-        self.rouletteOptionComponent.startAnimation()
+//        self.rouletteOptionComponent.startAnimation()
+        let inicialRoletaView = self.rouletteComponent.layer.position
+        let finalRoletaView = CGPoint(x: inicialRoletaView.x - 2000, y: inicialRoletaView.y)
+        
+        self.rouletteComponent.animacaoMove(inicial: inicialRoletaView, final: finalRoletaView) {
+            
+            let inicialTimer = self.timerProgressComponent.layer.position
+            let finalTimer = CGPoint(x: inicialTimer.x, y: inicialTimer.y - 2000)
+            
+            self.timerProgressComponent.animacaoMove(inicial: inicialTimer, final: finalTimer, completion: {
+                
+                self.timerProgressComponent.startAnimation(withTimer: 10, completion: { 
+                    self.timerProgressComponent.animacaoMove(inicial: finalTimer, final: inicialTimer, completion: {
+                        
+                        self.rouletteComponent.animacaoMove(inicial: finalRoletaView, final: inicialRoletaView, completion: {
+                            
+                        })
+                        
+                    })
+                })
+
+            })
+        }
+        
     }
     
-    func addGesture(){
+    private func addGesture(){
         let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(gesture:)))
         self.rouletteComponent.addGestureRecognizer(pan)
     }
     
-    var verificaPrimeiroGiroRoleta = false
+    private var verificaPrimeiroGiroRoleta = false
 
-    func handlePan(gesture: UIPanGestureRecognizer){
+    @objc private func handlePan(gesture: UIPanGestureRecognizer){
         
         if gesture.state == .began{
             let velocity = gesture.velocity(in: self.view)
@@ -135,13 +164,21 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func animationTrocaJogadores(){
+    private func animationTrocaJogadores(){
         self.desafiante.image = #imageLiteral(resourceName: "userF")
-        
-        
     }
     
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -65,3 +65,15 @@ class TimerProgress: UIView {
     }
     
 }
+
+
+extension TimerProgress: AnimationProtocol {
+    
+    func animacaoMove(inicial: CGPoint, final: CGPoint, completion: @escaping handlerCompletion) {
+        self.layer.add(animacaoMoveCom(pontoInicial: inicial, eFinal: final), forKey: "position")
+        delay(1, finish: {
+            completion()
+        })
+    }
+    
+}
