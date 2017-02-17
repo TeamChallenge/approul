@@ -174,7 +174,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wBD-Ds-aK5" customClass="RouletteView" customModule="Roul" customModuleProvider="target">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wBD-Ds-aK5" customClass="RouletteOption" customModule="Roul" customModuleProvider="target">
                                 <rect key="frame" x="1030" y="363" width="400" height="400"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -187,7 +187,9 @@
                         <outlet property="desafiante" destination="iHV-6E-IMJ" id="MSi-1o-KDr"/>
                         <outlet property="labelDesafiado" destination="cEp-5q-ueA" id="Ndw-TU-Op4"/>
                         <outlet property="labelDesafiante" destination="GQ9-7G-5I4" id="tYg-9x-nit"/>
+                        <outlet property="labelMensagem" destination="XKk-25-3Ht" id="hxC-ky-j6e"/>
                         <outlet property="rouletteComponent" destination="dPr-wu-Ybc" id="dDY-Ci-yYU"/>
+                        <outlet property="rouletteOptionComponent" destination="wBD-Ds-aK5" id="sgw-u2-1Co"/>
                         <outlet property="timerProgressComponent" destination="bD6-E4-lOa" id="FDE-Z6-q0S"/>
                     </connections>
                 </viewController>

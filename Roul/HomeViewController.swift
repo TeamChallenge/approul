@@ -13,10 +13,12 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var timerProgressComponent: TimerProgress!
     @IBOutlet weak var rouletteComponent: RouletteView!
+    @IBOutlet weak var rouletteOptionComponent: RouletteOption!
     @IBOutlet weak var desafiante: UIImageView!
     @IBOutlet weak var desafiado: UIImageView!
     @IBOutlet weak var labelDesafiante: UILabel!
     @IBOutlet weak var labelDesafiado: UILabel!
+    @IBOutlet weak var labelMensagem: UILabel!
     
     let button : UIButton = {
         let button = UIButton(type: .system)
@@ -30,12 +32,12 @@ class HomeViewController: UIViewController {
     
     private func startGame () {
         if let count = self.rouletteComponent.jogadores?.count {
-            self.rouletteComponent?.girar(withIntensidade: count * 7, { (jogador: Jogador?) in
+            self.rouletteComponent?.girar(withIntensidade: Int.randomInt(min: 50*count, max: 150*count), { (jogador: Jogador?) in
                 self.desafiante.image = jogador?.imagem
                 self.labelDesafiante.text = jogador?.nome
                 
                 self.imgDesafiadoAnteriormente = (jogador?.imagem)!
-                self.nameDesafiadoAnteriormente = (jogador?.nome)!
+//                self.nameDesafiadoAnteriormente = (jogador?.nome)!
                 
                 self.animationTrocaJogadores()
             })
@@ -74,9 +76,10 @@ class HomeViewController: UIViewController {
     }
     
     func girar (sender: UIButton) {
-        self.timerProgressComponent.startAnimation(withTimer: 30) { 
-            print("Tempo acabado")
-        }
+//        self.timerProgressComponent.startAnimation(withTimer: 30) { 
+//            print("Tempo acabado")
+//        }
+        self.rouletteOptionComponent.startAnimation()
     }
     
     func addGesture(){
@@ -92,6 +95,14 @@ class HomeViewController: UIViewController {
             let velocity = gesture.velocity(in: self.view)
             let intensidade = Int(max(abs(velocity.x), abs(velocity.y)))
             self.rouletteComponent.girar(withIntensidade: intensidade, { (jogador: Jogador?) in
+                
+                if let type = jogador?.type, type == .coringa {
+                    self.labelMensagem.text = "Coringa premiado"
+                    return
+                } else {
+                    self.labelMensagem.text = nil
+                }
+                
                 
                 if jogador?.imagem == self.imgDesafiadoAnteriormente{
 //                    self.rouletteComponent.girar(withIntensidade: 10) { (jogadorRodada2: Jogador?) in
