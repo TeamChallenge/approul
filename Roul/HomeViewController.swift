@@ -74,40 +74,40 @@ class HomeViewController: UIViewController {
             self.startGame()
         }
         
-        self.rouletteComponent.layer.position = self.view.center
-        self.timerProgressComponent.layer.position = self.view.center
-        self.timerProgressComponent.layer.position.y += 2000
-        self.rouletteOptionComponent.layer.position = self.view.center
-        self.rouletteOptionComponent.layer.position.y += 2000
+//        self.rouletteComponent.layer.position = self.view.center
+//        self.timerProgressComponent.layer.position = self.view.center
+//        self.timerProgressComponent.layer.position.y += 2000
+//        self.rouletteOptionComponent.layer.position = self.view.center
+//        self.rouletteOptionComponent.layer.position.y += 2000
     }
     
     @objc private func girar (sender: UIButton) {
 //        self.timerProgressComponent.startAnimation(withTimer: 30) { 
 //            print("Tempo acabado")
 //        }
-//        self.rouletteOptionComponent.startAnimation()
-        let inicialRoletaView = self.rouletteComponent.layer.position
-        let finalRoletaView = CGPoint(x: inicialRoletaView.x - 2000, y: inicialRoletaView.y)
-        
-        self.rouletteComponent.animacaoMove(inicial: inicialRoletaView, final: finalRoletaView) {
-            
-            let inicialTimer = self.timerProgressComponent.layer.position
-            let finalTimer = CGPoint(x: inicialTimer.x, y: inicialTimer.y - 2000)
-            
-            self.timerProgressComponent.animacaoMove(inicial: inicialTimer, final: finalTimer, completion: {
-                
-                self.timerProgressComponent.startAnimation(withTimer: 10, completion: { 
-                    self.timerProgressComponent.animacaoMove(inicial: finalTimer, final: inicialTimer, completion: {
-                        
-                        self.rouletteComponent.animacaoMove(inicial: finalRoletaView, final: inicialRoletaView, completion: {
-                            
-                        })
-                        
-                    })
-                })
-
-            })
-        }
+        self.rouletteOptionComponent.startAnimation()
+//        let inicialRoletaView = self.rouletteComponent.layer.position
+//        let finalRoletaView = CGPoint(x: inicialRoletaView.x - 2000, y: inicialRoletaView.y)
+//        
+//        self.rouletteComponent.animacaoMove(inicial: inicialRoletaView, final: finalRoletaView) {
+//            
+//            let inicialTimer = self.timerProgressComponent.layer.position
+//            let finalTimer = CGPoint(x: inicialTimer.x, y: inicialTimer.y - 2000)
+//            
+//            self.timerProgressComponent.animacaoMove(inicial: inicialTimer, final: finalTimer, completion: {
+//                
+//                self.timerProgressComponent.startAnimation(withTimer: 10, completion: { 
+//                    self.timerProgressComponent.animacaoMove(inicial: finalTimer, final: inicialTimer, completion: {
+//                        
+//                        self.rouletteComponent.animacaoMove(inicial: finalRoletaView, final: inicialRoletaView, completion: {
+//                            
+//                        })
+//                        
+//                    })
+//                })
+//
+//            })
+//        }
         
     }
     
