@@ -74,11 +74,11 @@ class HomeViewController: UIViewController {
             self.startGame()
         }
         
-//        self.rouletteComponent.layer.position = self.view.center
-//        self.timerProgressComponent.layer.position = self.view.center
-//        self.timerProgressComponent.layer.position.y += 2000
-//        self.rouletteOptionComponent.layer.position = self.view.center
-//        self.rouletteOptionComponent.layer.position.y += 2000
+        self.rouletteComponent.layer.position = self.view.center
+        self.timerProgressComponent.layer.position = self.view.center
+        self.timerProgressComponent.layer.position.y += 1300
+        self.rouletteOptionComponent.layer.position = self.view.center
+        self.rouletteOptionComponent.layer.position.y += 1300
     }
     
     @objc private func girar (sender: UIButton) {
