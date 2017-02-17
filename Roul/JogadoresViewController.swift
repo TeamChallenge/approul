@@ -20,6 +20,7 @@ class JogadoresViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.avataresCollectionView.backgroundColor = UIColor.clear
         self.gamersSelecionadosCollectionView.backgroundColor = UIColor.clear
         
@@ -62,18 +63,20 @@ class JogadoresViewController: UIViewController {
             }
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+       
+    @IBAction func iniciar() {
+        self.performSegue(withIdentifier: "toRoul", sender: self)
     }
-    */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toRoul" {
+            if let inst = segue.destination as? HomeViewController {
+                inst.jogadores = self.jogadoresAdicionados
+            }
+        }
+    }
 }
-
+    
 extension JogadoresViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

@@ -10,11 +10,14 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var timerViewComponet: TimerView!
     @IBOutlet weak var rouletteComponent: RouletteView!
     @IBOutlet weak var desafiante: UIImageView!
     @IBOutlet weak var desafiado: UIImageView!
     @IBOutlet weak var labelDesafiante: UILabel!
     @IBOutlet weak var labelDesafiado: UILabel!
+    
+    var jogadores : [Jogador]?
     
     let button : UIButton = {
         let button = UIButton(type: .system)
@@ -24,7 +27,7 @@ class HomeViewController: UIViewController {
     }()
     
     var imgDesafiadoAnteriormente = UIImage()
-    var nameDesafiadoAnteriormente = String()
+    var nameDesafiadoAnteriormente : String?
     
     private func startGame () {
         if let count = self.rouletteComponent.jogadores?.count {
@@ -34,6 +37,8 @@ class HomeViewController: UIViewController {
                 
                 self.imgDesafiadoAnteriormente = (jogador?.imagem)!
                 self.nameDesafiadoAnteriormente = (jogador?.nome)!
+                
+                self.animationTrocaJogadores()
             })
         }
     }
@@ -53,15 +58,28 @@ class HomeViewController: UIViewController {
     }
     
     private func setupRoulette () {
-        self.rouletteComponent.jogadores = JogadorStore.singleton.getJogadores()
+        guard var jogadores = self.jogadores else {
+            print("Sem jogadores")
+            return
+        }
         
+        jogadores.enumerated().forEach { (tupla: (offset: Int, element: Jogador)) in
+            if tupla.offset % 3 == 0 {
+                jogadores.insert(Jogador(.coringa), at: tupla.offset)
+            }
+        }
+        
+        self.rouletteComponent.jogadores = jogadores
+
         delay(2) {
             self.startGame()
         }
     }
     
     func girar (sender: UIButton) {
-        
+        self.timerViewComponet.start(withTime: 3, completion: {
+            print("Fim do tempo")
+        })
     }
     
     func addGesture(){
@@ -79,19 +97,19 @@ class HomeViewController: UIViewController {
             self.rouletteComponent.girar(withIntensidade: intensidade, { (jogador: Jogador?) in
                 
                 if jogador?.imagem == self.imgDesafiadoAnteriormente{
-                    self.rouletteComponent.girar(withIntensidade: 10) { (jogadorRodada2: Jogador?) in
-                        print(jogador!)
-                        
-                        self.desafiado.image = jogadorRodada2?.imagem
-                        self.labelDesafiado.text = jogadorRodada2?.nome
+//                    self.rouletteComponent.girar(withIntensidade: 10) { (jogadorRodada2: Jogador?) in
+//                        print(jogador!)
+//                        
+//                        self.desafiado.image = jogadorRodada2?.imagem
+//                        self.labelDesafiado.text = jogadorRodada2?.nome
                         self.desafiante.image = self.imgDesafiadoAnteriormente
                         self.labelDesafiante.text = self.nameDesafiadoAnteriormente
-                        
-                        self.imgDesafiadoAnteriormente = (jogadorRodada2?.imagem)!
-                        self.nameDesafiadoAnteriormente = (jogadorRodada2?.nome)!
-                        
-                        self.animationInModal()
-                    }
+//
+//                        self.imgDesafiadoAnteriormente = (jogadorRodada2?.imagem)!
+//                        self.nameDesafiadoAnteriormente = (jogadorRodada2?.nome)!
+//
+//                        self.animationInModal()
+//                    }
                 }
                 else{
                     self.desafiado.image = jogador?.imagem
@@ -100,18 +118,17 @@ class HomeViewController: UIViewController {
                     self.labelDesafiante.text = self.nameDesafiadoAnteriormente
                     
                     self.imgDesafiadoAnteriormente = (jogador?.imagem)!
-                    self.nameDesafiadoAnteriormente = (jogador?.nome)!
+                    self.nameDesafiadoAnteriormente = jogador?.nome
                     
-                    self.animationInModal()
+//                    self.animationInModal()
                 }
             })
         }
     }
     
-    func animationInModal(){
-        delay(1, finish: {
-//            self.performSegue(withIdentifier: "modalSegue", sender: self)
-        })
+    func animationTrocaJogadores(){
+        self.desafiante.image = #imageLiteral(resourceName: "userF")
+    
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -131,6 +148,7 @@ class HomeViewController: UIViewController {
             self.desafiante.center.x = self.desafiante.center.x - 100.0
         }, completion: nil)
     }
+
 }
 
 
