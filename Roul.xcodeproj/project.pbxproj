@@ -16,20 +16,18 @@
 		278A14A81E54C766000CCA4A /* GamersSelecionadosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278A14A71E54C766000CCA4A /* GamersSelecionadosCollectionViewCell.swift */; };
 		27DDF35E1E4BB5AA0045145C /* Jogador.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF35D1E4BB5AA0045145C /* Jogador.swift */; };
 		27DDF3621E4BB97C0045145C /* JogadorStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF3611E4BB97C0045145C /* JogadorStore.swift */; };
-		644906AF1E5553F30084CA12 /* TimerProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644906AE1E5553F30084CA12 /* TimerProgress.swift */; };
-		644906B71E562E840084CA12 /* RouletteOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644906B61E562E840084CA12 /* RouletteOption.swift */; };
 		27DDF3661E4D1D970045145C /* TrocaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF3651E4D1D970045145C /* TrocaViewController.swift */; };
 		27DDF36C1E4E42A80045145C /* ModalDuelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF36B1E4E42A80045145C /* ModalDuelo.swift */; };
+		644906AF1E5553F30084CA12 /* TimerProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644906AE1E5553F30084CA12 /* TimerProgress.swift */; };
+		644906B71E562E840084CA12 /* RouletteOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644906B61E562E840084CA12 /* RouletteOption.swift */; };
 		646058E71E4ACB7A0001FC44 /* Extension+Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */; };
 		64DC402D1E53A47100A41B1F /* JogadoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC402C1E53A47100A41B1F /* JogadoresViewController.swift */; };
 		64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6CF1E493BFD0009EF99 /* CircleView.swift */; };
 		64E1D6D21E493C390009EF99 /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D11E493C390009EF99 /* RouletteView.swift */; };
 		64E1D6D41E493C640009EF99 /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D31E493C640009EF99 /* Extension+Int.swift */; };
 		64E1D6D61E49402F0009EF99 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D51E49402F0009EF99 /* HomeViewController.swift */; };
-
-		94C09CC41E4CFCB300BF7C7F /* ModalDuelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C09CC31E4CFCB300BF7C7F /* ModalDuelo.swift */; };
+		64F7F8EC1E5AB13B0097B7F7 /* UIView+Glow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7F8EB1E5AB13A0097B7F7 /* UIView+Glow.swift */; };
 		94E1D1E61E54D88100625265 /* ViewJogadores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E1D1E51E54D88100625265 /* ViewJogadores.swift */; };
-
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,20 +42,19 @@
 		278A14A71E54C766000CCA4A /* GamersSelecionadosCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamersSelecionadosCollectionViewCell.swift; sourceTree = "<group>"; };
 		27DDF35D1E4BB5AA0045145C /* Jogador.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jogador.swift; sourceTree = "<group>"; };
 		27DDF3611E4BB97C0045145C /* JogadorStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JogadorStore.swift; sourceTree = "<group>"; };
-		644906AE1E5553F30084CA12 /* TimerProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerProgress.swift; sourceTree = "<group>"; };
-		644906B61E562E840084CA12 /* RouletteOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouletteOption.swift; sourceTree = "<group>"; };
 		27DDF3651E4D1D970045145C /* TrocaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrocaViewController.swift; sourceTree = "<group>"; };
 		27DDF36B1E4E42A80045145C /* ModalDuelo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalDuelo.swift; sourceTree = "<group>"; };
+		644906AE1E5553F30084CA12 /* TimerProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerProgress.swift; sourceTree = "<group>"; };
+		644906B61E562E840084CA12 /* RouletteOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouletteOption.swift; sourceTree = "<group>"; };
 		646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Dispatch.swift"; sourceTree = "<group>"; };
 		64DC402C1E53A47100A41B1F /* JogadoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JogadoresViewController.swift; sourceTree = "<group>"; };
 		64E1D6CF1E493BFD0009EF99 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		64E1D6D11E493C390009EF99 /* RouletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
 		64E1D6D31E493C640009EF99 /* Extension+Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
 		64E1D6D51E49402F0009EF99 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-
+		64F7F8EB1E5AB13A0097B7F7 /* UIView+Glow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Glow.swift"; sourceTree = "<group>"; };
 		94C09CC31E4CFCB300BF7C7F /* ModalDuelo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalDuelo.swift; sourceTree = "<group>"; };
 		94E1D1E51E54D88100625265 /* ViewJogadores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewJogadores.swift; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,12 +115,11 @@
 				276871EB1E491DA900A24C1E /* Main.storyboard */,
 				64E1D6CF1E493BFD0009EF99 /* CircleView.swift */,
 				64E1D6D11E493C390009EF99 /* RouletteView.swift */,
-
 				94C09CC31E4CFCB300BF7C7F /* ModalDuelo.swift */,
-				64DC402E1E54119D00A41B1F /* TimerView.swift */,
 				94E1D1E51E54D88100625265 /* ViewJogadores.swift */,
 				644906AE1E5553F30084CA12 /* TimerProgress.swift */,
 				644906B61E562E840084CA12 /* RouletteOption.swift */,
+				64F7F8EB1E5AB13A0097B7F7 /* UIView+Glow.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -190,8 +186,7 @@
 				TargetAttributes = {
 					276871E01E491DA900A24C1E = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 7K2LRW74D9;
-
+						DevelopmentTeam = 533ZC86QCL;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -231,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64F7F8EC1E5AB13B0097B7F7 /* UIView+Glow.swift in Sources */,
 				64E1D6D41E493C640009EF99 /* Extension+Int.swift in Sources */,
 				94E1D1E61E54D88100625265 /* ViewJogadores.swift in Sources */,
 				64DC402D1E53A47100A41B1F /* JogadoresViewController.swift in Sources */,
@@ -241,7 +237,6 @@
 				644906AF1E5553F30084CA12 /* TimerProgress.swift in Sources */,
 				644906B71E562E840084CA12 /* RouletteOption.swift in Sources */,
 				278A14A81E54C766000CCA4A /* GamersSelecionadosCollectionViewCell.swift in Sources */,
-				64DC402F1E54119D00A41B1F /* TimerView.swift in Sources */,
 				646058E71E4ACB7A0001FC44 /* Extension+Dispatch.swift in Sources */,
 				276871E51E491DA900A24C1E /* AppDelegate.swift in Sources */,
 				27DDF3621E4BB97C0045145C /* JogadorStore.swift in Sources */,
@@ -365,7 +360,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 7K2LRW74D9;
+				DEVELOPMENT_TEAM = 533ZC86QCL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -376,7 +371,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -385,7 +380,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 7K2LRW74D9;
+				DEVELOPMENT_TEAM = 533ZC86QCL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -396,7 +391,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};

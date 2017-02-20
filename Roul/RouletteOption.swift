@@ -101,9 +101,20 @@ class RouletteOption: UIView {
 
 }
 
+extension RouletteOption: AnimationProtocol {
+    
+    func animacaoMove(inicial: CGPoint, final: CGPoint, completion: @escaping handlerCompletion) {
+        self.layer.add(animacaoMoveCom(pontoInicial: inicial, eFinal: final), forKey: "position")
+        delay(1, finish: {
+            completion()
+        })
+    }
+    
+}
+
 extension RouletteOption {
     
-    func startAnimation() {
+    func startAnimation(completion: @escaping handlerCompletion) {
 //        self.timer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(RouletteOption.light), userInfo: nil, repeats: true)
 //        self.speedCounter = 500
         let a = CAKeyframeAnimation(keyPath: "opacity")
@@ -115,6 +126,9 @@ extension RouletteOption {
         for (i, arc) in self.arcs.enumerated() {
             a.beginTime = CACurrentMediaTime() + Double(i) * 0.3
             arc.layer.add(a, forKey: "a")
+        }
+        delay(2) { 
+            completion()
         }
     }    
 }

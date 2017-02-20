@@ -9,7 +9,7 @@
 import UIKit
 
 public enum TypeJogador: String {
-    case jogador
+    case player
     case coringa
 }
 
@@ -19,7 +19,7 @@ class Jogador: NSObject {
     var id : String?
     var imagem : UIImage?
     
-    var type: TypeJogador = .jogador
+    var type: TypeJogador = .player
 
     override var description: String {
         return "(\(self.nome) | \(self.type.rawValue))"
@@ -32,7 +32,7 @@ class Jogador: NSObject {
         case .coringa:
             self.imagem = #imageLiteral(resourceName: "userM")
             break
-        case .jogador:
+        case .player:
             break
         }
     }

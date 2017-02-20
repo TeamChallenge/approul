@@ -9,9 +9,12 @@
 import UIKit
 
 class JogadoresViewController: UIViewController {
+    
     @IBOutlet weak var avataresCollectionView: UICollectionView!
     @IBOutlet weak var gamersSelecionadosCollectionView: UICollectionView!
+    @IBOutlet weak var buttonIniciar: UIButton!
     
+    fileprivate var focusGuide = UIFocusGuide()
     var jogadoresAdicionados = [Jogador]()
     var jogadoresParaAdicionar = [Jogador]()
     
@@ -25,6 +28,7 @@ class JogadoresViewController: UIViewController {
         self.gamersSelecionadosCollectionView.backgroundColor = UIColor.clear
         
         carregarJogadores()
+        self.setupSubviews()
         // Do any additional setup after loading the view.
     }
     
@@ -40,6 +44,27 @@ class JogadoresViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocus(in: context, with: coordinator)
+        
+        guard var nextFocusedView = context.nextFocusedView else { return }
+        
+        if let superView = nextFocusedView.superview, superView == self.gamersSelecionadosCollectionView  {
+            nextFocusedView = superView
+        }
+        
+        switch nextFocusedView {
+        case self.buttonIniciar:
+            self.focusGuide.preferredFocusedView = self.gamersSelecionadosCollectionView
+            break
+        case self.gamersSelecionadosCollectionView:
+            self.focusGuide.preferredFocusedView = self.buttonIniciar
+            break
+        default:
+            self.focusGuide.preferredFocusedView = nil
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -102,6 +127,20 @@ extension JogadoresViewController : UICollectionViewDelegate, UICollectionViewDa
             return cellJogadores
 
         }
+    }
+    
+}
+
+extension JogadoresViewController {
+    
+    fileprivate func setupSubviews() {
+        self.view.addLayoutGuide(self.focusGuide)
+
+        self.focusGuide.leftAnchor.constraint(equalTo: self.gamersSelecionadosCollectionView.leftAnchor).isActive = true
+        self.focusGuide.topAnchor.constraint(equalTo: self.buttonIniciar.topAnchor).isActive = true
+        self.focusGuide.rightAnchor.constraint(equalTo: self.buttonIniciar.leftAnchor).isActive = true
+        self.focusGuide.heightAnchor.constraint(equalTo: self.buttonIniciar.heightAnchor).isActive = true
+        
     }
     
 }
