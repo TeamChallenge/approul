@@ -21,6 +21,7 @@
 		644906AF1E5553F30084CA12 /* TimerProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644906AE1E5553F30084CA12 /* TimerProgress.swift */; };
 		644906B71E562E840084CA12 /* RouletteOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644906B61E562E840084CA12 /* RouletteOption.swift */; };
 		646058E71E4ACB7A0001FC44 /* Extension+Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */; };
+		647C2CF81E5B7C01008AB7E8 /* Coringa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647C2CF71E5B7C01008AB7E8 /* Coringa.swift */; };
 		64DC402D1E53A47100A41B1F /* JogadoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC402C1E53A47100A41B1F /* JogadoresViewController.swift */; };
 		64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6CF1E493BFD0009EF99 /* CircleView.swift */; };
 		64E1D6D21E493C390009EF99 /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D11E493C390009EF99 /* RouletteView.swift */; };
@@ -47,6 +48,7 @@
 		644906AE1E5553F30084CA12 /* TimerProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerProgress.swift; sourceTree = "<group>"; };
 		644906B61E562E840084CA12 /* RouletteOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouletteOption.swift; sourceTree = "<group>"; };
 		646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Dispatch.swift"; sourceTree = "<group>"; };
+		647C2CF71E5B7C01008AB7E8 /* Coringa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coringa.swift; sourceTree = "<group>"; };
 		64DC402C1E53A47100A41B1F /* JogadoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JogadoresViewController.swift; sourceTree = "<group>"; };
 		64E1D6CF1E493BFD0009EF99 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		64E1D6D11E493C390009EF99 /* RouletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			children = (
 				27DDF35D1E4BB5AA0045145C /* Jogador.swift */,
 				27DDF3611E4BB97C0045145C /* JogadorStore.swift */,
+				647C2CF71E5B7C01008AB7E8 /* Coringa.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				27DDF35E1E4BB5AA0045145C /* Jogador.swift in Sources */,
 				64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */,
 				27DDF3661E4D1D970045145C /* TrocaViewController.swift in Sources */,
+				647C2CF81E5B7C01008AB7E8 /* Coringa.swift in Sources */,
 				276871E71E491DA900A24C1E /* ViewController.swift in Sources */,
 				644906AF1E5553F30084CA12 /* TimerProgress.swift in Sources */,
 				644906B71E562E840084CA12 /* RouletteOption.swift in Sources */,

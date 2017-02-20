@@ -50,6 +50,8 @@ class ViewJogadores: UIView {
     
     fileprivate var point1: CGPoint = CGPoint.zero
     fileprivate var point2: CGPoint = CGPoint.zero
+    fileprivate var point1Label: CGPoint = CGPoint.zero
+    fileprivate var point2Label: CGPoint = CGPoint.zero
     fileprivate var isFirstJogador: Bool = true
     
     var desafiante: Jogador?
@@ -57,6 +59,12 @@ class ViewJogadores: UIView {
     
     private func configConstraints(){
         self.backgroundColor = .clear
+        
+        self.imgJogador1.alpha = 0
+        self.imgJogador2.alpha = 0
+        self.nameJogador1.alpha = 0
+        self.nameJogador2.alpha = 0
+        
         self.addSubview(self.imgJogador1)
         self.imgJogador1.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -25).isActive = true
         self.imgJogador1.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 100).isActive = true
@@ -110,35 +118,49 @@ extension ViewJogadores {
         if self.isFirstJogador {
             self.imgJogador1.image = jogador.imagem
             self.nameJogador1.text = jogador.nome
+            
+            self.imgJogador1.alpha = 1
+            self.nameJogador1.alpha = 1
+            
             self.isFirstJogador = false
             self.point1 = self.imgJogador1.layer.position
             self.point2 = self.imgJogador2.layer.position
+            self.point1Label = self.nameJogador1.layer.position
+            self.point2Label = self.nameJogador2.layer.position
             self.desafiante = jogador
         } else {
             self.imgJogador2.image = jogador.imagem
             self.nameJogador2.text = jogador.nome
             self.desafiado = jogador
+            
+            self.imgJogador2.alpha = 1
+            self.nameJogador2.alpha = 1
         }
     }
     
     func animationTroca() {
         self.imgJogador2.layer.add(self.animationMove(self.point2, self.point1), forKey: "move")
+        self.nameJogador2.layer.add(self.animationMove(self.point2Label, self.point1Label), forKey: "move")
         self.imgJogador1.layer.add(self.animationFade(from: 1, to: 0), forKey: "fade")
         
         self.desafiante = desafiado
         self.desafiado = nil
         
-        delay(1) { 
+        delay(1) {
             self.imgJogador1.image = self.imgJogador2.image
             self.nameJogador1.text = self.nameJogador2.text
             self.imgJogador2.image = #imageLiteral(resourceName: "userM")
             
             self.imgJogador1.layer.removeAllAnimations()
             self.imgJogador2.layer.removeAllAnimations()
+            self.nameJogador2.layer.removeAllAnimations()
+            self.nameJogador1.layer.removeAllAnimations()
             
             self.imgJogador1.layer.opacity = 1
             self.imgJogador2.layer.position = self.point2
+            self.nameJogador2.layer.position = self.point2Label
             self.imgJogador2.layer.add(self.animationFade(from: 0, to: 1), forKey: "fade")
+            self.nameJogador2.alpha = 0
         }
     }
     

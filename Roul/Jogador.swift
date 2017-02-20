@@ -15,6 +15,7 @@ public enum TypeJogador: String {
 
 class Jogador: NSObject {
     
+    var coringa: Coringa?
     var nome : String?
     var id : String?
     var imagem : UIImage?

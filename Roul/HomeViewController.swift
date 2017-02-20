@@ -10,7 +10,6 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    
     @IBOutlet weak var viewJogadorComponent: ViewJogadores!
     @IBOutlet fileprivate weak var timerProgressComponent: TimerProgress!
     @IBOutlet fileprivate weak var rouletteComponent: RouletteView!
@@ -59,9 +58,14 @@ class HomeViewController: UIViewController {
             return
         }
         let mod = (self.jogadores!.count / 2) + 1
+        var coringas = CoringaStore.singleton.getAll()
         jogadores.enumerated().forEach { (tupla: (offset: Int, element: Jogador)) in
             if tupla.offset % mod == 0 {
-                jogadores.insert(Jogador(.coringa), at: tupla.offset)
+                let index = Int.randomInt(min: 0, max: coringas.count - 1)
+                let j = Jogador(.coringa)
+                let removeCoringa = coringas.remove(at: index)
+                j.coringa = removeCoringa
+                jogadores.insert(j, at: tupla.offset)
             }
         }
         
@@ -168,8 +172,17 @@ class HomeViewController: UIViewController {
             let intensidade = Int(max(abs(velocity.x), abs(velocity.y)))
             self.rouletteComponent.girar(withIntensidade: intensidade, { (jogador: Jogador?) in
                 if let j = jogador {
-                    self.viewJogadorComponent.setup(withJogador: j)
-                    self.animacaoComponents()
+                    if j.type == .player {
+                        self.viewJogadorComponent.setup(withJogador: j)
+                        self.animacaoComponents()
+                    } else if j.type == .coringa {
+                        var coringas = CoringaStore.singleton.getAll()
+                        let index = Int.randomInt(min: 0, max: coringas.count - 1)
+                        let removido = coringas.remove(at: index)
+                        
+                        self.viewJogadorComponent.setup(withJogador: j)
+                        self.labelMensagem.text = removido.acao
+                    }
                 }
             })
         }
