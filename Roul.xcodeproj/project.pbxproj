@@ -18,10 +18,13 @@
 		27DDF3621E4BB97C0045145C /* JogadorStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF3611E4BB97C0045145C /* JogadorStore.swift */; };
 		27DDF3661E4D1D970045145C /* TrocaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF3651E4D1D970045145C /* TrocaViewController.swift */; };
 		27DDF36C1E4E42A80045145C /* ModalDuelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDF36B1E4E42A80045145C /* ModalDuelo.swift */; };
+		642D8FED1E5CAFCF00711AD3 /* Roulette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642D8FEC1E5CAFCF00711AD3 /* Roulette.swift */; };
 		644906AF1E5553F30084CA12 /* TimerProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644906AE1E5553F30084CA12 /* TimerProgress.swift */; };
 		644906B71E562E840084CA12 /* RouletteOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644906B61E562E840084CA12 /* RouletteOption.swift */; };
 		646058E71E4ACB7A0001FC44 /* Extension+Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */; };
 		647C2CF81E5B7C01008AB7E8 /* Coringa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647C2CF71E5B7C01008AB7E8 /* Coringa.swift */; };
+		64B115411E5CC4EE00D6F024 /* WEST.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 64B115401E5CC4EE00D6F024 /* WEST.TTF */; };
+		64B115431E5CDBF800D6F024 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B115421E5CDBF800D6F024 /* Extension+UIColor.swift */; };
 		64DC402D1E53A47100A41B1F /* JogadoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC402C1E53A47100A41B1F /* JogadoresViewController.swift */; };
 		64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6CF1E493BFD0009EF99 /* CircleView.swift */; };
 		64E1D6D21E493C390009EF99 /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D11E493C390009EF99 /* RouletteView.swift */; };
@@ -45,10 +48,13 @@
 		27DDF3611E4BB97C0045145C /* JogadorStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JogadorStore.swift; sourceTree = "<group>"; };
 		27DDF3651E4D1D970045145C /* TrocaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrocaViewController.swift; sourceTree = "<group>"; };
 		27DDF36B1E4E42A80045145C /* ModalDuelo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalDuelo.swift; sourceTree = "<group>"; };
+		642D8FEC1E5CAFCF00711AD3 /* Roulette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roulette.swift; sourceTree = "<group>"; };
 		644906AE1E5553F30084CA12 /* TimerProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerProgress.swift; sourceTree = "<group>"; };
 		644906B61E562E840084CA12 /* RouletteOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouletteOption.swift; sourceTree = "<group>"; };
 		646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Dispatch.swift"; sourceTree = "<group>"; };
 		647C2CF71E5B7C01008AB7E8 /* Coringa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coringa.swift; sourceTree = "<group>"; };
+		64B115401E5CC4EE00D6F024 /* WEST.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = WEST.TTF; sourceTree = "<group>"; };
+		64B115421E5CDBF800D6F024 /* Extension+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 		64DC402C1E53A47100A41B1F /* JogadoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JogadoresViewController.swift; sourceTree = "<group>"; };
 		64E1D6CF1E493BFD0009EF99 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		64E1D6D11E493C390009EF99 /* RouletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
@@ -90,6 +96,7 @@
 		276871E31E491DA900A24C1E /* Roul */ = {
 			isa = PBXGroup;
 			children = (
+				64B115401E5CC4EE00D6F024 /* WEST.TTF */,
 				649F7CB01E4A4F4500B9A4B6 /* Util */,
 				649F7CAF1E4A4F3300B9A4B6 /* Controller */,
 				649F7CAE1E4A4F3000B9A4B6 /* View */,
@@ -123,6 +130,7 @@
 				644906AE1E5553F30084CA12 /* TimerProgress.swift */,
 				644906B61E562E840084CA12 /* RouletteOption.swift */,
 				64F7F8EB1E5AB13A0097B7F7 /* UIView+Glow.swift */,
+				642D8FEC1E5CAFCF00711AD3 /* Roulette.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -146,6 +154,7 @@
 			children = (
 				64E1D6D31E493C640009EF99 /* Extension+Int.swift */,
 				646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */,
+				64B115421E5CDBF800D6F024 /* Extension+UIColor.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -219,6 +228,7 @@
 			files = (
 				276871EF1E491DA900A24C1E /* Assets.xcassets in Resources */,
 				276871ED1E491DA900A24C1E /* Main.storyboard in Resources */,
+				64B115411E5CC4EE00D6F024 /* WEST.TTF in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +245,7 @@
 				64DC402D1E53A47100A41B1F /* JogadoresViewController.swift in Sources */,
 				27DDF35E1E4BB5AA0045145C /* Jogador.swift in Sources */,
 				64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */,
+				642D8FED1E5CAFCF00711AD3 /* Roulette.swift in Sources */,
 				27DDF3661E4D1D970045145C /* TrocaViewController.swift in Sources */,
 				647C2CF81E5B7C01008AB7E8 /* Coringa.swift in Sources */,
 				276871E71E491DA900A24C1E /* ViewController.swift in Sources */,
@@ -249,6 +260,7 @@
 				27DDF36C1E4E42A80045145C /* ModalDuelo.swift in Sources */,
 				64E1D6D61E49402F0009EF99 /* HomeViewController.swift in Sources */,
 				276871EA1E491DA900A24C1E /* Roul.xcdatamodeld in Sources */,
+				64B115431E5CDBF800D6F024 /* Extension+UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

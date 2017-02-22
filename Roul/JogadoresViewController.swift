@@ -18,26 +18,19 @@ class JogadoresViewController: UIViewController {
     var jogadoresAdicionados = [Jogador]()
     var jogadoresParaAdicionar = [Jogador]()
     
-    let avatares = [#imageLiteral(resourceName: "avatar2"), #imageLiteral(resourceName: "avatar1"), #imageLiteral(resourceName: "avatar3"), #imageLiteral(resourceName: "avatar4"), #imageLiteral(resourceName: "avatar5"), #imageLiteral(resourceName: "avatar6"), #imageLiteral(resourceName: "avatar7")]
-    let nameAvatar = ["Um", "Dois", "Tres", "Quatro", "Cinco", "Seis", "Sete"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.avataresCollectionView.backgroundColor = UIColor.clear
         self.gamersSelecionadosCollectionView.backgroundColor = UIColor.clear
-        
+        self.avataresCollectionView.allowsMultipleSelection = true
         carregarJogadores()
         self.setupSubviews()
         // Do any additional setup after loading the view.
     }
     
     func carregarJogadores(){
-        for i in 0...6 {
-            let dic = ["nome": nameAvatar[i], "imagem": avatares[i]] as [String : Any]
-            let gamer = Jogador(dic: dic) //cria um novo jogador
-            self.jogadoresParaAdicionar.append(gamer)
-        }
+        self.jogadoresParaAdicionar = JogadorStore.singleton.getJogadores()
         avataresCollectionView.reloadData()
     }
 
@@ -69,22 +62,42 @@ class JogadoresViewController: UIViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == avataresCollectionView {
-            var gamerSelected = self.jogadoresParaAdicionar.remove(at: indexPath.item)
-            avataresCollectionView.deleteItems(at: [indexPath])
+//            var gamerSelected = self.jogadoresParaAdicionar.remove(at: indexPath.item)
+//            avataresCollectionView.deleteItems(at: [indexPath])
+//            self.jogadoresAdicionados.append(gamerSelected)
+//
+//            if let indexAdicionado = self.jogadoresAdicionados.index(of: gamerSelected) {
+//                let index = IndexPath(item: indexAdicionado, section: 0)
+//                self.gamersSelecionadosCollectionView.insertItems(at: [index])
+//            }
+
+            if let cell = collectionView.cellForItem(at: indexPath) as? AvataresCollectionViewCell, cell.ativo == false {
+                cell.ativo = true
+            } else {
+                return
+            }
+            
+            let gamerSelected = self.jogadoresParaAdicionar[indexPath.item]
             self.jogadoresAdicionados.append(gamerSelected)
             
             if let indexAdicionado = self.jogadoresAdicionados.index(of: gamerSelected) {
                 let index = IndexPath(item: indexAdicionado, section: 0)
                 self.gamersSelecionadosCollectionView.insertItems(at: [index])
             }
-        }else{
-            var gamerSelected = self.jogadoresAdicionados.remove(at: indexPath.item)
-            gamersSelecionadosCollectionView.deleteItems(at: [indexPath])
-            self.jogadoresParaAdicionar.append(gamerSelected)
             
-            if let indexAdicionado = self.jogadoresParaAdicionar.index(of: gamerSelected) {
-                let index = IndexPath(item: indexAdicionado, section: 0)
-                self.avataresCollectionView.insertItems(at: [index])
+            
+        }else{
+            let gamerSelected = self.jogadoresAdicionados.remove(at: indexPath.item)
+            gamersSelecionadosCollectionView.deleteItems(at: [indexPath])
+            
+            if let indexPath = self.jogadoresParaAdicionar.index(where: { (jogador: Jogador) -> Bool in
+                return jogador.nome == gamerSelected.nome
+            }) {
+                let index = IndexPath(item: indexPath, section: 0)
+                if let cell = self.avataresCollectionView.cellForItem(at: index) as? AvataresCollectionViewCell{
+                    cell.ativo = false
+                    cell.isSelected = false
+                }
             }
         }
     }
@@ -122,7 +135,7 @@ extension JogadoresViewController : UICollectionViewDelegate, UICollectionViewDa
             cellAvatares.setupViews(jogador: jogadoresParaAdicionar[indexPath.item])
             return cellAvatares
         }else{
-            let cellJogadores = collectionView.dequeueReusableCell(withReuseIdentifier: "cellJogadores", for: indexPath) as! GamersSelecionadosCollectionViewCell
+            let cellJogadores = collectionView.dequeueReusableCell(withReuseIdentifier: "cellJogadores", for: indexPath) as! AvataresCollectionViewCell
             cellJogadores.setupViews(jogador: (jogadoresAdicionados[indexPath.item]))
             return cellJogadores
 

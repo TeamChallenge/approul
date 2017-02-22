@@ -25,10 +25,10 @@ class RouletteView: UIView {
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         coordinator.addCoordinatedAnimations({ 
             if self.isFocused {
-                self.layer.borderColor = UIColor.red.cgColor
+                self.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
                 self.layer.borderWidth = 10
             } else {
-                self.layer.borderColor = UIColor.white.cgColor
+                self.layer.borderColor = UIColor.clear.cgColor
                 self.layer.borderWidth = 0
             }
         }, completion: nil)
@@ -38,6 +38,13 @@ class RouletteView: UIView {
         return true
     }
     
+    fileprivate lazy var backgroundRoulette : Roulette = {
+        let roulette = Roulette(frame: self.frame)
+        roulette.translatesAutoresizingMaskIntoConstraints = false
+        roulette.backgroundColor = UIColor.clear
+        return roulette
+    }()
+    
     private let viewCenter : UIView = {
         let v = UIView()
         v.layer.anchorPoint = CGPoint(x: 0.5, y: 0.7)
@@ -46,6 +53,11 @@ class RouletteView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.addSubview(self.backgroundRoulette)
+        self.backgroundRoulette.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        self.backgroundRoulette.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.backgroundRoulette.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        self.backgroundRoulette.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
     }
     
     private lazy var angle : CGFloat = {
@@ -56,8 +68,7 @@ class RouletteView: UIView {
         super.draw(rect)
         
         self.layer.cornerRadius = min(rect.width, rect.height) / 2
-        self.backgroundColor = .green
-        self.layer.masksToBounds = true
+//        self.layer.masksToBounds = true
         
         _ = self.convert(self.center, from: self.superview)
         
@@ -74,7 +85,8 @@ class RouletteView: UIView {
             circle.endAngle = CGFloat(angle * CGFloat(i + 1))
             circle.backgroundColor = .clear
             circle.sizeIconImage = 70
-            circle.color = i % 2 == 0 ? UIColor.red : UIColor.black
+            circle.raioIcon = 0.8
+            circle.color = i % 2 == 0 ? UIColor.clear : UIColor.clear
             circle.iconImage = jogador.imagem
             self.addSubview(circle)
             
@@ -104,6 +116,11 @@ class RouletteView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        self.addSubview(self.backgroundRoulette)
+        self.backgroundRoulette.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        self.backgroundRoulette.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.backgroundRoulette.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        self.backgroundRoulette.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
     }
     
     private enum ModeRand {
@@ -125,6 +142,8 @@ class RouletteView: UIView {
         }
         return randon
     }
+    
+    fileprivate var indexUltimoJogador: Int = 0
     
     private func giroViewCenter (_ numberAngles: Int, _ duration: Int) {
         let currentAngle = self.viewCenter.layer.presentation()?.value(forKeyPath: "transform.rotation") as! Double
@@ -148,14 +167,14 @@ class RouletteView: UIView {
         
         var i = (valorRand + indexCurrent) % self.numberItems
         
-        if i == indexCurrent {
+        if i == indexCurrent || i == self.indexUltimoJogador {
             while true {
                 valorRand = (abs(intensidade) + 30) / 10
                 if valorRand < 0 {
                     valorRand = abs(valorRand + (self.numberItems - 1 + self.indexCurrent) )
                 }
                 i = (valorRand + indexCurrent) % self.numberItems
-                if i != indexCurrent {
+                if i != indexCurrent && i != self.indexUltimoJogador {
                     break
                 }
             }
@@ -165,7 +184,9 @@ class RouletteView: UIView {
         self.giroViewCenter(valorRand, duration)
         
         delay(duration) {
-            completion(self.jogadores?[self.indexCurrent])
+            let j = self.jogadores?[self.indexCurrent]
+            self.indexUltimoJogador = self.indexCurrent
+            completion(j)
         }
     }
     

@@ -9,6 +9,8 @@
 import UIKit
 
 class GamersSelecionadosCollectionViewCell: UICollectionViewCell {
+    
+    
     var imageAvatar : UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -21,10 +23,13 @@ class GamersSelecionadosCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    weak var imagemOriginal: UIImage?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
     }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

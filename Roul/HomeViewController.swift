@@ -10,11 +10,13 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var collectionMundos: UICollectionView!
     @IBOutlet weak var viewJogadorComponent: ViewJogadores!
     @IBOutlet fileprivate weak var timerProgressComponent: TimerProgress!
     @IBOutlet fileprivate weak var rouletteComponent: RouletteView!
     @IBOutlet fileprivate weak var rouletteOptionComponent: RouletteOption!
     @IBOutlet fileprivate weak var labelMensagem: UILabel!
+    
     
     var jogadores : [Jogador]?
     
@@ -50,6 +52,7 @@ class HomeViewController: UIViewController {
 //        self.button.widthAnchor.constraint(equalToConstant: 200).isActive = true
 //        self.button.heightAnchor.constraint(equalToConstant: 90).isActive = true
 //        self.button.addTarget(self, action: #selector(HomeViewController.mudar), for: .primaryActionTriggered)
+        self.collectionMundos.backgroundColor = .clear
     }
     
     private func setupRoulette () {
@@ -57,6 +60,7 @@ class HomeViewController: UIViewController {
             print("Sem jogadores")
             return
         }
+        self.rouletteComponent.backgroundColor = .clear
         let mod = (self.jogadores!.count / 2) + 1
         var coringas = CoringaStore.singleton.getAll()
         jogadores.enumerated().forEach { (tupla: (offset: Int, element: Jogador)) in
@@ -106,30 +110,30 @@ class HomeViewController: UIViewController {
             let finalVD = CGPoint(x: inicialVD.x, y: inicialVD.y - 1300)
             
             // Entrada da roleta de opções
-            self.rouletteOptionComponent.animacaoMove(inicial: inicialVD, final: finalVD, completion: { 
-                
+//            self.rouletteOptionComponent.animacaoMove(inicial: inicialVD, final: finalVD, completion: { 
+            
                 // Animação da roleta de opções
-                self.rouletteOptionComponent.startAnimation(){
-                    
+//                self.rouletteOptionComponent.startAnimation(){
+            
                     // Definir texto do desafio
 //                    self.labelMensagem.text = "Fulano desafia fulano de tal"
         
                     // Saida da roleta de opções
-                    self.rouletteOptionComponent.animacaoMove(inicial: finalVD, final: inicialVD, completion: {
-                        
+//                    self.rouletteOptionComponent.animacaoMove(inicial: finalVD, final: inicialVD, completion: {
+            
                         // Pontos da roleta de tempo
                         let inicalTimer = self.timerProgressComponent.layer.position
                         let finalTimer = CGPoint(x: inicalTimer.x, y: inicalTimer.y - 1300)
                         
                         // Entrada da roleta de tempo
-//                        self.timerProgressComponent.animacaoMove(inicial: inicalTimer, final: finalTimer, completion: {
+                        self.timerProgressComponent.animacaoMove(inicial: inicalTimer, final: finalTimer, completion: {
 
                             // Animação do tempo
-//                            self.timerProgressComponent.set(withTimer: 10, completion: {
+                            self.timerProgressComponent.set(withTimer: 10, completion: {
                                 print("Tempo acabou")
                                 
                                 // Saida da roleta de tempo
-//                                self.timerProgressComponent.animacaoMove(inicial: finalTimer, final: inicalTimer, completion: {
+                                self.timerProgressComponent.animacaoMove(inicial: finalTimer, final: inicalTimer, completion: {
                                 
                                     // Entrada da roleta de jogadores
                                     self.rouletteComponent.animacaoMove(inicial: finalRoletaView, final: inicialRoletaView, completion: {
@@ -139,16 +143,16 @@ class HomeViewController: UIViewController {
                                         
                                     })
                         
-//                                })
-//                            })
+                                })
+                            })
         
-//                        })
-                    
-                    })
+                        })
+            
+//                    })
 
-                }
+//                }
 
-            })
+//            })
 
 //            let inicialTimer = self.timerProgressComponent.layer.position
 //            let finalTimer = CGPoint(x: inicialTimer.x, y: inicialTimer.y - 1300)

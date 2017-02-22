@@ -41,7 +41,7 @@ class CircleView: UIView {
         }
     }
     
-    var raioIcon: CGFloat = 300 {
+    var raioIcon: CGFloat = 0.6 {
         didSet{
             if iconImage != nil {
                 self.setNeedsDisplay()
@@ -65,7 +65,7 @@ class CircleView: UIView {
             context.drawPath(using: .fill)
             
             if iconImage != nil {
-                raioIcon = origin.x * 0.6
+                let raioIcon = origin.x * self.raioIcon
                 let dif = (self.endAngle - self.startAngle) / 2.0
                 let x = abs(origin.x + raioIcon * cos(self.startAngle + dif))
                 let y = abs(origin.x + raioIcon * sin(self.startAngle + dif))
