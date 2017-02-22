@@ -8,7 +8,82 @@
 
 import UIKit
 
+class CardJogador: UIView {
+
+    var label: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.font = UIFont(name: "Western", size: 20)
+        l.text = "Caveira"
+        l.textAlignment = .center
+        l.textColor = UIColor.brown
+        return l
+    }()
+    
+    var image: UIImageView = {
+        let i = UIImageView()
+        i.translatesAutoresizingMaskIntoConstraints = false
+        i.image = #imageLiteral(resourceName: "caveira300")
+        i.contentMode = .scaleAspectFit
+        return i
+    }()
+
+    
+    private var imageBackground: UIImageView = {
+        let i = UIImageView()
+        i.translatesAutoresizingMaskIntoConstraints = false
+        i.image = #imageLiteral(resourceName: "bg_avatar")
+        i.contentMode = .scaleAspectFit
+        return i
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.setupViews()
+    }
+    
+    func setupViews() {
+        self.addSubview(self.imageBackground)
+        self.addSubview(self.label)
+        self.addSubview(self.image)
+        
+        
+        self.imageBackground.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
+        self.imageBackground.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
+        self.imageBackground.heightAnchor.constraint(equalTo: self.heightAnchor, constant: 0).isActive = true
+        self.imageBackground.widthAnchor.constraint(equalTo: self.widthAnchor, constant: 0).isActive = true
+        
+        self.label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -25).isActive = true
+        self.label.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
+        self.label.widthAnchor.constraint(equalTo: self.widthAnchor, constant: 0).isActive = true
+        self.label.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        self.image.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
+        self.image.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 50).isActive = true
+        self.image.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -50).isActive = true
+        self.image.bottomAnchor.constraint(equalTo: self.label.topAnchor, constant: 20).isActive = true
+    }
+    
+}
+
 class ViewJogadores: UIView {
+    
+    var cardJogador1 : CardJogador = {
+        let c = CardJogador()
+        c.translatesAutoresizingMaskIntoConstraints = false
+        return c
+    }()
+    
+    var cardJogador2 : CardJogador = {
+        let c = CardJogador()
+        c.translatesAutoresizingMaskIntoConstraints = false
+        return c
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,33 +94,15 @@ class ViewJogadores: UIView {
         super.init(coder: aDecoder)
         configConstraints()
     }
-
-    fileprivate var imgJogador1: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
-    }()
     
-    fileprivate var imgJogador2: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
-    }()
-    
-    fileprivate var nameJogador1: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Jogador 1"
-        label.font = UIFont.systemFont(ofSize: 30)
-        return label
-    }()
-    
-    fileprivate var nameJogador2: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Jogador 2"
-        label.font = UIFont.systemFont(ofSize: 30)
-        return label
+    fileprivate var labelX : UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.font = UIFont(name: "Western", size: 50)
+        l.text = "X"
+        l.textAlignment = .center
+        l.textColor = UIColor.black
+        return l
     }()
     
     fileprivate var point1: CGPoint = CGPoint.zero
@@ -58,32 +115,31 @@ class ViewJogadores: UIView {
     var desafiado: Jogador?
     
     private func configConstraints(){
+        
+        self.addSubview(self.cardJogador1)
+        self.addSubview(self.labelX)
+        self.addSubview(self.cardJogador2)
+        
+        self.labelX.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
+        self.labelX.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
+        self.labelX.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        self.labelX.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        self.cardJogador1.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
+        self.cardJogador1.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
+        self.cardJogador1.heightAnchor.constraint(equalTo: self.heightAnchor, constant: 0).isActive = true
+        self.cardJogador1.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        
+        self.cardJogador2.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
+        self.cardJogador2.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
+        self.cardJogador2.heightAnchor.constraint(equalTo: self.heightAnchor, constant: 0).isActive = true
+        self.cardJogador2.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        
         self.backgroundColor = .clear
         
-        self.imgJogador1.alpha = 0
-        self.imgJogador2.alpha = 0
-        self.nameJogador1.alpha = 0
-        self.nameJogador2.alpha = 0
-        
-        self.addSubview(self.imgJogador1)
-        self.imgJogador1.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -25).isActive = true
-        self.imgJogador1.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 100).isActive = true
-        self.imgJogador1.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        self.imgJogador1.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        
-        self.addSubview(self.imgJogador2)
-        self.imgJogador2.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -25).isActive = true
-        self.imgJogador2.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -100).isActive = true
-        self.imgJogador2.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        self.imgJogador2.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        
-        self.addSubview(self.nameJogador1)
-        self.nameJogador1.centerXAnchor.constraint(equalTo: self.imgJogador1.centerXAnchor).isActive = true
-        self.nameJogador1.topAnchor.constraint(equalTo: self.imgJogador1.bottomAnchor, constant: 10).isActive = true
-        
-        self.addSubview(self.nameJogador2)
-        self.nameJogador2.centerXAnchor.constraint(equalTo: self.imgJogador2.centerXAnchor).isActive = true
-        self.nameJogador2.topAnchor.constraint(equalTo: self.imgJogador2.bottomAnchor, constant: 10).isActive = true
+        self.cardJogador1.alpha = 0
+        self.cardJogador2.alpha = 0
+        self.labelX.alpha = 0
         
     }
 }
@@ -116,51 +172,61 @@ extension ViewJogadores {
     
     func setup(withJogador jogador: Jogador) {
         if self.isFirstJogador {
-            self.imgJogador1.image = jogador.imagem
-            self.nameJogador1.text = jogador.nome
+            self.cardJogador1.image.image = jogador.imagem
+            self.cardJogador1.label.text = jogador.nome
             
-            self.imgJogador1.alpha = 1
-            self.nameJogador1.alpha = 1
+            self.cardJogador1.layer.add(animationFade(from: 0, to: 1), forKey: "fade")
             
             self.isFirstJogador = false
-            self.point1 = self.imgJogador1.layer.position
-            self.point2 = self.imgJogador2.layer.position
-            self.point1Label = self.nameJogador1.layer.position
-            self.point2Label = self.nameJogador2.layer.position
+            self.point1 = self.cardJogador1.layer.position
+            self.point2 = self.cardJogador2.layer.position
             self.desafiante = jogador
         } else {
-            self.imgJogador2.image = jogador.imagem
-            self.nameJogador2.text = jogador.nome
+            self.cardJogador2.image.image = jogador.imagem
+            self.cardJogador2.label.text = jogador.nome
             self.desafiado = jogador
             
-            self.imgJogador2.alpha = 1
-            self.nameJogador2.alpha = 1
+            self.labelX.layer.add(animationFade(from: 0, to: 1), forKey: "fade")
+            self.cardJogador2.layer.add(animationFade(from: 0, to: 1), forKey: "fade")
         }
     }
     
     func animationTroca() {
-        self.imgJogador2.layer.add(self.animationMove(self.point2, self.point1), forKey: "move")
-        self.nameJogador2.layer.add(self.animationMove(self.point2Label, self.point1Label), forKey: "move")
-        self.imgJogador1.layer.add(self.animationFade(from: 1, to: 0), forKey: "fade")
+        
+        self.cardJogador2.layer.add(animationMove(self.point2, self.point1), forKey: "move")
+        self.cardJogador1.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
+        self.labelX.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
         
         self.desafiante = desafiado
         self.desafiado = nil
         
         delay(1) {
-            self.imgJogador1.image = self.imgJogador2.image
-            self.nameJogador1.text = self.nameJogador2.text
-            self.imgJogador2.image = #imageLiteral(resourceName: "userM")
+            self.cardJogador1.image.image = self.cardJogador2.image.image
+            self.cardJogador1.label.text = self.cardJogador2.label.text
             
-            self.imgJogador1.layer.removeAllAnimations()
-            self.imgJogador2.layer.removeAllAnimations()
-            self.nameJogador2.layer.removeAllAnimations()
-            self.nameJogador1.layer.removeAllAnimations()
+            self.cardJogador2.image.image = #imageLiteral(resourceName: "caveira300")
             
-            self.imgJogador1.layer.opacity = 1
-            self.imgJogador2.layer.position = self.point2
-            self.nameJogador2.layer.position = self.point2Label
-            self.imgJogador2.layer.add(self.animationFade(from: 0, to: 1), forKey: "fade")
-            self.nameJogador2.alpha = 0
+            self.cardJogador2.layer.removeAllAnimations()
+            self.cardJogador1.layer.removeAllAnimations()
+            self.labelX.layer.removeAllAnimations()
+            
+//            self.imgJogador1.image = self.imgJogador2.image
+//            self.nameJogador1.text = self.nameJogador2.text
+//            self.imgJogador2.image = #imageLiteral(resourceName: "userM")
+//            
+//            self.imgJogador1.layer.removeAllAnimations()
+//            self.imgJogador2.layer.removeAllAnimations()
+//            self.nameJogador2.layer.removeAllAnimations()
+//            self.nameJogador1.layer.removeAllAnimations()
+            
+            self.cardJogador1.layer.opacity = 1
+            self.cardJogador2.layer.position = self.point2
+            
+//            self.imgJogador1.layer.opacity = 1
+//            self.imgJogador2.layer.position = self.point2
+//            self.nameJogador2.layer.position = self.point2Label
+//            self.imgJogador2.layer.add(self.animationFade(from: 0, to: 1), forKey: "fade")
+//            self.nameJogador2.alpha = 0
         }
     }
     

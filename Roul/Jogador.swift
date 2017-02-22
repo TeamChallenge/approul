@@ -31,7 +31,7 @@ class Jogador: NSObject {
         self.type = type
         switch type {
         case .coringa:
-            self.imagem = #imageLiteral(resourceName: "userM")
+            self.imagem = #imageLiteral(resourceName: "caveira300")
             break
         case .player:
             break

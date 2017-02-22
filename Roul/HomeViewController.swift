@@ -14,11 +14,23 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var viewJogadorComponent: ViewJogadores!
     @IBOutlet fileprivate weak var timerProgressComponent: TimerProgress!
     @IBOutlet fileprivate weak var rouletteComponent: RouletteView!
-    @IBOutlet fileprivate weak var rouletteOptionComponent: RouletteOption!
+    @IBOutlet fileprivate weak var rouletteOptionComponent: RouletteView!
     @IBOutlet fileprivate weak var labelMensagem: UILabel!
     
     
     var jogadores : [Jogador]?
+    
+    fileprivate var focusGuide = UIFocusGuide()
+
+    fileprivate func setupSubviews() {
+        self.view.addLayoutGuide(self.focusGuide)
+        
+        self.focusGuide.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.focusGuide.topAnchor.constraint(equalTo: self.rouletteComponent.bottomAnchor).isActive = true
+        self.focusGuide.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        self.focusGuide.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+    }
     
     let button : UIButton = {
         let button = UIButton(type: .system)
@@ -45,6 +57,7 @@ class HomeViewController: UIViewController {
         
         self.setupRoulette()
         self.addGesture()
+        self.setupSubviews()
 //        self.view.addSubview(self.button)
 //        
 //        self.button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 550).isActive = true
@@ -78,12 +91,13 @@ class HomeViewController: UIViewController {
         delay(2) {
             self.startGame()
         }
+        self.rouletteOptionComponent.options = ["Verdade", "Desafio", "Verdade", "Desafio", "Verdade", "Desafio"]
         
-        self.rouletteComponent.layer.position = self.view.center
-        self.timerProgressComponent.layer.position = self.view.center
-        self.timerProgressComponent.layer.position.y += 1300
-        self.rouletteOptionComponent.layer.position = self.view.center
-        self.rouletteOptionComponent.layer.position.y += 1300
+//        self.rouletteComponent.layer.position = self.view.center
+//        self.timerProgressComponent.layer.position = self.view.center
+//        self.timerProgressComponent.layer.position.y += 1300
+//        self.rouletteOptionComponent.layer.position = self.view.center
+//        self.rouletteOptionComponent.layer.position.y += 1300
     }
     
     @objc private func mudar () {
@@ -124,10 +138,13 @@ class HomeViewController: UIViewController {
                         // Pontos da roleta de tempo
                         let inicalTimer = self.timerProgressComponent.layer.position
                         let finalTimer = CGPoint(x: inicalTimer.x, y: inicalTimer.y - 1300)
-                        
+
+                        self.focusGuide.preferredFocusedView = self.timerProgressComponent
+            
                         // Entrada da roleta de tempo
                         self.timerProgressComponent.animacaoMove(inicial: inicalTimer, final: finalTimer, completion: {
 
+                            
                             // Animação do tempo
                             self.timerProgressComponent.set(withTimer: 10, completion: {
                                 print("Tempo acabou")
@@ -140,6 +157,8 @@ class HomeViewController: UIViewController {
                                         
                                         self.viewJogadorComponent.animationTroca()
                                         self.labelMensagem.text = "\(desafiado) sua vez de girar a roleta"
+                                        
+                                        self.focusGuide.preferredFocusedView = self.rouletteComponent
                                         
                                     })
                         

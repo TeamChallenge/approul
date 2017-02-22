@@ -19,6 +19,15 @@ class RouletteView: UIView {
         }
     }
     
+    var options: [String]? {
+        didSet{
+            if let op = self.options?.count {
+                self.numberItems = op
+            }
+            self.setNeedsDisplay()
+        }
+    }
+    
     private var indexCurrent: Int = 0
     private var numberItems: Int = 2
     
@@ -63,55 +72,83 @@ class RouletteView: UIView {
     private lazy var angle : CGFloat = {
         return CGFloat(2 * M_PI / Double(self.numberItems))
     }()
+
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        self.layer.cornerRadius = min(rect.width, rect.height) / 2
-//        self.layer.masksToBounds = true
+        if self.jogadores != nil {
         
-        _ = self.convert(self.center, from: self.superview)
-        
-        guard let jogadores = self.jogadores?.enumerated() else {
-            print("sem jogadores")
-            return
-        }
-        
-        print("com jogadores")
-        
-        for (i, jogador) in jogadores {
-            let circle = CircleView(frame: rect)
-            circle.startAngle = CGFloat(angle * CGFloat(i))
-            circle.endAngle = CGFloat(angle * CGFloat(i + 1))
-            circle.backgroundColor = .clear
-            circle.sizeIconImage = 70
-            circle.raioIcon = 0.8
-            circle.color = i % 2 == 0 ? UIColor.clear : UIColor.clear
-            circle.iconImage = jogador.imagem
-            self.addSubview(circle)
+            self.layer.cornerRadius = min(rect.width, rect.height) / 2
+            guard let jogadores = self.jogadores?.enumerated() else {
+                print("sem jogadores")
+                return
+            }
+            print("com jogadores")
+            for (i, jogador) in jogadores {
+                let circle = CircleView(frame: rect)
+                circle.startAngle = CGFloat(angle * CGFloat(i))
+                circle.endAngle = CGFloat(angle * CGFloat(i + 1))
+                circle.backgroundColor = .clear
+                circle.sizeIconImage = 70
+                circle.raioIcon = 0.8
+                circle.color = i % 2 == 0 ? UIColor.clear : UIColor.clear
+                circle.iconImage = jogador.imagem
+                self.addSubview(circle)
+                
+    //            let numberLabel = UILabel()
+    //            numberLabel.text = jogador.nome
+    //            numberLabel.font = UIFont.boldSystemFont(ofSize: 50)
+    //            numberLabel.textColor = UIColor.white
+    //            numberLabel.backgroundColor = .clear
+    //            numberLabel.sizeToFit()
+    //            let th = angle * (CGFloat(i) + 0.5)
+    ////            numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th - CGFloat(M_PI * 0.5)))
+    //            numberLabel.center = CGPoint(x: centerView.x + 205 * CGFloat(cos(th)), y: centerView.y + 205 * CGFloat(sin(th)))
+    //            self.addSubview(numberLabel)
+            }
+            self.backgroundRoulette.viewCenter.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI / 2) + self.angle * 0.5)
+    //        viewCenter.translatesAutoresizingMaskIntoConstraints = false
+    //        viewCenter.backgroundColor = .brown
+    //        viewCenter.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI / 2) + self.angle * 0.5)
+    //        self.addSubview(viewCenter)
+    //        
+    //        viewCenter.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+    //        viewCenter.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+    //        viewCenter.heightAnchor.constraint(equalToConstant: rect.height * 0.25).isActive = true
+    //        viewCenter.widthAnchor.constraint(equalToConstant: rect.width * 0.05).isActive = true
+    //        viewCenter.layer.cornerRadius = (rect.height * 0.2) / 2
+        } else if self.options != nil {
             
-//            let numberLabel = UILabel()
-//            numberLabel.text = jogador.nome
-//            numberLabel.font = UIFont.boldSystemFont(ofSize: 50)
-//            numberLabel.textColor = UIColor.white
-//            numberLabel.backgroundColor = .clear
-//            numberLabel.sizeToFit()
-//            let th = angle * (CGFloat(i) + 0.5)
-////            numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th - CGFloat(M_PI * 0.5)))
-//            numberLabel.center = CGPoint(x: centerView.x + 205 * CGFloat(cos(th)), y: centerView.y + 205 * CGFloat(sin(th)))
-//            self.addSubview(numberLabel)
+            self.layer.cornerRadius = min(rect.width, rect.height) / 2
+            let centerView = self.convert(self.center, from: self.superview)
+            guard let options = self.options?.enumerated() else {
+                print("sem opcoes")
+                return
+            }
+            print("com jogadores")
+            for (i, opcao) in options {
+                let circle = CircleView(frame: rect)
+                circle.startAngle = CGFloat(angle * CGFloat(i))
+                circle.endAngle = CGFloat(angle * CGFloat(i + 1))
+                circle.backgroundColor = .clear
+                circle.color = i % 2 == 0 ? UIColor.clear : UIColor.clear
+                self.addSubview(circle)
+                
+                let numberLabel = UILabel()
+                numberLabel.text = opcao
+                numberLabel.font = UIFont.boldSystemFont(ofSize: 35)
+                numberLabel.textColor = UIColor.brown
+                numberLabel.backgroundColor = .clear
+                numberLabel.sizeToFit()
+                let th = angle * (CGFloat(i) + 0.5)
+                numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th - CGFloat(M_PI * 0.5)))
+                numberLabel.center = CGPoint(x: centerView.x + 160 * CGFloat(cos(th)), y: centerView.y + 160 * CGFloat(sin(th)))
+                self.addSubview(numberLabel)
+            }
+            self.backgroundRoulette.viewCenter.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI / 2) + self.angle * 0.5)
+            
         }
-        
-        viewCenter.translatesAutoresizingMaskIntoConstraints = false
-        viewCenter.backgroundColor = .brown
-        viewCenter.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI / 2) + self.angle * 0.5)
-        self.addSubview(viewCenter)
-        
-        viewCenter.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        viewCenter.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        viewCenter.heightAnchor.constraint(equalToConstant: rect.height * 0.25).isActive = true
-        viewCenter.widthAnchor.constraint(equalToConstant: rect.width * 0.05).isActive = true
-        viewCenter.layer.cornerRadius = (rect.height * 0.2) / 2
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -146,7 +183,7 @@ class RouletteView: UIView {
     fileprivate var indexUltimoJogador: Int = 0
     
     private func giroViewCenter (_ numberAngles: Int, _ duration: Int) {
-        let currentAngle = self.viewCenter.layer.presentation()?.value(forKeyPath: "transform.rotation") as! Double
+        let currentAngle = self.backgroundRoulette.viewCenter.layer.presentation()?.value(forKeyPath: "transform.rotation") as! Double
         
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
         animation.fromValue = currentAngle
@@ -157,7 +194,7 @@ class RouletteView: UIView {
         animation.isRemovedOnCompletion = false
         animation.fillMode = kCAFillModeForwards
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
-        self.viewCenter.layer.add(animation, forKey: "Animation")
+        self.backgroundRoulette.viewCenter.layer.add(animation, forKey: "Animation")
     }
     
     func girar(withIntensidade intensidade: Int, _ completion: @escaping (_ jogador: Jogador?) -> Void) {

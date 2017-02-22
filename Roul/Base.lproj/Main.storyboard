@@ -160,11 +160,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dPr-wu-Ybc" customClass="RouletteView" customModule="Roul" customModuleProvider="target">
-                                <rect key="frame" x="79" y="275" width="500" height="500"/>
+                                <rect key="frame" x="79" y="392" width="500" height="500"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bD6-E4-lOa" customClass="TimerProgress" customModule="Roul" customModuleProvider="target">
-                                <rect key="frame" x="710" y="290" width="500" height="500"/>
+                                <rect key="frame" x="710" y="407" width="500" height="500"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -206,13 +206,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IWf-FI-hXv" customClass="ViewJogadores" customModule="Roul" customModuleProvider="target">
-                                <rect key="frame" x="587" y="63" width="727" height="190"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wBD-Ds-aK5" customClass="RouletteView" customModule="Roul" customModuleProvider="target">
+                                <rect key="frame" x="1342" y="407" width="500" height="500"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wBD-Ds-aK5" customClass="RouletteOption" customModule="Roul" customModuleProvider="target">
-                                <rect key="frame" x="1342" y="290" width="500" height="500"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IWf-FI-hXv" customClass="ViewJogadores" customModule="Roul" customModuleProvider="target">
+                                <rect key="frame" x="649" y="63" width="623" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -223,7 +222,7 @@
                         <outlet property="collectionMundos" destination="Cfs-bH-Wzv" id="5c7-zb-zEs"/>
                         <outlet property="labelMensagem" destination="XKk-25-3Ht" id="hxC-ky-j6e"/>
                         <outlet property="rouletteComponent" destination="dPr-wu-Ybc" id="dDY-Ci-yYU"/>
-                        <outlet property="rouletteOptionComponent" destination="wBD-Ds-aK5" id="sgw-u2-1Co"/>
+                        <outlet property="rouletteOptionComponent" destination="wBD-Ds-aK5" id="1vs-e1-5z6"/>
                         <outlet property="timerProgressComponent" destination="bD6-E4-lOa" id="FDE-Z6-q0S"/>
                         <outlet property="viewJogadorComponent" destination="IWf-FI-hXv" id="mfb-zB-zW4"/>
                     </connections>
