@@ -17,21 +17,68 @@ class HomeViewController: UIViewController {
     @IBOutlet fileprivate weak var rouletteOptionComponent: RouletteView!
     @IBOutlet fileprivate weak var labelMensagem: UILabel!
     
+    @IBOutlet weak var buttonMenu: UIButton!
     
     var jogadores : [Jogador]?
     
     fileprivate var focusGuide = UIFocusGuide()
+    fileprivate var focusGuideMenu = UIFocusGuide()
 
     fileprivate func setupSubviews() {
         self.view.addLayoutGuide(self.focusGuide)
+        self.view.addLayoutGuide(self.focusGuideMenu)
         
         self.focusGuide.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.focusGuide.topAnchor.constraint(equalTo: self.rouletteComponent.bottomAnchor).isActive = true
         self.focusGuide.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         self.focusGuide.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
+        self.focusGuideMenu.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -40).isActive = true
+        self.focusGuideMenu.topAnchor.constraint(equalTo: self.buttonMenu.bottomAnchor).isActive = true
+        self.focusGuideMenu.widthAnchor.constraint(equalToConstant: 90).isActive = true
+        self.focusGuideMenu.bottomAnchor.constraint(equalTo: self.collectionMundos.bottomAnchor).isActive = true
     }
     
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocus(in: context, with: coordinator)
+        
+        guard let nextFocusedView = context.nextFocusedView else { return }
+        
+        switch nextFocusedView {
+        case self.buttonMenu:
+            self.focusGuideMenu.preferredFocusedView = self.rouletteComponent
+            break
+        case self.rouletteComponent:
+            self.focusGuideMenu.preferredFocusedView = self.buttonMenu
+            break
+        case self.timerProgressComponent:
+            self.focusGuideMenu.preferredFocusedView = self.buttonMenu
+            break
+        default:
+            self.focusGuideMenu.preferredFocusedView = nil
+        }
+    }
+    
+    var collectionIsVisible: Bool = false
+    
+    @IBAction func handlerMenu() {
+        if self.collectionIsVisible == false {
+            self.collectionIsVisible = true
+            let t = CGAffineTransform(translationX: 320, y: 0)
+            UIView.animate(withDuration: 0.5, animations: { 
+                self.collectionMundos.transform = t
+                self.buttonMenu.transform = t
+            }, completion: nil)
+        } else {
+            self.collectionIsVisible = false
+            let t = CGAffineTransform(translationX: 0, y: 0)
+            UIView.animate(withDuration: 0.5, animations: {
+                self.collectionMundos.transform = t
+                self.buttonMenu.transform = t
+            }, completion: nil)
+        }
+        
+    }
     let button : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Girar", for: .normal)
@@ -47,6 +94,7 @@ class HomeViewController: UIViewController {
             self.rouletteComponent?.girar(withIntensidade: count * 7, { (jogador: Jogador?) in
                 if let j = jogador {
                     self.viewJogadorComponent.setup(withJogador: j)
+                    self.rouletteComponent.clicado = false
                 }
             })
         }
@@ -66,6 +114,13 @@ class HomeViewController: UIViewController {
 //        self.button.heightAnchor.constraint(equalToConstant: 90).isActive = true
 //        self.button.addTarget(self, action: #selector(HomeViewController.mudar), for: .primaryActionTriggered)
         self.collectionMundos.backgroundColor = .clear
+        self.rouletteOptionComponent.backgroundColor = .clear
+        self.labelMensagem.alpha = 0
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.handlerMenu()
     }
     
     private func setupRoulette () {
@@ -89,9 +144,10 @@ class HomeViewController: UIViewController {
         self.rouletteComponent.jogadores = jogadores
 
         delay(2) {
+            self.rouletteComponent.clicado = true
             self.startGame()
         }
-        self.rouletteOptionComponent.options = ["Verdade", "Desafio", "Verdade", "Desafio", "Verdade", "Desafio"]
+        self.rouletteOptionComponent.options = [("verdade",#imageLiteral(resourceName: "verdade")), ("desafio", #imageLiteral(resourceName: "desafio")), ("interrogação", #imageLiteral(resourceName: "interrogacao"))]
         
         self.rouletteComponent.layer.position = self.view.center
         self.timerProgressComponent.layer.position = self.view.center
@@ -110,6 +166,7 @@ class HomeViewController: UIViewController {
             return
         }
         
+        self.labelMensagem.alpha = 1
         self.labelMensagem.text = "\(desafiante) pode desafiar \(desafiado)"
         
         // Pontos da roleta de jogadores
@@ -117,6 +174,7 @@ class HomeViewController: UIViewController {
         let finalRoletaView = CGPoint(x: inicialRoletaView.x - 1300, y: inicialRoletaView.y)
         
         // Saida da roleta de Jogadores
+        self.rouletteComponent.clicado = false
         self.rouletteComponent.animacaoMove(inicial: inicialRoletaView, final: finalRoletaView) {
         
             // Pontos da roleta de opções
@@ -132,12 +190,14 @@ class HomeViewController: UIViewController {
                 delay(2, finish: {
                     
                     // Animação da roleta de opções
-                    self.rouletteOptionComponent.girarOptions(withIntensidade: 440, { (opcao: String) in
+                    self.rouletteOptionComponent.girarOptions(withIntensidade: Int.randomInt(min: 400, max: 1000), { (opcao: String) in
                         
-                        if opcao == "Verdade" {
+                        if opcao == "verdade" {
                             self.labelMensagem.text = "\(desafiante) pode fazer uma pergunta para \(desafiado)"
-                        } else {
+                        } else if opcao == "desafio" {
                             self.labelMensagem.text = "\(desafiante) faz um desafio para \(desafiado)"
+                        } else {
+                            self.labelMensagem.text = "\(desafiante) a decisão é sua!"
                         }
                         
                         // Saida da roleta de opções
@@ -162,6 +222,7 @@ class HomeViewController: UIViewController {
                                         // Entrada da roleta de jogadores
                                         self.rouletteComponent.animacaoMove(inicial: finalRoletaView, final: inicialRoletaView, completion: {
                                             
+                                            self.rouletteComponent.clicado = true
                                             self.viewJogadorComponent.animationTroca()
                                             self.labelMensagem.text = "\(desafiado) sua vez de girar a roleta"
                                             

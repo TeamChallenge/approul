@@ -13,11 +13,13 @@ class AvataresCollectionViewCell: UICollectionViewCell {
     static let imageCoringa : UIImage = #imageLiteral(resourceName: "caveira300")
     
     weak var imagemOriginal: UIImage?
+    var nomeOriginal: String?
     
     fileprivate var imageBackground : UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = #imageLiteral(resourceName: "bg_avatar")
+        image.shadowButton()
         return image
     }()
     
@@ -49,8 +51,10 @@ class AvataresCollectionViewCell: UICollectionViewCell {
         if self.isSelected {
             self.imageAvatar.image = AvataresCollectionViewCell.imageCoringa
             self.imageAvatar.contentMode = .scaleAspectFit
+            self.nameAvatar.text = "Procurado"
         } else {
             self.imageAvatar.image = self.imagemOriginal
+            self.nameAvatar.text = self.nomeOriginal
         }
     }
     
@@ -65,6 +69,7 @@ class AvataresCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.imageAvatar.adjustsImageWhenAncestorFocused = true
+        self.clipsToBounds = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -106,6 +111,7 @@ class AvataresCollectionViewCell: UICollectionViewCell {
         self.imageAvatar.image = jogador.imagem
         self.imagemOriginal = jogador.imagem
         self.nameAvatar.text = jogador.nome
+        self.nomeOriginal = jogador.nome
         //addSubview(nameAvatar)
     }
 }

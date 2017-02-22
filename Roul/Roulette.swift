@@ -34,6 +34,24 @@ class TriangleView : UIView {
     }
 }
 
+extension UIView {
+    
+    func shadowButton() {
+        self.layer.shadowRadius = 8
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 5, height: 8)
+        self.layer.shadowOpacity = 0.6
+    }
+    
+    func shadowText() {
+        self.layer.shadowRadius = 8
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.layer.shadowOpacity = 0.6
+    }
+    
+}
+
 class Roulette: UIView {
 
     var viewCenter : UIView = {
@@ -58,7 +76,7 @@ class Roulette: UIView {
         b.widthAnchor.constraint(equalToConstant: 150).isActive = true
         b.heightAnchor.constraint(equalToConstant: 150).isActive = true
         b.layer.cornerRadius = 75
-        b.layer.masksToBounds = true
+        b.shadowButton()
         
         v.addSubview(triangulo)
         triangulo.centerXAnchor.constraint(equalTo: v.centerXAnchor).isActive = true
@@ -80,6 +98,7 @@ class Roulette: UIView {
         let v = UIView()
         v.backgroundColor = UIColor.colorFromHex(0xFBEBCD, alpha: 0.57)
         v.translatesAutoresizingMaskIntoConstraints = false
+        v.shadowButton()
         return v
     }()
     
@@ -125,11 +144,15 @@ class Roulette: UIView {
 extension Roulette {
     
     fileprivate func cornerRadius() {
-        self.viewCenter.layer.cornerRadius = (self.frame.width * 0.4) / 2
-        self.viewCenter.clipsToBounds = false
-        self.viewCenter.layer.masksToBounds = true
+//        self.viewCenter.layer.cornerRadius = (self.frame.width * 0.4) / 2
+//        self.viewCenter.clipsToBounds = false
+//        self.viewBorder.layer.shadowColor = UIColor.black.cgColor
+//        self.viewBorder.layer.shadowOpacity = 1.0
+//        self.viewBorder.layer.shadowRadius = 4
+//        self.viewBorder.layer.shadowOffset = CGSize(width: 1, height: 4)
+//        self.viewCenter.layer.masksToBounds = true
         self.viewBorder.layer.cornerRadius = (self.frame.width) / 2
-        self.viewBorder.clipsToBounds = true
+//        self.viewBorder.clipsToBounds = true
         self.viewMedium.layer.cornerRadius = (self.frame.width * 0.6) / 2
         self.viewMedium.clipsToBounds = true
     }

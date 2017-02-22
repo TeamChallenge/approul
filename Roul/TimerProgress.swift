@@ -18,7 +18,7 @@ class ProgressView: UIView {
         super.init(coder: aDecoder)
     }
     
-    var colorProgress: UIColor = .green {
+    var colorProgress: UIColor = UIColor.colorFromHex(0x674332) {
         didSet{
             self.setNeedsDisplay()
         }
@@ -53,7 +53,6 @@ class ProgressView: UIView {
     
     func startAnimation(withTimer timer: TimeInterval, completion: @escaping handlerCompletion) {
         self.progressCircle.removeAllAnimations()
-        
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.fromValue = 0
         animation.toValue = 1.0
@@ -81,7 +80,7 @@ class TimerProgress: UIView {
         self.setup()
     }
     
-    var colorProgress: UIColor = .green {
+    var colorProgress: UIColor = UIColor.colorFromHex(0x674332) {
         didSet{
             self.setup()
         }
@@ -123,6 +122,7 @@ class TimerProgress: UIView {
     func set(withTimer time: TimeInterval, completion: @escaping handlerCompletion) {
         self.timer = time
         self.completion = completion
+        self.button.alpha = 1
     }
     
     @objc private func startAnimation() {

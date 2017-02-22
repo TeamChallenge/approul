@@ -14,7 +14,7 @@ class CardJogador: UIView {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
         l.font = UIFont(name: "Western", size: 20)
-        l.text = "Caveira"
+        l.text = "Procurado"
         l.textAlignment = .center
         l.textColor = UIColor.brown
         return l
@@ -34,6 +34,7 @@ class CardJogador: UIView {
         i.translatesAutoresizingMaskIntoConstraints = false
         i.image = #imageLiteral(resourceName: "bg_avatar")
         i.contentMode = .scaleAspectFit
+        i.shadowButton()
         return i
     }()
     
@@ -137,9 +138,9 @@ class ViewJogadores: UIView {
         
         self.backgroundColor = .clear
         
-        self.cardJogador1.alpha = 0
-        self.cardJogador2.alpha = 0
-        self.labelX.alpha = 0
+//        self.cardJogador1.alpha = 0
+//        self.cardJogador2.alpha = 0
+//        self.labelX.alpha = 0
         
     }
 }
@@ -172,30 +173,54 @@ extension ViewJogadores {
     
     func setup(withJogador jogador: Jogador) {
         if self.isFirstJogador {
-            self.cardJogador1.image.image = jogador.imagem
-            self.cardJogador1.label.text = jogador.nome
             
-            self.cardJogador1.layer.add(animationFade(from: 0, to: 1), forKey: "fade")
+            self.cardJogador1.image.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
+            self.cardJogador1.label.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
+            
+            self.desafiante = jogador
+            
+            delay(1) {
+                self.cardJogador1.image.image = jogador.imagem
+                self.cardJogador1.label.text = jogador.nome
+                
+                self.cardJogador1.image.layer.add(self.animationFade(from: 0, to: 1), forKey: "fade")
+                self.cardJogador1.label.layer.add(self.animationFade(from: 0, to: 1), forKey: "fade")
+            }
+            
+//            self.cardJogador1.layer.add(animationFade(from: 0, to: 1), forKey: "fade")
             
             self.isFirstJogador = false
-            self.point1 = self.cardJogador1.layer.position
-            self.point2 = self.cardJogador2.layer.position
-            self.desafiante = jogador
+//            self.point1 = self.cardJogador1.layer.position
+//            self.point2 = self.cardJogador2.layer.position
         } else {
-            self.cardJogador2.image.image = jogador.imagem
-            self.cardJogador2.label.text = jogador.nome
+            
+            self.cardJogador2.image.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
+            self.cardJogador2.label.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
+            
             self.desafiado = jogador
             
-            self.labelX.layer.add(animationFade(from: 0, to: 1), forKey: "fade")
-            self.cardJogador2.layer.add(animationFade(from: 0, to: 1), forKey: "fade")
+            delay(1) {
+                self.cardJogador2.image.image = jogador.imagem
+                self.cardJogador2.label.text = jogador.nome
+                
+                self.cardJogador2.image.layer.add(self.animationFade(from: 0, to: 1), forKey: "fade")
+                self.cardJogador2.label.layer.add(self.animationFade(from: 0, to: 1), forKey: "fade")
+            }
+            
+//            self.labelX.layer.add(animationFade(from: 0, to: 1), forKey: "fade")
+//            self.cardJogador2.layer.add(animationFade(from: 0, to: 1), forKey: "fade")
         }
     }
     
     func animationTroca() {
         
-        self.cardJogador2.layer.add(animationMove(self.point2, self.point1), forKey: "move")
-        self.cardJogador1.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
-        self.labelX.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
+//        self.cardJogador2.layer.add(animationMove(self.point2, self.point1), forKey: "move")
+//        self.cardJogador1.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
+//        self.labelX.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
+        self.cardJogador1.image.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
+        self.cardJogador1.label.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
+        self.cardJogador2.image.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
+        self.cardJogador2.label.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
         
         self.desafiante = desafiado
         self.desafiado = nil
@@ -205,10 +230,21 @@ extension ViewJogadores {
             self.cardJogador1.label.text = self.cardJogador2.label.text
             
             self.cardJogador2.image.image = #imageLiteral(resourceName: "caveira300")
+            self.cardJogador2.label.text = ""
             
-            self.cardJogador2.layer.removeAllAnimations()
-            self.cardJogador1.layer.removeAllAnimations()
-            self.labelX.layer.removeAllAnimations()
+            self.cardJogador1.image.layer.add(self.animationFade(from: 0, to: 1), forKey: "fade")
+            self.cardJogador1.label.layer.add(self.animationFade(from: 0, to: 1), forKey: "fade")
+            self.cardJogador2.image.layer.add(self.animationFade(from: 0, to: 1), forKey: "fade")
+            self.cardJogador2.label.layer.add(self.animationFade(from: 0, to: 1), forKey: "fade")
+            
+//            self.cardJogador2.image.image = #imageLiteral(resourceName: "caveira300")
+            
+            delay(1) {
+                self.cardJogador2.layer.removeAllAnimations()
+                self.cardJogador1.layer.removeAllAnimations()
+                self.labelX.layer.removeAllAnimations()
+            }
+            
             
 //            self.imgJogador1.image = self.imgJogador2.image
 //            self.nameJogador1.text = self.nameJogador2.text
@@ -219,8 +255,8 @@ extension ViewJogadores {
 //            self.nameJogador2.layer.removeAllAnimations()
 //            self.nameJogador1.layer.removeAllAnimations()
             
-            self.cardJogador1.layer.opacity = 1
-            self.cardJogador2.layer.position = self.point2
+//            self.cardJogador1.layer.opacity = 1
+//            self.cardJogador2.layer.position = self.point2
             
 //            self.imgJogador1.layer.opacity = 1
 //            self.imgJogador2.layer.position = self.point2

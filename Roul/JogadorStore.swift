@@ -10,7 +10,7 @@ import UIKit
 
 class JogadorStore: NSObject {
     
-    private var avatars : [(String, UIImage)] = [("A", #imageLiteral(resourceName: "avatar2")), ("B", #imageLiteral(resourceName: "avatar3")), ( "C", #imageLiteral(resourceName: "avatar4")), ("D", #imageLiteral(resourceName: "avatar10")), ("E", #imageLiteral(resourceName: "avatar5")), ("F", #imageLiteral(resourceName: "avatar9"))]
+    private var avatars : [(String, UIImage)] = [("Bill", #imageLiteral(resourceName: "avatar2")), ("Lilian", #imageLiteral(resourceName: "avatar3")), ( "Jake", #imageLiteral(resourceName: "avatar4")), ("Miki", #imageLiteral(resourceName: "avatar10")), ("Diaz", #imageLiteral(resourceName: "avatar5")), ("Carly", #imageLiteral(resourceName: "avatar9"))]
     
     private var jogadores : [Jogador] = []
     

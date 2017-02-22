@@ -19,7 +19,7 @@ class RouletteView: UIView {
         }
     }
     
-    var options: [String]? {
+    var options: [(String, UIImage)]? {
         didSet{
             if let op = self.options?.count {
                 self.numberItems = op
@@ -133,22 +133,25 @@ class RouletteView: UIView {
                 circle.endAngle = CGFloat(angle * CGFloat(i + 1))
                 circle.backgroundColor = .clear
                 circle.color = i % 2 == 0 ? UIColor.clear : UIColor.clear
+                circle.iconImage = opcao.1
+                circle.raioIcon = 0.7
+                circle.sizeIconImage = 80
                 self.addSubview(circle)
                 
-                let numberLabel = UILabel()
-                numberLabel.text = opcao
-                numberLabel.font = UIFont.boldSystemFont(ofSize: 35)
-                numberLabel.textColor = UIColor.brown
-                numberLabel.backgroundColor = .clear
-                numberLabel.sizeToFit()
-                let th = angle * (CGFloat(i) + 0.5)
-                if i > (self.numberItems / 2 - 1) {
-                    numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th + CGFloat(M_PI * 0.5)))
-                } else {
-                    numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th - CGFloat(M_PI * 0.5)))
-                }
-                numberLabel.center = CGPoint(x: centerView.x + 175 * CGFloat(cos(th)), y: centerView.y + 175 * CGFloat(sin(th)))
-                self.addSubview(numberLabel)
+//                let numberLabel = UILabel()
+//                numberLabel.text = opcao
+//                numberLabel.font = UIFont.boldSystemFont(ofSize: 35)
+//                numberLabel.textColor = UIColor.brown
+//                numberLabel.backgroundColor = .clear
+//                numberLabel.sizeToFit()
+//                let th = angle * (CGFloat(i) + 0.5)
+//                if i > (self.numberItems / 2 - 1) {
+//                    numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th + CGFloat(M_PI * 0.5)))
+//                } else {
+//                    numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th - CGFloat(M_PI * 0.5)))
+//                }
+//                numberLabel.center = CGPoint(x: centerView.x + 175 * CGFloat(cos(th)), y: centerView.y + 175 * CGFloat(sin(th)))
+//                self.addSubview(numberLabel)
             }
             self.backgroundRoulette.viewCenter.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI / 2) + self.angle * 0.5)
             
@@ -162,6 +165,21 @@ class RouletteView: UIView {
         self.backgroundRoulette.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.backgroundRoulette.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         self.backgroundRoulette.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.clique))
+        self.addGestureRecognizer(gesture)
+    }
+    
+    var clicado: Bool = false
+    
+    func clique() {
+        if self.clicado == false {
+            self.clicado = true
+            self.layer.borderColor = UIColor(white: 0.8, alpha: 0.5).cgColor
+        } else {
+            self.clicado = false
+            self.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
+        }
     }
     
     private enum ModeRand {
@@ -202,6 +220,10 @@ class RouletteView: UIView {
     }
     
     func girar(withIntensidade intensidade: Int, _ completion: @escaping (_ jogador: Jogador?) -> Void) {
+        
+        if self.clicado == false {
+            return
+        }
         
         var valorRand = abs(intensidade) / 10
         let duration = rand(mode: .time)
@@ -253,7 +275,7 @@ class RouletteView: UIView {
             self.viewCenter.layer.add(b, forKey: "scale")
             
             delay(1, finish: {
-                completion(self.options![self.indexCurrent])
+                completion(self.options![self.indexCurrent].0)
             })
         }
     }
