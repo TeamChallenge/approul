@@ -93,11 +93,11 @@ class HomeViewController: UIViewController {
         }
         self.rouletteOptionComponent.options = ["Verdade", "Desafio", "Verdade", "Desafio", "Verdade", "Desafio"]
         
-//        self.rouletteComponent.layer.position = self.view.center
-//        self.timerProgressComponent.layer.position = self.view.center
-//        self.timerProgressComponent.layer.position.y += 1300
-//        self.rouletteOptionComponent.layer.position = self.view.center
-//        self.rouletteOptionComponent.layer.position.y += 1300
+        self.rouletteComponent.layer.position = self.view.center
+        self.timerProgressComponent.layer.position = self.view.center
+        self.timerProgressComponent.layer.position.y += 1300
+        self.rouletteOptionComponent.layer.position = self.view.center
+        self.rouletteOptionComponent.layer.position.y += 1300
     }
     
     @objc private func mudar () {
@@ -124,60 +124,67 @@ class HomeViewController: UIViewController {
             let finalVD = CGPoint(x: inicialVD.x, y: inicialVD.y - 1300)
             
             // Entrada da roleta de opções
-//            self.rouletteOptionComponent.animacaoMove(inicial: inicialVD, final: finalVD, completion: { 
+            self.rouletteOptionComponent.animacaoMove(inicial: inicialVD, final: finalVD, completion: { 
             
-                // Animação da roleta de opções
-//                self.rouletteOptionComponent.startAnimation(){
-            
-                    // Definir texto do desafio
-//                    self.labelMensagem.text = "Fulano desafia fulano de tal"
-        
-                    // Saida da roleta de opções
-//                    self.rouletteOptionComponent.animacaoMove(inicial: finalVD, final: inicialVD, completion: {
-            
-                        // Pontos da roleta de tempo
-                        let inicalTimer = self.timerProgressComponent.layer.position
-                        let finalTimer = CGPoint(x: inicalTimer.x, y: inicalTimer.y - 1300)
-
-                        self.focusGuide.preferredFocusedView = self.timerProgressComponent
-            
-                        // Entrada da roleta de tempo
-                        self.timerProgressComponent.animacaoMove(inicial: inicalTimer, final: finalTimer, completion: {
-
+                // Definir texto do desafio
+                self.labelMensagem.text = "Será verdade ou desafio?"
+                
+                delay(2, finish: {
+                    
+                    // Animação da roleta de opções
+                    self.rouletteOptionComponent.girarOptions(withIntensidade: 440, { (opcao: String) in
+                        
+                        if opcao == "Verdade" {
+                            self.labelMensagem.text = "\(desafiante) pode fazer uma pergunta para \(desafiado)"
+                        } else {
+                            self.labelMensagem.text = "\(desafiante) faz um desafio para \(desafiado)"
+                        }
+                        
+                        // Saida da roleta de opções
+                        self.rouletteOptionComponent.animacaoMove(inicial: finalVD, final: inicialVD, completion: {
                             
-                            // Animação do tempo
-                            self.timerProgressComponent.set(withTimer: 10, completion: {
-                                print("Tempo acabou")
+                            // Pontos da roleta de tempo
+                            let inicalTimer = self.timerProgressComponent.layer.position
+                            let finalTimer = CGPoint(x: inicalTimer.x, y: inicalTimer.y - 1300)
+                            
+                            self.focusGuide.preferredFocusedView = self.timerProgressComponent
+                            
+                            // Entrada da roleta de tempo
+                            self.timerProgressComponent.animacaoMove(inicial: inicalTimer, final: finalTimer, completion: {
                                 
-                                // Saida da roleta de tempo
-                                self.timerProgressComponent.animacaoMove(inicial: finalTimer, final: inicalTimer, completion: {
-                                
-                                    // Entrada da roleta de jogadores
-                                    self.rouletteComponent.animacaoMove(inicial: finalRoletaView, final: inicialRoletaView, completion: {
+                                // Animação do tempo
+                                self.timerProgressComponent.set(withTimer: 10, completion: {
+                                    print("Tempo acabou")
+                                    
+                                    // Saida da roleta de tempo
+                                    self.timerProgressComponent.animacaoMove(inicial: finalTimer, final: inicalTimer, completion: {
                                         
-                                        self.viewJogadorComponent.animationTroca()
-                                        self.labelMensagem.text = "\(desafiado) sua vez de girar a roleta"
-                                        
-                                        self.focusGuide.preferredFocusedView = self.rouletteComponent
+                                        // Entrada da roleta de jogadores
+                                        self.rouletteComponent.animacaoMove(inicial: finalRoletaView, final: inicialRoletaView, completion: {
+                                            
+                                            self.viewJogadorComponent.animationTroca()
+                                            self.labelMensagem.text = "\(desafiado) sua vez de girar a roleta"
+                                            
+                                            self.focusGuide.preferredFocusedView = self.rouletteComponent
+                                            
+                                        })
                                         
                                     })
-                        
                                 })
+                                
                             })
-        
+                            
                         })
-            
-//                    })
-
-//                }
-
-//            })
+                        
+                    })
+                    
+                })
+                
+            })
+        }
 
 //            let inicialTimer = self.timerProgressComponent.layer.position
 //            let finalTimer = CGPoint(x: inicialTimer.x, y: inicialTimer.y - 1300)
-            
-            
-        }
 
     }
     

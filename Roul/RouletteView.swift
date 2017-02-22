@@ -142,8 +142,12 @@ class RouletteView: UIView {
                 numberLabel.backgroundColor = .clear
                 numberLabel.sizeToFit()
                 let th = angle * (CGFloat(i) + 0.5)
-                numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th - CGFloat(M_PI * 0.5)))
-                numberLabel.center = CGPoint(x: centerView.x + 160 * CGFloat(cos(th)), y: centerView.y + 160 * CGFloat(sin(th)))
+                if i > (self.numberItems / 2 - 1) {
+                    numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th + CGFloat(M_PI * 0.5)))
+                } else {
+                    numberLabel.transform = CGAffineTransform(rotationAngle: CGFloat(th - CGFloat(M_PI * 0.5)))
+                }
+                numberLabel.center = CGPoint(x: centerView.x + 175 * CGFloat(cos(th)), y: centerView.y + 175 * CGFloat(sin(th)))
                 self.addSubview(numberLabel)
             }
             self.backgroundRoulette.viewCenter.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI / 2) + self.angle * 0.5)
@@ -224,6 +228,33 @@ class RouletteView: UIView {
             let j = self.jogadores?[self.indexCurrent]
             self.indexUltimoJogador = self.indexCurrent
             completion(j)
+        }
+    }
+    
+    func girarOptions(withIntensidade intensidade: Int, _ completion: @escaping (_ opcao: String) -> Void) {
+        
+        let valorRand = abs(intensidade) / 10
+        let duration = rand(mode: .time)
+        
+        let i = (valorRand + indexCurrent) % self.numberItems
+        
+        indexCurrent = i
+        
+        self.giroViewCenter(valorRand, duration)
+        
+        delay(duration) {
+            
+            let b = CABasicAnimation(keyPath: "scale")
+            b.fromValue = 1
+            b.toValue = 1.2
+            b.duration = 1
+            b.autoreverses = true
+            b.repeatCount = 5
+            self.viewCenter.layer.add(b, forKey: "scale")
+            
+            delay(1, finish: {
+                completion(self.options![self.indexCurrent])
+            })
         }
     }
     
