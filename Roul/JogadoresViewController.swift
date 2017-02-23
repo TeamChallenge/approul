@@ -7,12 +7,44 @@
 //
 
 import UIKit
+import AVFoundation
+
+class AudioPlayer: NSObject {
+    
+    private override init() {
+        super.init()
+    }
+    
+    static func configureAudio(withName name: String) -> AVAudioPlayer? {
+        let myFilePathString = Bundle.main.path(forResource: name, ofType: "mp3")
+        
+        if let myFilePathString = myFilePathString{
+            let myFilePathURL = URL(fileURLWithPath: myFilePathString)
+            do{
+                let myAudioPlayer = try AVAudioPlayer(contentsOf: myFilePathURL)
+                if #available(tvOS 10.0, *) {
+                    myAudioPlayer.volume = 0.01
+                } else {
+                    // Fallback on earlier versions
+                    return nil
+                }
+                return myAudioPlayer
+            }catch{
+                return nil
+            }
+        }
+        return nil
+    }
+    
+}
 
 class JogadoresViewController: UIViewController {
     
     @IBOutlet weak var avataresCollectionView: UICollectionView!
     @IBOutlet weak var gamersSelecionadosCollectionView: UICollectionView!
     @IBOutlet weak var buttonIniciar: UIButton!
+    
+    var audioPlayer: AVAudioPlayer?
     
     fileprivate var focusGuide = UIFocusGuide()
     var jogadoresAdicionados = [Jogador]()
@@ -26,6 +58,12 @@ class JogadoresViewController: UIViewController {
         self.avataresCollectionView.allowsMultipleSelection = true
         carregarJogadores()
         self.setupSubviews()
+        self.buttonIniciar.backgroundColor = .clear
+        
+        if let a = AudioPlayer.configureAudio(withName: "Funk_Down") {
+            self.audioPlayer = a
+            self.audioPlayer?.play()
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -73,6 +111,7 @@ class JogadoresViewController: UIViewController {
 
             if let cell = collectionView.cellForItem(at: indexPath) as? AvataresCollectionViewCell, cell.ativo == false {
                 cell.ativo = true
+                cell.isUserInteractionEnabled = false
             } else {
                 return
             }
@@ -97,6 +136,7 @@ class JogadoresViewController: UIViewController {
                 if let cell = self.avataresCollectionView.cellForItem(at: index) as? AvataresCollectionViewCell{
                     cell.ativo = false
                     cell.isSelected = false
+                    cell.isUserInteractionEnabled = true
                 }
             }
         }

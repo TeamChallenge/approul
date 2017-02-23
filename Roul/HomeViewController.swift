@@ -131,15 +131,15 @@ class HomeViewController: UIViewController {
         self.rouletteComponent.backgroundColor = .clear
         let mod = (self.jogadores!.count / 2) + 1
         var coringas = CoringaStore.singleton.getAll()
-        jogadores.enumerated().forEach { (tupla: (offset: Int, element: Jogador)) in
-            if tupla.offset % mod == 0 {
-                let index = Int.randomInt(min: 0, max: coringas.count - 1)
-                let j = Jogador(.coringa)
-                let removeCoringa = coringas.remove(at: index)
-                j.coringa = removeCoringa
-                jogadores.insert(j, at: tupla.offset)
-            }
-        }
+//        jogadores.enumerated().forEach { (tupla: (offset: Int, element: Jogador)) in
+//            if tupla.offset % mod == 0 {
+//                let index = Int.randomInt(min: 0, max: coringas.count - 1)
+//                let j = Jogador(.coringa)
+//                let removeCoringa = coringas.remove(at: index)
+//                j.coringa = removeCoringa
+//                jogadores.insert(j, at: tupla.offset)
+//            }
+//        }
         
         self.rouletteComponent.jogadores = jogadores
 
@@ -147,7 +147,7 @@ class HomeViewController: UIViewController {
             self.rouletteComponent.clicado = true
             self.startGame()
         }
-        self.rouletteOptionComponent.options = [("verdade",#imageLiteral(resourceName: "verdade")), ("desafio", #imageLiteral(resourceName: "desafio")), ("interrogação", #imageLiteral(resourceName: "interrogacao"))]
+        self.rouletteOptionComponent.options = [("Verdade",#imageLiteral(resourceName: "verdade")), ("Desafio", #imageLiteral(resourceName: "desafio")), ("Interrogação", #imageLiteral(resourceName: "interrogacao"))]
         
         self.rouletteComponent.layer.position = self.view.center
         self.timerProgressComponent.layer.position = self.view.center
@@ -175,6 +175,7 @@ class HomeViewController: UIViewController {
         
         // Saida da roleta de Jogadores
         self.rouletteComponent.clicado = false
+        self.rouletteComponent.isRodando = true
         self.rouletteComponent.animacaoMove(inicial: inicialRoletaView, final: finalRoletaView) {
         
             // Pontos da roleta de opções
@@ -192,50 +193,63 @@ class HomeViewController: UIViewController {
                     // Animação da roleta de opções
                     self.rouletteOptionComponent.girarOptions(withIntensidade: Int.randomInt(min: 400, max: 1000), { (opcao: String) in
                         
-                        if opcao == "verdade" {
-                            self.labelMensagem.text = "\(desafiante) pode fazer uma pergunta para \(desafiado)"
-                        } else if opcao == "desafio" {
-                            self.labelMensagem.text = "\(desafiante) faz um desafio para \(desafiado)"
-                        } else {
-                            self.labelMensagem.text = "\(desafiante) a decisão é sua!"
-                        }
+                            self.labelMensagem.text = opcao
                         
-                        // Saida da roleta de opções
-                        self.rouletteOptionComponent.animacaoMove(inicial: finalVD, final: inicialVD, completion: {
+                        delay(1, finish: {
                             
-                            // Pontos da roleta de tempo
-                            let inicalTimer = self.timerProgressComponent.layer.position
-                            let finalTimer = CGPoint(x: inicalTimer.x, y: inicalTimer.y - 1300)
-                            
-                            self.focusGuide.preferredFocusedView = self.timerProgressComponent
-                            
-                            // Entrada da roleta de tempo
-                            self.timerProgressComponent.animacaoMove(inicial: inicalTimer, final: finalTimer, completion: {
+                            if opcao == "Verdade" {
+                                self.labelMensagem.text = "\(desafiante) pode fazer uma pergunta para \(desafiado)"
+                            } else if opcao == "Desafio" {
+                                self.labelMensagem.text = "\(desafiante) faz um desafio para \(desafiado)"
+                            } else {
+                                self.labelMensagem.text = "\(desafiante) a decisão é sua!"
+                            }
+
+                            // Saida da roleta de opções
+                            self.rouletteOptionComponent.animacaoMove(inicial: finalVD, final: inicialVD, completion: {
                                 
-                                // Animação do tempo
-                                self.timerProgressComponent.set(withTimer: 10, completion: {
-                                    print("Tempo acabou")
+                                // Pontos da roleta de tempo
+                                let inicalTimer = self.timerProgressComponent.layer.position
+                                let finalTimer = CGPoint(x: inicalTimer.x, y: inicalTimer.y - 1300)
+                                
+                                self.focusGuide.preferredFocusedView = self.timerProgressComponent.button
+                                self.setNeedsFocusUpdate()
+                                self.updateFocusIfNeeded()
+                                
+                                // Entrada da roleta de tempo
+                                self.timerProgressComponent.animacaoMove(inicial: inicalTimer, final: finalTimer, completion: {
                                     
-                                    // Saida da roleta de tempo
-                                    self.timerProgressComponent.animacaoMove(inicial: finalTimer, final: inicalTimer, completion: {
+                                    // Animação do tempo
+                                    self.timerProgressComponent.set(withTimer: 10, completion: {
+                                        print("Tempo acabou")
                                         
-                                        // Entrada da roleta de jogadores
-                                        self.rouletteComponent.animacaoMove(inicial: finalRoletaView, final: inicialRoletaView, completion: {
+                                        // Saida da roleta de tempo
+                                        self.timerProgressComponent.animacaoMove(inicial: finalTimer, final: inicalTimer, completion: {
                                             
-                                            self.rouletteComponent.clicado = true
-                                            self.viewJogadorComponent.animationTroca()
-                                            self.labelMensagem.text = "\(desafiado) sua vez de girar a roleta"
-                                            
-                                            self.focusGuide.preferredFocusedView = self.rouletteComponent
+                                            // Entrada da roleta de jogadores
+                                            self.rouletteComponent.animacaoMove(inicial: finalRoletaView, final: inicialRoletaView, completion: {
+                                                
+                                                self.rouletteComponent.isRodando = false
+                                                self.viewJogadorComponent.animationTroca()
+                                                self.labelMensagem.text = "\(desafiado) sua vez de girar a roleta"
+                                                
+                                                self.focusGuide.preferredFocusedView = self.rouletteComponent
+                                                //                                            self.focusGuideMenu.preferredFocusedView = self.rouletteComponent
+                                                self.setNeedsFocusUpdate()
+                                                self.updateFocusIfNeeded()
+                                                
+                                            })
                                             
                                         })
-                                        
                                     })
+                                    
                                 })
                                 
                             })
                             
                         })
+                        
+
                         
                     })
                     
@@ -272,6 +286,34 @@ class HomeViewController: UIViewController {
                         let removido = coringas.remove(at: index)
                         
                         self.viewJogadorComponent.setup(withJogador: j)
+                        
+                        delay(3, finish: { 
+                            if removido.name == "Passa vez" {
+                                self.rouletteComponent.girar(withIntensidade: 300, { (jogador: Jogador?) in
+                                    
+                                    if let j = jogador {
+                                        if j.type == .player {
+                                            self.viewJogadorComponent.setup(withJogador: j)
+                                            self.animacaoComponents()
+                                        } else if j.type == .coringa {
+                                        }
+                                    }
+                                    
+                                })
+                            } else if removido.name == "Troca" {
+                                guard let desafiante = self.viewJogadorComponent.desafiante, let desafiado = self.viewJogadorComponent.desafiado else {
+                                    return
+                                }
+                                
+                                self.viewJogadorComponent.setupTroca(withJogador: desafiante)
+                                
+                            } else if removido.name == "Eu escolho" {
+                                
+                            } else if removido.name == "O velho/novo" {
+                                
+                            }
+                        })
+                        
                         self.labelMensagem.text = removido.acao
                     }
                 }

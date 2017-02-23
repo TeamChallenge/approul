@@ -171,6 +171,33 @@ extension ViewJogadores {
 
 extension ViewJogadores {
     
+    func setupTroca(withJogador jogador: Jogador) {
+            
+            self.cardJogador1.image.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
+            self.cardJogador1.label.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
+            
+            self.cardJogador2.image.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
+            self.cardJogador2.label.layer.add(animationFade(from: 1, to: 0), forKey: "fade")
+            
+            self.desafiante = desafiado
+            self.desafiado = jogador
+            
+            delay(1) {
+                self.cardJogador2.image.image = jogador.imagem
+                self.cardJogador2.label.text = jogador.nome
+                
+                self.cardJogador1.image.image = self.desafiado?.imagem
+                self.cardJogador1.label.text = self.desafiado?.nome
+                
+                self.cardJogador1.image.layer.add(self.animationFade(from: 0, to: 1), forKey: "fade")
+                self.cardJogador1.label.layer.add(self.animationFade(from: 0, to: 1), forKey: "fade")
+                
+                self.cardJogador2.image.layer.add(self.animationFade(from: 0, to: 1), forKey: "fade")
+                self.cardJogador2.label.layer.add(self.animationFade(from: 0, to: 1), forKey: "fade")
+            }
+    }
+
+    
     func setup(withJogador jogador: Jogador) {
         if self.isFirstJogador {
             

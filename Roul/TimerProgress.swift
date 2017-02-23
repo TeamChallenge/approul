@@ -68,7 +68,17 @@ class ProgressView: UIView {
     
 }
 
+import AVFoundation
+
 class TimerProgress: UIView {
+    
+    var audio: AVAudioPlayer? = {
+        let a = AudioPlayer.configureAudio(withName: "Magnum_Shots")
+        if #available(tvOS 10.0, *) {
+            a?.setVolume(0.1, fadeDuration: 0.01)
+        }
+        return a
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -126,7 +136,9 @@ class TimerProgress: UIView {
     }
     
     @objc private func startAnimation() {
+        self.audio?.play()
         self.progress.startAnimation(withTimer: self.timer, completion: self.completion)
+        self.button.alpha = 0
     }
     
     override var preferredFocusedView: UIView? {

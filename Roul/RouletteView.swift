@@ -171,6 +171,7 @@ class RouletteView: UIView {
     }
     
     var clicado: Bool = false
+    var isRodando: Bool = false
     
     func clique() {
         if self.clicado == false {
@@ -221,7 +222,7 @@ class RouletteView: UIView {
     
     func girar(withIntensidade intensidade: Int, _ completion: @escaping (_ jogador: Jogador?) -> Void) {
         
-        if self.clicado == false {
+        if self.clicado == false || self.isRodando == true {
             return
         }
         
@@ -245,8 +246,10 @@ class RouletteView: UIView {
         indexCurrent = i
         
         self.giroViewCenter(valorRand, duration)
+        self.isRodando = true
         
         delay(duration) {
+            self.isRodando = false
             let j = self.jogadores?[self.indexCurrent]
             self.indexUltimoJogador = self.indexCurrent
             completion(j)
