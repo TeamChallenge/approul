@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import AVFoundation
 
 class RouletteView: UIView {
+    
+    var audio: AVAudioPlayer? = {
+        let a = AudioPlayer.configureAudio(withName: "roleta")
+        a?.volume = 0.3
+        a?.numberOfLoops = -1
+        return a
+    }()
     
     var jogadores : [Jogador]? {
         didSet{
@@ -83,6 +91,7 @@ class RouletteView: UIView {
         l.text = "Girar"
         l.font = UIFont(name: "Western", size: 40)
         l.textAlignment = .center
+        l.textColor = .white
         return l
     }()
     
@@ -263,6 +272,10 @@ class RouletteView: UIView {
     
     func girar(withIntensidade intensidade: Int, _ completion: @escaping (_ jogador: Jogador?) -> Void) {
         
+        self.audio?.currentTime = 0
+        self.audio?.prepareToPlay()
+        self.audio?.play()
+        
         if self.clicado == false || self.isRodando == true {
             return
         }
@@ -293,11 +306,16 @@ class RouletteView: UIView {
             self.isRodando = false
             let j = self.jogadores?[self.indexCurrent]
             self.indexUltimoJogador = self.indexCurrent
+            self.audio?.stop()
             completion(j)
         }
     }
     
     func girarOptions(withIntensidade intensidade: Int, _ completion: @escaping (_ opcao: String) -> Void) {
+        
+        self.audio?.currentTime = 0
+        self.audio?.prepareToPlay()
+        self.audio?.play()
         
         let valorRand = abs(intensidade) / 10
         let duration = rand(mode: .time)
@@ -309,18 +327,8 @@ class RouletteView: UIView {
         self.giroViewCenter(valorRand, duration)
         
         delay(duration) {
-            
-            let b = CABasicAnimation(keyPath: "scale")
-            b.fromValue = 1
-            b.toValue = 1.2
-            b.duration = 1
-            b.autoreverses = true
-            b.repeatCount = 5
-            self.viewCenter.layer.add(b, forKey: "scale")
-            
-            delay(1, finish: {
-                completion(self.options![self.indexCurrent].0)
-            })
+            self.audio?.stop()
+            completion(self.options![self.indexCurrent].0)
         }
     }
     

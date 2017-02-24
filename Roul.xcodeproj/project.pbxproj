@@ -24,6 +24,11 @@
 		646DA9DB1E5E895000134816 /* Auto_Bullets_Flyby_Short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 646DA9DA1E5E895000134816 /* Auto_Bullets_Flyby_Short.mp3 */; };
 		646DA9DD1E5E8C4800134816 /* Magnum_Shots.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 646DA9DC1E5E8C4800134816 /* Magnum_Shots.mp3 */; };
 		647C2CF81E5B7C01008AB7E8 /* Coringa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647C2CF71E5B7C01008AB7E8 /* Coringa.swift */; };
+		648820681E5FDE2200E9BBE7 /* Mechanical_Clock_Ring.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 648820671E5FDE2200E9BBE7 /* Mechanical_Clock_Ring.mp3 */; };
+		6488206A1E5FDE2600E9BBE7 /* Clock_Ticking.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 648820691E5FDE2600E9BBE7 /* Clock_Ticking.mp3 */; };
+		6488206C1E5FE78300E9BBE7 /* audioTimer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6488206B1E5FE78300E9BBE7 /* audioTimer.mp3 */; };
+		6488206E1E5FEBE000E9BBE7 /* tiroSelecionado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6488206D1E5FEBE000E9BBE7 /* tiroSelecionado.mp3 */; };
+		648820701E60065600E9BBE7 /* roleta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6488206F1E60065600E9BBE7 /* roleta.mp3 */; };
 		64B115411E5CC4EE00D6F024 /* WEST.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 64B115401E5CC4EE00D6F024 /* WEST.TTF */; };
 		64B115431E5CDBF800D6F024 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B115421E5CDBF800D6F024 /* Extension+UIColor.swift */; };
 		64B23D631E5F28AD00A45821 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B23D621E5F28AD00A45821 /* AudioPlayer.swift */; };
@@ -57,6 +62,11 @@
 		646DA9DA1E5E895000134816 /* Auto_Bullets_Flyby_Short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Auto_Bullets_Flyby_Short.mp3; sourceTree = "<group>"; };
 		646DA9DC1E5E8C4800134816 /* Magnum_Shots.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Magnum_Shots.mp3; sourceTree = "<group>"; };
 		647C2CF71E5B7C01008AB7E8 /* Coringa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coringa.swift; sourceTree = "<group>"; };
+		648820671E5FDE2200E9BBE7 /* Mechanical_Clock_Ring.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Mechanical_Clock_Ring.mp3; sourceTree = "<group>"; };
+		648820691E5FDE2600E9BBE7 /* Clock_Ticking.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Clock_Ticking.mp3; sourceTree = "<group>"; };
+		6488206B1E5FE78300E9BBE7 /* audioTimer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audioTimer.mp3; sourceTree = "<group>"; };
+		6488206D1E5FEBE000E9BBE7 /* tiroSelecionado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tiroSelecionado.mp3; sourceTree = "<group>"; };
+		6488206F1E60065600E9BBE7 /* roleta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = roleta.mp3; sourceTree = "<group>"; };
 		64B115401E5CC4EE00D6F024 /* WEST.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = WEST.TTF; sourceTree = "<group>"; };
 		64B115421E5CDBF800D6F024 /* Extension+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 		64B23D621E5F28AD00A45821 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
@@ -103,9 +113,14 @@
 			isa = PBXGroup;
 			children = (
 				64B115401E5CC4EE00D6F024 /* WEST.TTF */,
+				6488206D1E5FEBE000E9BBE7 /* tiroSelecionado.mp3 */,
+				6488206B1E5FE78300E9BBE7 /* audioTimer.mp3 */,
+				648820671E5FDE2200E9BBE7 /* Mechanical_Clock_Ring.mp3 */,
 				646DA9D81E5E7DC400134816 /* Funk_Down.mp3 */,
 				646DA9DA1E5E895000134816 /* Auto_Bullets_Flyby_Short.mp3 */,
 				646DA9DC1E5E8C4800134816 /* Magnum_Shots.mp3 */,
+				6488206F1E60065600E9BBE7 /* roleta.mp3 */,
+				648820691E5FDE2600E9BBE7 /* Clock_Ticking.mp3 */,
 				649F7CB01E4A4F4500B9A4B6 /* Util */,
 				649F7CAF1E4A4F3300B9A4B6 /* Controller */,
 				649F7CAE1E4A4F3000B9A4B6 /* View */,
@@ -235,12 +250,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				648820681E5FDE2200E9BBE7 /* Mechanical_Clock_Ring.mp3 in Resources */,
 				276871EF1E491DA900A24C1E /* Assets.xcassets in Resources */,
 				276871ED1E491DA900A24C1E /* Main.storyboard in Resources */,
+				6488206A1E5FDE2600E9BBE7 /* Clock_Ticking.mp3 in Resources */,
 				646DA9D91E5E7DC400134816 /* Funk_Down.mp3 in Resources */,
 				64B115411E5CC4EE00D6F024 /* WEST.TTF in Resources */,
+				648820701E60065600E9BBE7 /* roleta.mp3 in Resources */,
+				6488206C1E5FE78300E9BBE7 /* audioTimer.mp3 in Resources */,
 				646DA9DB1E5E895000134816 /* Auto_Bullets_Flyby_Short.mp3 in Resources */,
 				646DA9DD1E5E8C4800134816 /* Magnum_Shots.mp3 in Resources */,
+				6488206E1E5FEBE000E9BBE7 /* tiroSelecionado.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

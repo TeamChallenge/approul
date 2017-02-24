@@ -91,7 +91,7 @@ class HomeViewController: UIViewController {
     
     private func startGame () {
         if let count = self.rouletteComponent.jogadores?.count {
-            self.rouletteComponent?.girar(withIntensidade: count * 7, { (jogador: Jogador?) in
+            self.rouletteComponent?.girar(withIntensidade: count * 200, { (jogador: Jogador?) in
                 if let j = jogador {
                     self.viewJogadorComponent.setup(withJogador: j)
                     self.rouletteComponent.clicado = false
@@ -206,11 +206,11 @@ class HomeViewController: UIViewController {
                                     self.textLabel = "\(desafiante) pode fazer uma pergunta para \(desafiado)"
                                 } else if opcao == "Desafio" {
                                     self.textLabel = "\(desafiante) faz um desafio para \(desafiado)"
+                                    self.performSegue(withIdentifier: "modal", sender: self)
                                 } else {
                                     self.textLabel = "\(desafiante) a decisão é sua!"
                                 }
                                 //
-                                self.performSegue(withIdentifier: "modal", sender: self)
                                 
                                 //                            // Saida da roleta de opções
                                 self.rouletteOptionComponent.animacaoMove(inicial: finalVD, final: inicialVD, completion: {
@@ -235,6 +235,9 @@ class HomeViewController: UIViewController {
                                     //
                                     //                                            // Entrada da roleta de jogadores
                                     self.rouletteComponent.animacaoMove(inicial: finalRoletaView, final: inicialRoletaView, completion: {
+                                        if opcao == "Verdade" || opcao == "Interrogação"{
+                                            self.reload()
+                                        }
                                         //
                                         //                                                self.rouletteComponent.isRodando = false
                                         //                                                self.viewJogadorComponent.animationTroca()

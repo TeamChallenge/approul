@@ -9,11 +9,23 @@
 import UIKit
 import AVFoundation
 
+class ButtonCustom: UIButton {
+    
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if context.nextFocusedView == self {
+            self.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        } else {
+            self.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
+    }
+    
+}
+
 class JogadoresViewController: UIViewController {
     
     @IBOutlet weak var avataresCollectionView: UICollectionView!
     @IBOutlet weak var gamersSelecionadosCollectionView: UICollectionView!
-    @IBOutlet weak var buttonIniciar: UIButton!
+    @IBOutlet weak var buttonIniciar: ButtonCustom!
     
     var audioPlayer: AVAudioPlayer?
     
@@ -33,7 +45,7 @@ class JogadoresViewController: UIViewController {
         
         if let a = AudioPlayer.configureAudio(withName: "Funk_Down") {
             self.audioPlayer = a
-            self.audioPlayer?.play()
+//            self.audioPlayer?.play()
         }
         // Do any additional setup after loading the view.
     }
@@ -57,12 +69,6 @@ class JogadoresViewController: UIViewController {
             nextFocusedView = superView
         }
         
-//        if self.buttonIniciar.isFocused {
-//            self.buttonIniciar.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-//        } else {
-//            self.buttonIniciar.transform = CGAffineTransform(scaleX: 1, y: 1)
-//        }
-        
         switch nextFocusedView {
         case self.buttonIniciar:
             self.focusGuide.preferredFocusedView = self.gamersSelecionadosCollectionView
@@ -73,8 +79,9 @@ class JogadoresViewController: UIViewController {
         default:
             self.focusGuide.preferredFocusedView = nil
         }
-        
     }
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == avataresCollectionView {
@@ -100,6 +107,11 @@ class JogadoresViewController: UIViewController {
             if let indexAdicionado = self.jogadoresAdicionados.index(of: gamerSelected) {
                 let index = IndexPath(item: indexAdicionado, section: 0)
                 self.gamersSelecionadosCollectionView.insertItems(at: [index])
+                if let cell = gamersSelecionadosCollectionView.cellForItem(at: indexPath) as? AvataresCollectionViewCell {
+                    cell.ativo = true
+                } else {
+                    return
+                }
             }
         }else{
             let gamerSelected = self.jogadoresAdicionados.remove(at: indexPath.item)
@@ -116,7 +128,6 @@ class JogadoresViewController: UIViewController {
                 }
             }
         }
-        
         self.setupButtonStart()
     }
     
@@ -159,10 +170,12 @@ extension JogadoresViewController : UICollectionViewDelegate, UICollectionViewDa
         if collectionView == avataresCollectionView {
             let cellAvatares = collectionView.dequeueReusableCell(withReuseIdentifier: "cellAvatares", for: indexPath) as! AvataresCollectionViewCell
             cellAvatares.setupViews(jogador: jogadoresParaAdicionar[indexPath.item])
+            cellAvatares.isSound = true
             return cellAvatares
         }else{
             let cellJogadores = collectionView.dequeueReusableCell(withReuseIdentifier: "cellJogadores", for: indexPath) as! AvataresCollectionViewCell
             cellJogadores.setupViews(jogador: (jogadoresAdicionados[indexPath.item]))
+            cellJogadores.isSound = false
             return cellJogadores
 
         }

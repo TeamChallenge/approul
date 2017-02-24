@@ -99,7 +99,7 @@ class Roulette: UIView {
     
     var viewBorder : UIView = {
         let v = UIView()
-        v.backgroundColor = UIColor.colorFromHex(0xFBEBCD, alpha: 1)
+        v.backgroundColor = UIColor.colorFromHex(0xFBEBCD, alpha: 0.56)
         v.translatesAutoresizingMaskIntoConstraints = false
         v.shadowButton()
         return v

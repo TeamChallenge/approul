@@ -93,8 +93,11 @@
                                     <constraint firstAttribute="height" constant="60" id="MoM-bx-4Kh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="WesternNormal" family="Western" pointSize="35"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="userInterfaceStyle=dark">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUEM VAI JOGAR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kk9-xh-D1Z">
                                 <rect key="frame" x="111" y="489" width="719" height="60"/>
@@ -103,18 +106,24 @@
                                     <constraint firstAttribute="height" constant="60" id="kfy-ue-uP2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="WesternNormal" family="Western" pointSize="35"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="userInterfaceStyle=dark">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRy-iH-Pyv">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRy-iH-Pyv" customClass="ButtonCustom" customModule="Roul" customModuleProvider="target">
                                 <rect key="frame" x="1614" y="888" width="183" height="86"/>
+                                <color key="backgroundColor" red="0.41605740790000001" green="0.1680891216" blue="0.055031307039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="183" id="sAp-Pl-bgX"/>
                                     <constraint firstAttribute="height" constant="86" id="vd8-QO-TlL"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="WesternNormal" family="Western" pointSize="40"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="Iniciar" backgroundImage="botao">
-                                    <color key="titleColor" red="0.41605740785598755" green="0.1680891215801239" blue="0.05503130704164505" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.41605740790000001" green="0.1680891216" blue="0.055031307039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="iniciar" destination="VVm-MQ-jIl" eventType="primaryActionTriggered" id="qWL-Rv-uQT"/>
@@ -184,8 +193,11 @@
                                 <rect key="frame" x="315" y="901" width="1291" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="60"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="userInterfaceStyle=dark">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -223,11 +235,18 @@
                                 <rect key="frame" x="315" y="886" width="1291" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="60"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="userInterfaceStyle=dark">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </variation>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GXZ-BZ-2iU" customClass="ProgressView" customModule="Roul" customModuleProvider="target">
+                                <rect key="frame" x="710" y="115" width="500" height="500"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BgG-L8-EyK">
-                                <rect key="frame" x="725" y="711" width="471" height="166"/>
+                                <rect key="frame" x="766" y="713" width="388" height="136"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="WesternNormal" family="Western" pointSize="60"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
@@ -238,14 +257,6 @@
                                     <action selector="handlerStart:" destination="eJx-mi-2eI" eventType="primaryActionTriggered" id="QOp-tG-tVW"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GXZ-BZ-2iU" customClass="ProgressView" customModule="Roul" customModuleProvider="target">
-                                <rect key="frame" x="710" y="115" width="500" height="500"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="relogio" translatesAutoresizingMaskIntoConstraints="NO" id="WA6-VZ-xQB">
-                                <rect key="frame" x="860" y="266" width="200" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                     </view>
                     <connections>
@@ -262,6 +273,5 @@
     <resources>
         <image name="bg" width="1920" height="1081"/>
         <image name="botao" width="306" height="126"/>
-        <image name="relogio" width="237" height="239"/>
     </resources>
 </document>

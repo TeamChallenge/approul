@@ -7,8 +7,23 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ProgressView: UIView {
+    
+    var audio : AVAudioPlayer? = {
+        let a = AudioPlayer.configureAudio(withName: "audioTimer")
+        a?.prepareToPlay()
+        a?.volume = 1
+        return a
+    }()
+    
+    var image: UIImageView = {
+        let u = UIImageView(image: #imageLiteral(resourceName: "relogio"))
+        u.translatesAutoresizingMaskIntoConstraints = false
+        u.contentMode = .scaleAspectFill
+        return u
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,9 +64,18 @@ class ProgressView: UIView {
         self.transform = CGAffineTransform(rotationAngle: (3*CGFloat(M_PI)/2))
         self.clipsToBounds = true
         self.layer.cornerRadius = self.frame.width / 2
+        
+        self.addSubview(self.image)
+        self.image.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
+        self.image.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
+        self.image.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        self.image.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }
     
     func startAnimation(withTimer timer: TimeInterval, completion: @escaping handlerCompletion) {
+        
+        self.audio?.play()
+        
         self.progressCircle.removeAllAnimations()
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.fromValue = 0
@@ -61,11 +85,37 @@ class ProgressView: UIView {
         animation.isRemovedOnCompletion = false
         progressCircle.add(animation, forKey: "strokeEnd")
         
+        
         delay(Int(timer)) {
-            completion()
+            self.shake()
+            let a = CABasicAnimation(keyPath: "transform.scale")
+            a.fromValue = 1
+            a.toValue = 1.1
+            a.duration = 0.6
+            a.repeatCount = 20
+            a.autoreverses = true
+            self.layer.add(a, forKey: "scale")
+            
+            delay(4) {
+                self.audio?.stop()
+                completion()
+            }
         }
     }
     
+    
+}
+
+extension UIView {
+    func shake() {
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.duration = 0.6
+        animation.autoreverses = true
+        animation.repeatCount = 20
+        animation.values = [-20.0, 20.0, -20.0, 20.0, -10.0, 10.0, -5.0, 5.0, 0.0, 5, -5, 10, -10, 20, -20, 20, -20]
+        layer.add(animation, forKey: "shake")
+    }
 }
 
 import AVFoundation

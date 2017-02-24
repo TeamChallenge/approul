@@ -14,7 +14,7 @@ class AvataresCollectionViewCell: UICollectionViewCell {
     static let imageCoringa : UIImage = #imageLiteral(resourceName: "caveira300")
     
     var audio : AVAudioPlayer? = {
-        let a = AudioPlayer.configureAudio(withName: "Auto_Bullets_Flyby_Short")
+        let a = AudioPlayer.configureAudio(withName: "tiroSelecionado")
         if #available(tvOS 10.0, *) {
             a?.setVolume(0.1, fadeDuration: 0.1)
         } else {
@@ -55,6 +55,8 @@ class AvataresCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    var isSound: Bool = false
+    
     fileprivate func setupSelected() {
         if self.ativo {
             return
@@ -63,7 +65,10 @@ class AvataresCollectionViewCell: UICollectionViewCell {
             self.imageAvatar.image = AvataresCollectionViewCell.imageCoringa
             self.imageAvatar.contentMode = .scaleAspectFit
             self.nameAvatar.text = "Procurado"
-            audio?.play()
+            if self.isSound {
+                audio?.stop()
+                audio?.play()
+            }
         } else {
             self.imageAvatar.image = self.imagemOriginal
             self.nameAvatar.text = self.nomeOriginal
