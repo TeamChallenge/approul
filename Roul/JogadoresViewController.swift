@@ -51,7 +51,7 @@ class JogadoresViewController: UIViewController {
         carregarJogadores()
         self.setupSubviews()
         self.buttonIniciar.backgroundColor = .clear
-        
+//        
 //        if let a = AudioPlayer.configureAudio(withName: "Funk_Down") {
 //            self.audioPlayer = a
 //            self.audioPlayer?.volume = 0.1

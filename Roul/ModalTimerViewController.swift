@@ -95,6 +95,7 @@ class ModalTimerViewController: UIViewController {
                 self.buttonArregou.setTitle("Arregou", for: .normal)
                 self.buttonArregou.alpha = 1
                 self.buttonRespondeu.setTitle("Respondeu", for: .normal)
+                self.tipo = "Verdade"
                 self.buttonRespondeu.alpha = 1
                 self.labelMensagem.text = "Tem o direito de fazer uma pergunta!"
                 break;
