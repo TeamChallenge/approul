@@ -12,9 +12,9 @@ import AVFoundation
 class ProgressView: UIView {
     
     var audio : AVAudioPlayer? = {
-        let a = AudioPlayer.configureAudio(withName: "audioTimer")
+        let a = AudioPlayer.configureAudio(withName: "timer")
         a?.prepareToPlay()
-        a?.volume = 1
+        a?.volume = 1.5
         return a
     }()
     

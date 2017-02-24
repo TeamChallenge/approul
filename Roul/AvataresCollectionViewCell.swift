@@ -15,7 +15,7 @@ class AvataresCollectionViewCell: UICollectionViewCell {
     
     var audio : AVAudioPlayer? = {
         let a = AudioPlayer.configureAudio(withName: "tiroSelecionado")
-        a?.volume = 0.5
+        a?.volume = 0.3
         return a
     }()
     

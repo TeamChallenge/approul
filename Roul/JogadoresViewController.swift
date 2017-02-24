@@ -11,13 +11,24 @@ import AVFoundation
 
 class ButtonCustom: UIButton {
     
+    override var canBecomeFocused: Bool {
+        return true
+    }
+    
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         if context.nextFocusedView == self {
-            self.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            context.nextFocusedView!.layer.shadowOffset = CGSize(width: 0, height: 15)
+            context.nextFocusedView!.layer.shadowOpacity = 0.6
+            context.nextFocusedView!.layer.shadowRadius = 50
+            context.nextFocusedView!.layer.shadowColor = UIColor.black.cgColor
+            context.previouslyFocusedView?.layer.shadowOpacity = 0
+            self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         } else {
             self.transform = CGAffineTransform(scaleX: 1, y: 1)
         }
     }
+    
+    
     
 }
 
@@ -130,7 +141,6 @@ class JogadoresViewController: UIViewController {
                 }
             }
         }
-        self.setupButtonStart()
     }
     
     fileprivate func setupButtonStart() {
@@ -173,11 +183,13 @@ extension JogadoresViewController : UICollectionViewDelegate, UICollectionViewDa
             let cellAvatares = collectionView.dequeueReusableCell(withReuseIdentifier: "cellAvatares", for: indexPath) as! AvataresCollectionViewCell
             cellAvatares.setupViews(jogador: jogadoresParaAdicionar[indexPath.item])
             cellAvatares.isSound = true
+            self.setupButtonStart()
             return cellAvatares
         }else{
             let cellJogadores = collectionView.dequeueReusableCell(withReuseIdentifier: "cellJogadores", for: indexPath) as! AvataresCollectionViewCell
             cellJogadores.setupViews(jogador: (jogadoresAdicionados[indexPath.item]))
             cellJogadores.isSound = false
+            self.setupButtonStart()
             return cellJogadores
 
         }
@@ -192,7 +204,7 @@ extension JogadoresViewController {
 
         self.focusGuide.leftAnchor.constraint(equalTo: self.gamersSelecionadosCollectionView.leftAnchor).isActive = true
         self.focusGuide.topAnchor.constraint(equalTo: self.buttonIniciar.topAnchor).isActive = true
-        self.focusGuide.rightAnchor.constraint(equalTo: self.buttonIniciar.leftAnchor).isActive = true
+        self.focusGuide.rightAnchor.constraint(equalTo: self.buttonIniciar.leftAnchor, constant: -20).isActive = true
         self.focusGuide.heightAnchor.constraint(equalTo: self.buttonIniciar.heightAnchor).isActive = true
         
     }
