@@ -8,15 +8,24 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+//    var audioPlayer: AVAudioPlayer?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+//        if let a = AudioPlayer.configureAudio(withName: "Funk_Down") {
+//            self.audioPlayer = a
+//            self.audioPlayer?.volume = 0.1
+//            self.audioPlayer?.numberOfLoops = -1
+//            self.audioPlayer?.play()
+//        }
         return true
     }
 
@@ -28,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+//        self.audioPlayer?.stop()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -36,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+//        self.audioPlayer?.play()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

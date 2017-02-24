@@ -282,7 +282,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="interrogacao" translatesAutoresizingMaskIntoConstraints="NO" id="G5y-gH-bxz">
-                                <rect key="frame" x="686" y="190" width="549" height="350"/>
+                                <rect key="frame" x="757" y="284" width="408" height="256"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>

@@ -28,8 +28,6 @@ class ButtonCustom: UIButton {
         }
     }
     
-    
-    
 }
 
 class JogadoresViewController: UIViewController {
@@ -38,7 +36,7 @@ class JogadoresViewController: UIViewController {
     @IBOutlet weak var gamersSelecionadosCollectionView: UICollectionView!
     @IBOutlet weak var buttonIniciar: ButtonCustom!
     
-    var audioPlayer: AVAudioPlayer?
+//    var audioPlayer: AVAudioPlayer?
     
     fileprivate var focusGuide = UIFocusGuide()
     var jogadoresAdicionados = [Jogador]()
@@ -54,12 +52,12 @@ class JogadoresViewController: UIViewController {
         self.setupSubviews()
         self.buttonIniciar.backgroundColor = .clear
         
-        if let a = AudioPlayer.configureAudio(withName: "Funk_Down") {
-            self.audioPlayer = a
-            self.audioPlayer?.volume = 0.1
-            self.audioPlayer?.numberOfLoops = -1
-            self.audioPlayer?.play()
-        }
+//        if let a = AudioPlayer.configureAudio(withName: "Funk_Down") {
+//            self.audioPlayer = a
+//            self.audioPlayer?.volume = 0.1
+//            self.audioPlayer?.numberOfLoops = -1
+//            self.audioPlayer?.play()
+//        }
         // Do any additional setup after loading the view.
     }
     
@@ -141,6 +139,7 @@ class JogadoresViewController: UIViewController {
                 }
             }
         }
+        self.setupButtonStart()
     }
     
     fileprivate func setupButtonStart() {
