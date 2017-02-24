@@ -161,6 +161,7 @@ class HomeViewController: UIViewController {
     }
     
     var textLabel: String = ""
+    var opcao: String = ""
     
     @objc private func animacaoComponents () {
         
@@ -206,10 +207,11 @@ class HomeViewController: UIViewController {
                                     self.textLabel = "\(desafiante) pode fazer uma pergunta para \(desafiado)"
                                 } else if opcao == "Desafio" {
                                     self.textLabel = "\(desafiante) faz um desafio para \(desafiado)"
-                                    self.performSegue(withIdentifier: "modal", sender: self)
                                 } else {
                                     self.textLabel = "\(desafiante) a decisão é sua!"
                                 }
+                                self.opcao = opcao
+                                self.performSegue(withIdentifier: "modal", sender: self)
                                 //
                                 
                                 //                            // Saida da roleta de opções
@@ -294,6 +296,7 @@ class HomeViewController: UIViewController {
         if segue.identifier == "modal" {
             let v = segue.destination as? ModalTimerViewController
             v?.controller = self
+            v?.tipo = self.opcao
             v?.textoLabel = self.textLabel
         }
     }

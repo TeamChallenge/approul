@@ -272,13 +272,14 @@ class RouletteView: UIView {
     
     func girar(withIntensidade intensidade: Int, _ completion: @escaping (_ jogador: Jogador?) -> Void) {
         
+        if self.clicado == false || self.isRodando == true {
+            return
+        }
+        
         self.audio?.currentTime = 0
         self.audio?.prepareToPlay()
         self.audio?.play()
         
-        if self.clicado == false || self.isRodando == true {
-            return
-        }
         
         var valorRand = abs(intensidade) / 10
         let duration = rand(mode: .time)

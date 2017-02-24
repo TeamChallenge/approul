@@ -45,7 +45,9 @@ class JogadoresViewController: UIViewController {
         
         if let a = AudioPlayer.configureAudio(withName: "Funk_Down") {
             self.audioPlayer = a
-//            self.audioPlayer?.play()
+            self.audioPlayer?.volume = 0.1
+            self.audioPlayer?.numberOfLoops = -1
+            self.audioPlayer?.play()
         }
         // Do any additional setup after loading the view.
     }

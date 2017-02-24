@@ -231,6 +231,30 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGV-R2-5Jv">
+                                <rect key="frame" x="380" y="713" width="388" height="136"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="WesternNormal" family="Western" pointSize="60"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Respondeu" backgroundImage="botao">
+                                    <color key="titleColor" red="0.41605740790000001" green="0.1680891216" blue="0.055031307039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handlerRespondeu:" destination="eJx-mi-2eI" eventType="primaryActionTriggered" id="HXf-Dv-otd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2l-N2-7Bz">
+                                <rect key="frame" x="1152" y="713" width="388" height="136"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="WesternNormal" family="Western" pointSize="60"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Arregou" backgroundImage="botao">
+                                    <color key="titleColor" red="0.41605740790000001" green="0.1680891216" blue="0.055031307039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handlerArregou:" destination="eJx-mi-2eI" eventType="primaryActionTriggered" id="NX2-nW-2ej"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mensagens" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ya-8n-12U">
                                 <rect key="frame" x="315" y="886" width="1291" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -257,10 +281,17 @@
                                     <action selector="handlerStart:" destination="eJx-mi-2eI" eventType="primaryActionTriggered" id="QOp-tG-tVW"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="interrogacao" translatesAutoresizingMaskIntoConstraints="NO" id="G5y-gH-bxz">
+                                <rect key="frame" x="686" y="190" width="549" height="350"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="buttonArregou" destination="Q2l-N2-7Bz" id="COG-ij-bH3"/>
+                        <outlet property="buttonRespondeu" destination="nGV-R2-5Jv" id="j5z-fr-rZb"/>
                         <outlet property="buttonStart" destination="BgG-L8-EyK" id="OBX-vQ-cCK"/>
+                        <outlet property="imagem" destination="G5y-gH-bxz" id="app-an-ImE"/>
                         <outlet property="labelMensagem" destination="0ya-8n-12U" id="xgF-k3-aqB"/>
                         <outlet property="progressView" destination="GXZ-BZ-2iU" id="6gM-SX-La0"/>
                     </connections>
@@ -273,5 +304,6 @@
     <resources>
         <image name="bg" width="1920" height="1081"/>
         <image name="botao" width="306" height="126"/>
+        <image name="interrogacao" width="76" height="155"/>
     </resources>
 </document>

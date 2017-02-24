@@ -15,11 +15,7 @@ class AvataresCollectionViewCell: UICollectionViewCell {
     
     var audio : AVAudioPlayer? = {
         let a = AudioPlayer.configureAudio(withName: "tiroSelecionado")
-        if #available(tvOS 10.0, *) {
-            a?.setVolume(0.1, fadeDuration: 0.1)
-        } else {
-            // Fallback on earlier versions
-        }
+        a?.volume = 0.5
         return a
     }()
     
