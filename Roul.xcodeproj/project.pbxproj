@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		276871E51E491DA900A24C1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276871E41E491DA900A24C1E /* AppDelegate.swift */; };
-		276871E71E491DA900A24C1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276871E61E491DA900A24C1E /* ViewController.swift */; };
 		276871EA1E491DA900A24C1E /* Roul.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 276871E81E491DA900A24C1E /* Roul.xcdatamodeld */; };
 		276871ED1E491DA900A24C1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276871EB1E491DA900A24C1E /* Main.storyboard */; };
 		276871EF1E491DA900A24C1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 276871EE1E491DA900A24C1E /* Assets.xcassets */; };
@@ -27,6 +26,8 @@
 		647C2CF81E5B7C01008AB7E8 /* Coringa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647C2CF71E5B7C01008AB7E8 /* Coringa.swift */; };
 		64B115411E5CC4EE00D6F024 /* WEST.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 64B115401E5CC4EE00D6F024 /* WEST.TTF */; };
 		64B115431E5CDBF800D6F024 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B115421E5CDBF800D6F024 /* Extension+UIColor.swift */; };
+		64B23D631E5F28AD00A45821 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B23D621E5F28AD00A45821 /* AudioPlayer.swift */; };
+		64B23D651E5F8B7E00A45821 /* ModalTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B23D641E5F8B7E00A45821 /* ModalTimerViewController.swift */; };
 		64DC402D1E53A47100A41B1F /* JogadoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC402C1E53A47100A41B1F /* JogadoresViewController.swift */; };
 		64E1D6D01E493BFD0009EF99 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6CF1E493BFD0009EF99 /* CircleView.swift */; };
 		64E1D6D21E493C390009EF99 /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1D6D11E493C390009EF99 /* RouletteView.swift */; };
@@ -39,7 +40,6 @@
 /* Begin PBXFileReference section */
 		276871E11E491DA900A24C1E /* Roul.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roul.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		276871E41E491DA900A24C1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		276871E61E491DA900A24C1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		276871E91E491DA900A24C1E /* Roul.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Roul.xcdatamodel; sourceTree = "<group>"; };
 		276871EC1E491DA900A24C1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		276871EE1E491DA900A24C1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,6 +59,8 @@
 		647C2CF71E5B7C01008AB7E8 /* Coringa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coringa.swift; sourceTree = "<group>"; };
 		64B115401E5CC4EE00D6F024 /* WEST.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = WEST.TTF; sourceTree = "<group>"; };
 		64B115421E5CDBF800D6F024 /* Extension+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
+		64B23D621E5F28AD00A45821 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		64B23D641E5F8B7E00A45821 /* ModalTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalTimerViewController.swift; sourceTree = "<group>"; };
 		64DC402C1E53A47100A41B1F /* JogadoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JogadoresViewController.swift; sourceTree = "<group>"; };
 		64E1D6CF1E493BFD0009EF99 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		64E1D6D11E493C390009EF99 /* RouletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
@@ -147,10 +149,10 @@
 			children = (
 				27DDF36B1E4E42A80045145C /* ModalDuelo.swift */,
 				27DDF3651E4D1D970045145C /* TrocaViewController.swift */,
-				276871E61E491DA900A24C1E /* ViewController.swift */,
 				64E1D6D51E49402F0009EF99 /* HomeViewController.swift */,
 				64DC402C1E53A47100A41B1F /* JogadoresViewController.swift */,
 				278A14A51E54C74F000CCA4A /* AvataresCollectionViewCell.swift */,
+				64B23D641E5F8B7E00A45821 /* ModalTimerViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -161,6 +163,7 @@
 				64E1D6D31E493C640009EF99 /* Extension+Int.swift */,
 				646058E61E4ACB7A0001FC44 /* Extension+Dispatch.swift */,
 				64B115421E5CDBF800D6F024 /* Extension+UIColor.swift */,
+				64B23D621E5F28AD00A45821 /* AudioPlayer.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64B23D651E5F8B7E00A45821 /* ModalTimerViewController.swift in Sources */,
 				64F7F8EC1E5AB13B0097B7F7 /* UIView+Glow.swift in Sources */,
 				64E1D6D41E493C640009EF99 /* Extension+Int.swift in Sources */,
 				94E1D1E61E54D88100625265 /* ViewJogadores.swift in Sources */,
@@ -257,10 +261,10 @@
 				642D8FED1E5CAFCF00711AD3 /* Roulette.swift in Sources */,
 				27DDF3661E4D1D970045145C /* TrocaViewController.swift in Sources */,
 				647C2CF81E5B7C01008AB7E8 /* Coringa.swift in Sources */,
-				276871E71E491DA900A24C1E /* ViewController.swift in Sources */,
 				644906AF1E5553F30084CA12 /* TimerProgress.swift in Sources */,
 				644906B71E562E840084CA12 /* RouletteOption.swift in Sources */,
 				646058E71E4ACB7A0001FC44 /* Extension+Dispatch.swift in Sources */,
+				64B23D631E5F28AD00A45821 /* AudioPlayer.swift in Sources */,
 				276871E51E491DA900A24C1E /* AppDelegate.swift in Sources */,
 				27DDF3621E4BB97C0045145C /* JogadorStore.swift in Sources */,
 				64E1D6D21E493C390009EF99 /* RouletteView.swift in Sources */,

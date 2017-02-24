@@ -43,6 +43,20 @@ extension UIView {
         self.layer.shadowOpacity = 0.6
     }
     
+    func shadowRoulette() {
+        self.layer.shadowRadius = 8
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize.zero
+        self.layer.shadowOpacity = 0.6
+    }
+    
+    func shadowRemove() {
+        self.layer.shadowRadius = 0
+        self.layer.shadowColor = UIColor.clear.cgColor
+        self.layer.shadowOffset = CGSize.zero
+        self.layer.shadowOpacity = 0
+    }
+    
     func shadowText() {
         self.layer.shadowRadius = 8
         self.layer.shadowColor = UIColor.black.cgColor
@@ -66,17 +80,6 @@ class Roulette: UIView {
             return t
         }()
         
-        let b = UIView(frame: CGRect.zero)
-        b.translatesAutoresizingMaskIntoConstraints = false
-        b.backgroundColor = UIColor.colorFromHex(0x674332)
-        v.addSubview(b)
-        
-        b.centerYAnchor.constraint(equalTo: v.centerYAnchor, constant: 0).isActive = true
-        b.centerXAnchor.constraint(equalTo: v.centerXAnchor, constant: 0).isActive = true
-        b.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        b.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        b.layer.cornerRadius = 75
-        b.shadowButton()
         
         v.addSubview(triangulo)
         triangulo.centerXAnchor.constraint(equalTo: v.centerXAnchor).isActive = true
@@ -96,7 +99,7 @@ class Roulette: UIView {
     
     var viewBorder : UIView = {
         let v = UIView()
-        v.backgroundColor = UIColor.colorFromHex(0xFBEBCD, alpha: 0.57)
+        v.backgroundColor = UIColor.colorFromHex(0xFBEBCD, alpha: 1)
         v.translatesAutoresizingMaskIntoConstraints = false
         v.shadowButton()
         return v
@@ -139,6 +142,13 @@ class Roulette: UIView {
         self.cornerRadius()
     }
     
+    var v : UIView = {
+        let b = UIView(frame: CGRect.zero)
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.backgroundColor = UIColor.colorFromHex(0x674332)
+        return b
+    }()
+    
 }
 
 extension Roulette {
@@ -159,6 +169,14 @@ extension Roulette {
     
     fileprivate func createViews(rect: CGRect) {
         
+        self.viewCenter.addSubview(v)
+        
+        v.centerYAnchor.constraint(equalTo: viewCenter.centerYAnchor, constant: 0).isActive = true
+        v.centerXAnchor.constraint(equalTo: viewCenter.centerXAnchor, constant: 0).isActive = true
+        v.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        v.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        v.layer.cornerRadius = 75
+        
         self.viewCenter.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.viewCenter.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         self.viewCenter.widthAnchor.constraint(equalToConstant: rect.width * 0.45).isActive = true
@@ -173,6 +191,22 @@ extension Roulette {
         self.viewBorder.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         self.viewBorder.widthAnchor.constraint(equalToConstant: rect.width).isActive = true
         self.viewBorder.heightAnchor.constraint(equalToConstant: rect.width).isActive = true
+        
+    }
+    
+    func setupColorsVD() {
+        self.viewBorder.backgroundColor = UIColor.colorFromHex(0xFBEBCD)
+        self.viewMedium.backgroundColor = UIColor.colorFromHex(0xFBEBCD)
     }
     
 }
+
+
+
+
+
+
+
+
+
+

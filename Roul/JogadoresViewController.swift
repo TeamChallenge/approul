@@ -9,35 +9,6 @@
 import UIKit
 import AVFoundation
 
-class AudioPlayer: NSObject {
-    
-    private override init() {
-        super.init()
-    }
-    
-    static func configureAudio(withName name: String) -> AVAudioPlayer? {
-        let myFilePathString = Bundle.main.path(forResource: name, ofType: "mp3")
-        
-        if let myFilePathString = myFilePathString{
-            let myFilePathURL = URL(fileURLWithPath: myFilePathString)
-            do{
-                let myAudioPlayer = try AVAudioPlayer(contentsOf: myFilePathURL)
-                if #available(tvOS 10.0, *) {
-                    myAudioPlayer.volume = 0.01
-                } else {
-                    // Fallback on earlier versions
-                    return nil
-                }
-                return myAudioPlayer
-            }catch{
-                return nil
-            }
-        }
-        return nil
-    }
-    
-}
-
 class JogadoresViewController: UIViewController {
     
     @IBOutlet weak var avataresCollectionView: UICollectionView!
@@ -86,6 +57,12 @@ class JogadoresViewController: UIViewController {
             nextFocusedView = superView
         }
         
+//        if self.buttonIniciar.isFocused {
+//            self.buttonIniciar.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+//        } else {
+//            self.buttonIniciar.transform = CGAffineTransform(scaleX: 1, y: 1)
+//        }
+        
         switch nextFocusedView {
         case self.buttonIniciar:
             self.focusGuide.preferredFocusedView = self.gamersSelecionadosCollectionView
@@ -96,6 +73,7 @@ class JogadoresViewController: UIViewController {
         default:
             self.focusGuide.preferredFocusedView = nil
         }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -123,8 +101,6 @@ class JogadoresViewController: UIViewController {
                 let index = IndexPath(item: indexAdicionado, section: 0)
                 self.gamersSelecionadosCollectionView.insertItems(at: [index])
             }
-            
-            
         }else{
             let gamerSelected = self.jogadoresAdicionados.remove(at: indexPath.item)
             gamersSelecionadosCollectionView.deleteItems(at: [indexPath])
@@ -140,8 +116,18 @@ class JogadoresViewController: UIViewController {
                 }
             }
         }
+        
+        self.setupButtonStart()
     }
-       
+    
+    fileprivate func setupButtonStart() {
+        if self.jogadoresAdicionados.count > 2 {
+            self.buttonIniciar.isEnabled = true
+        } else {
+            self.buttonIniciar.isEnabled = false
+        }
+    }
+    
     @IBAction func iniciar() {
         self.performSegue(withIdentifier: "toRoul", sender: self)
     }

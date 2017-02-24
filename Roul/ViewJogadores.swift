@@ -34,7 +34,7 @@ class CardJogador: UIView {
         i.translatesAutoresizingMaskIntoConstraints = false
         i.image = #imageLiteral(resourceName: "bg_avatar")
         i.contentMode = .scaleAspectFit
-        i.shadowButton()
+//        i.shadowButton()
         return i
     }()
     

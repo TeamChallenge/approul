@@ -10,14 +10,12 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var collectionMundos: UICollectionView!
     @IBOutlet weak var viewJogadorComponent: ViewJogadores!
     @IBOutlet fileprivate weak var timerProgressComponent: TimerProgress!
     @IBOutlet fileprivate weak var rouletteComponent: RouletteView!
     @IBOutlet fileprivate weak var rouletteOptionComponent: RouletteView!
     @IBOutlet fileprivate weak var labelMensagem: UILabel!
-    
-    @IBOutlet weak var buttonMenu: UIButton!
+
     
     var jogadores : [Jogador]?
     
@@ -28,15 +26,15 @@ class HomeViewController: UIViewController {
         self.view.addLayoutGuide(self.focusGuide)
         self.view.addLayoutGuide(self.focusGuideMenu)
         
-        self.focusGuide.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.focusGuide.topAnchor.constraint(equalTo: self.rouletteComponent.bottomAnchor).isActive = true
-        self.focusGuide.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        self.focusGuide.heightAnchor.constraint(equalToConstant: 60).isActive = true
+//        self.focusGuide.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+//        self.focusGuide.topAnchor.constraint(equalTo: self.rouletteComponent.bottomAnchor).isActive = true
+//        self.focusGuide.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+//        self.focusGuide.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
-        self.focusGuideMenu.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -40).isActive = true
-        self.focusGuideMenu.topAnchor.constraint(equalTo: self.buttonMenu.bottomAnchor).isActive = true
-        self.focusGuideMenu.widthAnchor.constraint(equalToConstant: 90).isActive = true
-        self.focusGuideMenu.bottomAnchor.constraint(equalTo: self.collectionMundos.bottomAnchor).isActive = true
+//        self.focusGuideMenu.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -40).isActive = true
+//        self.focusGuideMenu.topAnchor.constraint(equalTo: self.buttonMenu.bottomAnchor).isActive = true
+//        self.focusGuideMenu.widthAnchor.constraint(equalToConstant: 90).isActive = true
+//        self.focusGuideMenu.bottomAnchor.constraint(equalTo: self.collectionMundos.bottomAnchor).isActive = true
     }
     
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
@@ -44,41 +42,43 @@ class HomeViewController: UIViewController {
         
         guard let nextFocusedView = context.nextFocusedView else { return }
         
-        switch nextFocusedView {
-        case self.buttonMenu:
-            self.focusGuideMenu.preferredFocusedView = self.rouletteComponent
-            break
-        case self.rouletteComponent:
-            self.focusGuideMenu.preferredFocusedView = self.buttonMenu
-            break
-        case self.timerProgressComponent:
-            self.focusGuideMenu.preferredFocusedView = self.buttonMenu
-            break
-        default:
-            self.focusGuideMenu.preferredFocusedView = nil
-        }
+//        switch nextFocusedView {
+//        case self.buttonMenu:
+//            self.focusGuideMenu.preferredFocusedView = self.rouletteComponent
+//            break
+//        case self.rouletteComponent:
+//            self.focusGuideMenu.preferredFocusedView = self.buttonMenu
+//            break
+//        case self.timerProgressComponent:
+//            self.focusGuideMenu.preferredFocusedView = self.buttonMenu
+//            break
+//        default:
+//            self.focusGuideMenu.preferredFocusedView = nil
+//        }
     }
     
     var collectionIsVisible: Bool = false
     
     @IBAction func handlerMenu() {
-        if self.collectionIsVisible == false {
-            self.collectionIsVisible = true
-            let t = CGAffineTransform(translationX: 320, y: 0)
-            UIView.animate(withDuration: 0.5, animations: { 
-                self.collectionMundos.transform = t
-                self.buttonMenu.transform = t
-            }, completion: nil)
-        } else {
-            self.collectionIsVisible = false
-            let t = CGAffineTransform(translationX: 0, y: 0)
-            UIView.animate(withDuration: 0.5, animations: {
-                self.collectionMundos.transform = t
-                self.buttonMenu.transform = t
-            }, completion: nil)
-        }
+        self.performSegue(withIdentifier: "modal", sender: self)
+//        if self.collectionIsVisible == false {
+//            self.collectionIsVisible = true
+//            let t = CGAffineTransform(translationX: 320, y: 0)
+//            UIView.animate(withDuration: 0.5, animations: { 
+//                self.collectionMundos.transform = t
+//                self.buttonMenu.transform = t
+//            }, completion: nil)
+//        } else {
+//            self.collectionIsVisible = false
+//            let t = CGAffineTransform(translationX: 0, y: 0)
+//            UIView.animate(withDuration: 0.5, animations: {
+//                self.collectionMundos.transform = t
+//                self.buttonMenu.transform = t
+//            }, completion: nil)
+//        }
         
     }
+    
     let button : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Girar", for: .normal)
@@ -95,6 +95,7 @@ class HomeViewController: UIViewController {
                 if let j = jogador {
                     self.viewJogadorComponent.setup(withJogador: j)
                     self.rouletteComponent.clicado = false
+                    self.rouletteComponent.setGiro(giro: true)
                 }
             })
         }
@@ -113,14 +114,13 @@ class HomeViewController: UIViewController {
 //        self.button.widthAnchor.constraint(equalToConstant: 200).isActive = true
 //        self.button.heightAnchor.constraint(equalToConstant: 90).isActive = true
 //        self.button.addTarget(self, action: #selector(HomeViewController.mudar), for: .primaryActionTriggered)
-        self.collectionMundos.backgroundColor = .clear
+//        self.collectionMundos.backgroundColor = .clear
         self.rouletteOptionComponent.backgroundColor = .clear
         self.labelMensagem.alpha = 0
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.handlerMenu()
     }
     
     private func setupRoulette () {
@@ -160,6 +160,8 @@ class HomeViewController: UIViewController {
         self.viewJogadorComponent.animationTroca()
     }
     
+    var textLabel: String = ""
+    
     @objc private func animacaoComponents () {
         
         guard let desafiante = self.viewJogadorComponent.desafiante?.nome, let desafiado = self.viewJogadorComponent.desafiado?.nome else {
@@ -176,91 +178,121 @@ class HomeViewController: UIViewController {
         // Saida da roleta de Jogadores
         self.rouletteComponent.clicado = false
         self.rouletteComponent.isRodando = true
-        self.rouletteComponent.animacaoMove(inicial: inicialRoletaView, final: finalRoletaView) {
+        self.rouletteComponent.clique()
         
-            // Pontos da roleta de opções
-            let inicialVD = self.rouletteOptionComponent.layer.position
-            let finalVD = CGPoint(x: inicialVD.x, y: inicialVD.y - 1300)
-            
-            // Entrada da roleta de opções
-            self.rouletteOptionComponent.animacaoMove(inicial: inicialVD, final: finalVD, completion: { 
-            
-                // Definir texto do desafio
-                self.labelMensagem.text = "Será verdade ou desafio?"
+        delay(1) { 
+            self.rouletteComponent.animacaoMove(inicial: inicialRoletaView, final: finalRoletaView) {
                 
-                delay(2, finish: {
+                // Pontos da roleta de opções
+                let inicialVD = self.rouletteOptionComponent.layer.position
+                let finalVD = CGPoint(x: inicialVD.x, y: inicialVD.y - 1300)
+                
+                // Entrada da roleta de opções
+                self.rouletteOptionComponent.animacaoMove(inicial: inicialVD, final: finalVD, completion: {
                     
-                    // Animação da roleta de opções
-                    self.rouletteOptionComponent.girarOptions(withIntensidade: Int.randomInt(min: 400, max: 1000), { (opcao: String) in
+                    // Definir texto do desafio
+                    self.labelMensagem.text = "Será verdade ou desafio?"
+                    
+                    delay(2, finish: {
                         
-                            self.labelMensagem.text = opcao
-                        
-                        delay(1, finish: {
+                        // Animação da roleta de opções
+                        self.rouletteOptionComponent.girarOptions(withIntensidade: Int.randomInt(min: 400, max: 1000), { (opcao: String) in
                             
-                            if opcao == "Verdade" {
-                                self.labelMensagem.text = "\(desafiante) pode fazer uma pergunta para \(desafiado)"
-                            } else if opcao == "Desafio" {
-                                self.labelMensagem.text = "\(desafiante) faz um desafio para \(desafiado)"
-                            } else {
-                                self.labelMensagem.text = "\(desafiante) a decisão é sua!"
-                            }
-
-                            // Saida da roleta de opções
-                            self.rouletteOptionComponent.animacaoMove(inicial: finalVD, final: inicialVD, completion: {
+                            self.labelMensagem.text = opcao
+                            
+                            delay(1, finish: {
                                 
-                                // Pontos da roleta de tempo
-                                let inicalTimer = self.timerProgressComponent.layer.position
-                                let finalTimer = CGPoint(x: inicalTimer.x, y: inicalTimer.y - 1300)
+                                if opcao == "Verdade" {
+                                    self.textLabel = "\(desafiante) pode fazer uma pergunta para \(desafiado)"
+                                } else if opcao == "Desafio" {
+                                    self.textLabel = "\(desafiante) faz um desafio para \(desafiado)"
+                                } else {
+                                    self.textLabel = "\(desafiante) a decisão é sua!"
+                                }
+                                //
+                                self.performSegue(withIdentifier: "modal", sender: self)
                                 
-                                self.focusGuide.preferredFocusedView = self.timerProgressComponent.button
-                                self.setNeedsFocusUpdate()
-                                self.updateFocusIfNeeded()
-                                
-                                // Entrada da roleta de tempo
-                                self.timerProgressComponent.animacaoMove(inicial: inicalTimer, final: finalTimer, completion: {
-                                    
-                                    // Animação do tempo
-                                    self.timerProgressComponent.set(withTimer: 10, completion: {
-                                        print("Tempo acabou")
-                                        
-                                        // Saida da roleta de tempo
-                                        self.timerProgressComponent.animacaoMove(inicial: finalTimer, final: inicalTimer, completion: {
-                                            
-                                            // Entrada da roleta de jogadores
-                                            self.rouletteComponent.animacaoMove(inicial: finalRoletaView, final: inicialRoletaView, completion: {
-                                                
-                                                self.rouletteComponent.isRodando = false
-                                                self.viewJogadorComponent.animationTroca()
-                                                self.labelMensagem.text = "\(desafiado) sua vez de girar a roleta"
-                                                
-                                                self.focusGuide.preferredFocusedView = self.rouletteComponent
-                                                //                                            self.focusGuideMenu.preferredFocusedView = self.rouletteComponent
-                                                self.setNeedsFocusUpdate()
-                                                self.updateFocusIfNeeded()
-                                                
-                                            })
-                                            
-                                        })
+                                //                            // Saida da roleta de opções
+                                self.rouletteOptionComponent.animacaoMove(inicial: finalVD, final: inicialVD, completion: {
+                                    //
+                                    //                                // Pontos da roleta de tempo
+                                    //                                let inicalTimer = self.timerProgressComponent.layer.position
+                                    //                                let finalTimer = CGPoint(x: inicalTimer.x, y: inicalTimer.y - 1300)
+                                    //
+                                    //                                self.focusGuide.preferredFocusedView = self.timerProgressComponent.button
+                                    //                                self.setNeedsFocusUpdate()
+                                    //                                self.updateFocusIfNeeded()
+                                    //
+                                    //                                // Entrada da roleta de tempo
+                                    //                                self.timerProgressComponent.animacaoMove(inicial: inicalTimer, final: finalTimer, completion: {
+                                    //
+                                    //                                    // Animação do tempo
+                                    //                                    self.timerProgressComponent.set(withTimer: 10, completion: {
+                                    //                                        print("Tempo acabou")
+                                    //
+                                    //                                        // Saida da roleta de tempo
+                                    //                                        self.timerProgressComponent.animacaoMove(inicial: finalTimer, final: inicalTimer, completion: {
+                                    //
+                                    //                                            // Entrada da roleta de jogadores
+                                    self.rouletteComponent.animacaoMove(inicial: finalRoletaView, final: inicialRoletaView, completion: {
+                                        //
+                                        //                                                self.rouletteComponent.isRodando = false
+                                        //                                                self.viewJogadorComponent.animationTroca()
+                                        //                                                self.labelMensagem.text = "\(desafiado) sua vez de girar a roleta"
+                                        //                                                self.rouletteComponent.setGiro(giro: true)
+                                        //                                                self.focusGuide.preferredFocusedView = self.rouletteComponent
+                                        //                                                //                                            self.focusGuideMenu.preferredFocusedView = self.rouletteComponent
+                                        //                                                self.setNeedsFocusUpdate()
+                                        //                                                self.updateFocusIfNeeded()
+                                        //                                                
                                     })
-                                    
+                                    //
+                                    //                                        })
+                                    //                                    })
+                                    //                                    
+                                    //                                })
+                                    //                                
                                 })
                                 
                             })
                             
+                            
+                            
                         })
-                        
-
                         
                     })
                     
                 })
-                
-            })
+            }
         }
+        
+        
 
 //            let inicialTimer = self.timerProgressComponent.layer.position
 //            let finalTimer = CGPoint(x: inicialTimer.x, y: inicialTimer.y - 1300)
 
+    }
+    
+    func reload() {
+        guard let desafiante = self.viewJogadorComponent.desafiante?.nome, let desafiado = self.viewJogadorComponent.desafiado?.nome else {
+            return
+        }
+        self.rouletteComponent.isRodando = false
+        self.viewJogadorComponent.animationTroca()
+        self.labelMensagem.text = "\(desafiado) sua vez de girar a roleta"
+        self.rouletteComponent.setGiro(giro: true)
+        self.focusGuide.preferredFocusedView = self.rouletteComponent
+        self.setNeedsFocusUpdate()
+        self.updateFocusIfNeeded()
+
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "modal" {
+            let v = segue.destination as? ModalTimerViewController
+            v?.controller = self
+            v?.textoLabel = self.textLabel
+        }
     }
     
     private func addGesture(){

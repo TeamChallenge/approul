@@ -33,6 +33,12 @@ class CircleView: UIView {
         }
     }
     
+    var isBorder: Bool = false {
+        didSet{
+            self.setNeedsDisplay()
+        }
+    }
+    
     var sizeIconImage: CGFloat = 100 {
         didSet{
             if iconImage != nil {
@@ -62,7 +68,13 @@ class CircleView: UIView {
             let origin = CGPoint(x: self.bounds.size.width * 0.5, y: self.bounds.size.height * 0.5)
             context.move(to: origin)
             context.addArc(center: origin, radius: origin.x, startAngle: self.startAngle, endAngle: self.endAngle, clockwise: false)
+            if self.isBorder {
+                UIColor.colorFromHex(0x674332).setStroke()
+                context.setLineWidth(1.5)
+                context.strokePath()
+            }
             context.drawPath(using: .fill)
+            
             
             if iconImage != nil {
                 let raioIcon = origin.x * self.raioIcon

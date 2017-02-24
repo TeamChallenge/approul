@@ -34,11 +34,14 @@ class RouletteView: UIView {
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         coordinator.addCoordinatedAnimations({ 
             if self.isFocused {
-                self.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
-                self.layer.borderWidth = 10
+//                self.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
+//                self.layer.borderWidth = 10
+                self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                
             } else {
-                self.layer.borderColor = UIColor.clear.cgColor
-                self.layer.borderWidth = 0
+//                self.layer.borderColor = UIColor.clear.cgColor
+//                self.layer.borderWidth = 0
+                self.transform = CGAffineTransform(scaleX: 1, y: 1)
             }
         }, completion: nil)
     }
@@ -63,16 +66,25 @@ class RouletteView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(self.backgroundRoulette)
-        self.backgroundRoulette.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        self.backgroundRoulette.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -100).isActive = true
         self.backgroundRoulette.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.backgroundRoulette.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         self.backgroundRoulette.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+        
     }
     
     private lazy var angle : CGFloat = {
         return CGFloat(2 * M_PI / Double(self.numberItems))
     }()
 
+    var labelGirar: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.text = "Girar"
+        l.font = UIFont(name: "Western", size: 40)
+        l.textAlignment = .center
+        return l
+    }()
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
@@ -94,6 +106,7 @@ class RouletteView: UIView {
                 circle.raioIcon = 0.8
                 circle.color = i % 2 == 0 ? UIColor.clear : UIColor.clear
                 circle.iconImage = jogador.imagem
+                circle.isBorder = true
                 self.addSubview(circle)
                 
     //            let numberLabel = UILabel()
@@ -133,10 +146,19 @@ class RouletteView: UIView {
                 circle.endAngle = CGFloat(angle * CGFloat(i + 1))
                 circle.backgroundColor = .clear
                 circle.color = i % 2 == 0 ? UIColor.clear : UIColor.clear
-                circle.iconImage = opcao.1
-                circle.raioIcon = 0.7
-                circle.sizeIconImage = 80
+//                circle.iconImage = opcao.1
+//                circle.raioIcon = 0.7
+//                circle.sizeIconImage = 80
+                circle.isBorder = true
                 self.addSubview(circle)
+  
+                let imagaView = UIImageView(image: opcao.1)
+                imagaView.frame = CGRect(x: 0, y: 0, width: 100, height: 70)
+                imagaView.contentMode = .scaleAspectFit
+                let th = angle * (CGFloat(i) + 0.5)
+//                imagaView.transform = CGAffineTransform(rotationAngle: CGFloat(th - CGFloat(M_PI * 0.5)))
+                imagaView.center = CGPoint(x: centerView.x + 160 * CGFloat(cos(th)), y: centerView.y + 160 * CGFloat(sin(th)))
+                self.addSubview(imagaView)
                 
 //                let numberLabel = UILabel()
 //                numberLabel.text = opcao
@@ -152,10 +174,18 @@ class RouletteView: UIView {
 //                }
 //                numberLabel.center = CGPoint(x: centerView.x + 175 * CGFloat(cos(th)), y: centerView.y + 175 * CGFloat(sin(th)))
 //                self.addSubview(numberLabel)
+                self.setGiro(giro: false)
+                self.backgroundRoulette.setupColorsVD()
             }
             self.backgroundRoulette.viewCenter.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI / 2) + self.angle * 0.5)
             
         }
+        
+        self.addSubview(self.labelGirar)
+        self.labelGirar.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.labelGirar.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        self.labelGirar.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        self.labelGirar.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -173,13 +203,23 @@ class RouletteView: UIView {
     var clicado: Bool = false
     var isRodando: Bool = false
     
+    func setGiro(giro: Bool) {
+        if giro {
+            self.labelGirar.alpha = 1
+        } else {
+            self.labelGirar.alpha = 0
+        }
+    }
+    
     func clique() {
         if self.clicado == false {
             self.clicado = true
-            self.layer.borderColor = UIColor(white: 0.8, alpha: 0.5).cgColor
+//            self.layer.borderColor = UIColor(white: 0.8, alpha: 0.5).cgColor
+            self.backgroundRoulette.viewCenter.shadowButton()
         } else {
             self.clicado = false
-            self.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
+//            self.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
+            self.backgroundRoulette.viewCenter.shadowRemove()
         }
     }
     
@@ -206,6 +246,7 @@ class RouletteView: UIView {
     fileprivate var indexUltimoJogador: Int = 0
     
     private func giroViewCenter (_ numberAngles: Int, _ duration: Int) {
+        self.setGiro(giro: false)
         let currentAngle = self.backgroundRoulette.viewCenter.layer.presentation()?.value(forKeyPath: "transform.rotation") as! Double
         
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
