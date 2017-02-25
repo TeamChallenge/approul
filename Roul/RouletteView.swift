@@ -36,7 +36,7 @@ class RouletteView: UIView {
         }
     }
     
-    private var indexCurrent: Int = 0
+    private var indexCurrent: Int = -1
     private var numberItems: Int = 2
     
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
@@ -276,29 +276,28 @@ class RouletteView: UIView {
             return
         }
         
-        self.audio?.currentTime = 0
-        self.audio?.prepareToPlay()
-        self.audio?.play()
-        
-        
         var valorRand = abs(intensidade) / 10
         let duration = rand(mode: .time)
         
         var i = (valorRand + indexCurrent) % self.numberItems
         
-        if i == indexCurrent || i == self.indexUltimoJogador {
+        if i == indexCurrent {
             while true {
-                valorRand = (abs(intensidade) + 30) / 10
+                valorRand = (valorRand + 50) / 10
                 if valorRand < 0 {
                     valorRand = abs(valorRand + (self.numberItems - 1 + self.indexCurrent) )
                 }
                 i = (valorRand + indexCurrent) % self.numberItems
-                if i != indexCurrent && i != self.indexUltimoJogador {
+                if i != indexCurrent {
                     break
                 }
             }
         }
         indexCurrent = i
+        
+        self.audio?.currentTime = 0
+        self.audio?.prepareToPlay()
+        self.audio?.play()
         
         self.giroViewCenter(valorRand, duration)
         self.isRodando = true

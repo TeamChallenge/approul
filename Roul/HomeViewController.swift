@@ -117,10 +117,11 @@ class HomeViewController: UIViewController {
 //        self.collectionMundos.backgroundColor = .clear
         self.rouletteOptionComponent.backgroundColor = .clear
         self.labelMensagem.alpha = 0
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
+        delay(2) {
+            self.rouletteComponent.clicado = true
+            self.startGame()
+        }
     }
     
     private func setupRoulette () {
@@ -143,10 +144,6 @@ class HomeViewController: UIViewController {
         
         self.rouletteComponent.jogadores = jogadores
 
-        delay(2) {
-            self.rouletteComponent.clicado = true
-            self.startGame()
-        }
         self.rouletteOptionComponent.options = [("Verdade",#imageLiteral(resourceName: "verdade")), ("Desafio", #imageLiteral(resourceName: "desafio")), ("Interrogação", #imageLiteral(resourceName: "interrogacao"))]
         
         self.rouletteComponent.layer.position = self.view.center
@@ -283,6 +280,8 @@ class HomeViewController: UIViewController {
             return
         }
         self.rouletteComponent.isRodando = false
+        self.rouletteComponent.clicado = false
+        self.rouletteComponent.clique()
         self.viewJogadorComponent.animationTroca()
         self.labelMensagem.text = "\(desafiado) sua vez de girar a roleta"
         self.rouletteComponent.setGiro(giro: true)
