@@ -91,7 +91,7 @@ class HomeViewController: UIViewController {
     
     private func startGame () {
         if let count = self.rouletteComponent?.jogadores?.count {
-            self.rouletteComponent?.girar(withIntensidade: count * 200, { (jogador: Jogador?) in
+            self.rouletteComponent?.girar(withIntensidade: count * Int.randomInt(min: 200, max: 400), { (jogador: Jogador?) in
                 if let j = jogador {
                     self.viewJogadorComponent?.setup(withJogador: j)
                     self.rouletteComponent?.clicado = false
