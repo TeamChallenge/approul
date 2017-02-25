@@ -36,7 +36,7 @@ class RouletteView: UIView {
         }
     }
     
-    private var indexCurrent: Int = -1
+    private var indexCurrent: Int = 0
     private var numberItems: Int = 2
     
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
