@@ -90,12 +90,12 @@ class HomeViewController: UIViewController {
     var nameDesafiadoAnteriormente : String?
     
     private func startGame () {
-        if let count = self.rouletteComponent.jogadores?.count {
+        if let count = self.rouletteComponent?.jogadores?.count {
             self.rouletteComponent?.girar(withIntensidade: count * 200, { (jogador: Jogador?) in
                 if let j = jogador {
-                    self.viewJogadorComponent.setup(withJogador: j)
-                    self.rouletteComponent.clicado = false
-                    self.rouletteComponent.setGiro(giro: true)
+                    self.viewJogadorComponent?.setup(withJogador: j)
+                    self.rouletteComponent?.clicado = false
+                    self.rouletteComponent?.setGiro(giro: true)
                 }
             })
         }
@@ -118,8 +118,10 @@ class HomeViewController: UIViewController {
         self.rouletteOptionComponent.backgroundColor = .clear
         self.labelMensagem.alpha = 0
         
+        self.rouletteComponent.isRodando = true
         delay(2) {
-            self.rouletteComponent.clicado = true
+            self.rouletteComponent?.isRodando = false
+            self.rouletteComponent?.clicado = true
             self.startGame()
         }
     }
@@ -178,7 +180,10 @@ class HomeViewController: UIViewController {
         self.rouletteComponent.isRodando = true
         self.rouletteComponent.clique()
         
-        delay(1) { 
+        delay(1) {
+            if self.rouletteComponent == nil {
+                return
+            }
             self.rouletteComponent.animacaoMove(inicial: inicialRoletaView, final: finalRoletaView) {
                 
                 // Pontos da roleta de opções
@@ -187,11 +192,16 @@ class HomeViewController: UIViewController {
                 
                 // Entrada da roleta de opções
                 self.rouletteOptionComponent.animacaoMove(inicial: inicialVD, final: finalVD, completion: {
-                    
+                    if self.rouletteOptionComponent == nil {
+                        return
+                    }
                     // Definir texto do desafio
                     self.labelMensagem.text = "Será verdade ou desafio?"
                     
                     delay(2, finish: {
+                        if self.rouletteOptionComponent == nil {
+                            return
+                        }
                         
                         // Animação da roleta de opções
                         self.rouletteOptionComponent.girarOptions(withIntensidade: Int.randomInt(min: 400, max: 1000), { (opcao: String) in
@@ -199,6 +209,10 @@ class HomeViewController: UIViewController {
                             self.labelMensagem.text = opcao
                             
                             delay(1, finish: {
+                                
+                                if self.rouletteOptionComponent == nil {
+                                    return
+                                }
                                 
                                 if opcao == "Verdade" {
                                     self.textLabel = "\(desafiante) pode fazer uma pergunta para \(desafiado)"
@@ -233,6 +247,10 @@ class HomeViewController: UIViewController {
                                     //                                        self.timerProgressComponent.animacaoMove(inicial: finalTimer, final: inicalTimer, completion: {
                                     //
                                     //                                            // Entrada da roleta de jogadores
+                                    
+                                    if self.rouletteComponent == nil {
+                                        return
+                                    }
                                     self.rouletteComponent.animacaoMove(inicial: finalRoletaView, final: inicialRoletaView, completion: {
                                         if opcao == "Verdade" || opcao == "Interrogação"{
                                             self.reload()
@@ -276,6 +294,9 @@ class HomeViewController: UIViewController {
     }
     
     func reload() {
+        if self.rouletteComponent == nil {
+            return
+        }
         guard let desafiante = self.viewJogadorComponent.desafiante?.nome, let desafiado = self.viewJogadorComponent.desafiado?.nome else {
             return
         }

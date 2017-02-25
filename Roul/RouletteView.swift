@@ -221,6 +221,9 @@ class RouletteView: UIView {
     }
     
     func clique() {
+        if self.isRodando == true {
+            return
+        }
         if self.clicado == false {
             self.clicado = true
 //            self.layer.borderColor = UIColor(white: 0.8, alpha: 0.5).cgColor
